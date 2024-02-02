@@ -5,7 +5,7 @@ using Mediag.Hospital;
 
 namespace Mediag.Database
 {
-    internal class DiagnosisConverter : TypeConverter
+    internal class ResultConverter : TypeConverter
     {
         public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
         {
@@ -37,7 +37,7 @@ namespace Mediag.Database
             Map(m => m.ConcavePointsWorst).Index(3).Name("concave_points_worst");
             Map(m => m.ConcavePointsMean).Index(4).Name("concave_points_mean");
             Map(m => m.PerimeterMean).Index(5).Name("perimeter_mean");
-            Map(m => m.Status).Index(6).Name("diagnosis").TypeConverter(new DiagnosisConverter());
+            Map(m => m.Result).Index(6).Name("diagnosis").TypeConverter(new ResultConverter());
             Map(m => m.Selected).Index(7).Name("selected").TypeConverter(new SelectedConverter());
         }
     }

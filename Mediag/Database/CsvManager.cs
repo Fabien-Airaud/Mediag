@@ -8,9 +8,9 @@ namespace Mediag.Database
 {
     class CsvManager
     {
-        private static readonly string DefaultDatabase = "database";
+        private const string DefaultDatabase = "database";
 
-        private static readonly string SamplesFilename = "samples.csv";
+        private const string SamplesFilename = "samples.csv";
 
 
         public static List<Diagnosis> GetTrainDiagnosis() { return GetTrainDiagnosis(DefaultDatabase); }

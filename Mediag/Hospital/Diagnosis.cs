@@ -18,7 +18,7 @@ namespace Mediag.Hospital
 
         public double PerimeterMean { get; set; }
 
-        public bool Status { get; set; }
+        public bool Result { get; set; }
 
         public bool Selected { get; set; }
 
@@ -34,7 +34,7 @@ namespace Mediag.Hospital
             ConcavePointsWorst = concavePointsWorst;
             ConcavePointsMean = concavePointsMean;
             PerimeterMean = perimeterMean;
-            Status = status;
+            Result = status;
             Selected = selected;
         }
 
@@ -43,7 +43,7 @@ namespace Mediag.Hospital
         {
             object[] values = new object[]
             {
-                RadiusWorst, AreaWorst, PerimeterWorst, ConcavePointsWorst, ConcavePointsMean, PerimeterMean, Status
+                RadiusWorst, AreaWorst, PerimeterWorst, ConcavePointsWorst, ConcavePointsMean, PerimeterMean, Result
             };
             return values;
         }
@@ -58,7 +58,7 @@ namespace Mediag.Hospital
                 + ConcavePointsWorst + ", "
                 + ConcavePointsMean + ", "
                 + PerimeterMean + ", "
-                + Status + ", "
+                + Result + ", "
                 + Selected;
             return str;
         }
