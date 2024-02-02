@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\CsvManager.cs" />
     <Compile Include="Database\DiagnosisMap.cs" />
     <Compile Include="Hospital\Diagnosis.cs" />
     <Compile Include="Program.cs" />
