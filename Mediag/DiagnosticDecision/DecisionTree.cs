@@ -7,7 +7,7 @@ namespace Mediag.DiagnosticDecision
     {
         public List<IForDecisionTree> Train { get; set; }
         public List<IForDecisionTree> Test { get; set; }
-
+        
 
         public DecisionTree()
         {
