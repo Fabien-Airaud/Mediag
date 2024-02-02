@@ -1,6 +1,8 @@
-﻿namespace Mediag.Hospital
+﻿using Mediag.DecisionTree;
+
+namespace Mediag.Hospital
 {
-    class Diagnosis
+    class Diagnosis : IForDecisionTree
     {
         public long Id { get; set; }
 
@@ -34,6 +36,16 @@
             PerimeterMean = perimeterMean;
             Status = status;
             Selected = selected;
+        }
+
+
+        public object[] Values()
+        {
+            object[] values = new object[]
+            {
+                RadiusWorst, AreaWorst, PerimeterWorst, ConcavePointsWorst, ConcavePointsMean, PerimeterMean, Status
+            };
+            return values;
         }
 
 
