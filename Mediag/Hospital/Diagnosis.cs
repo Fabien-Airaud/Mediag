@@ -1,4 +1,4 @@
-﻿using Mediag.DecisionTree;
+﻿using Mediag.DiagnosticDecision;
 
 namespace Mediag.Hospital
 {
