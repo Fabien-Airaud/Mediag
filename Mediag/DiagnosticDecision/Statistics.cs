@@ -24,5 +24,15 @@ namespace Mediag.DiagnosticDecision
 
             return (double)Set.Count(row => row[factor].Equals(value)) / Set.Count;
         }
+
+        public double ProbabilityResultKnowingFactor(int result, object valueResult, int factor, object valueFactor)
+        {
+            if (Check(Set, factor)) return 0;
+
+            List<object[]> setFactor = Set.FindAll(row => row[factor].Equals(valueFactor));
+            if (Check(setFactor, result)) return 0;
+
+            return (double)setFactor.Count(row => row[result].Equals(valueResult)) / setFactor.Count;
+        }
     }
 }
