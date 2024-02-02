@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Mediag.DiagnosticDecision
@@ -12,9 +13,14 @@ namespace Mediag.DiagnosticDecision
         public Statistics(List<object[]> set) { Set = set; }
 
 
-        private double Probability(int factor, object value)
+        private bool Check(List<object[]> set, int factor)
         {
-            if (Set.Count == 0 || factor < 0 || factor >= Set[0].Length) return 0;
+            return set.Count == 0 || factor < 0 || factor >= set[0].Length;
+        }
+
+        public double ProbabilityFactor(int factor, object value)
+        {
+            if (Check(Set, factor)) return 0;
 
             return (double)Set.Count(row => row[factor].Equals(value)) / Set.Count;
         }
