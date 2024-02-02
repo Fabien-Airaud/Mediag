@@ -9,12 +9,15 @@ namespace Mediag.Database
 {
     class CsvManager
     {
-        public static List<Diagnosis> GetDiagnoses(string filename)
+        private static readonly string SamplesFilename = "database/samples.csv";
+
+
+        public static List<Diagnosis> GetSamplesDiagnosis()
         {
-            if (!File.Exists(filename)) { return null; }
+            if (!File.Exists(SamplesFilename)) { return null; }
             List<Diagnosis> diagnosisList = new List<Diagnosis>();
 
-            using (var reader = new StreamReader(filename))
+            using (var reader = new StreamReader(SamplesFilename))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Context.RegisterClassMap<DiagnosisMap>();

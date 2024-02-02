@@ -10,7 +10,7 @@ namespace Mediag
     {
         static void Main(string[] args)
         {
-            List<Diagnosis> data = CsvManager.GetDiagnoses("database/samples.csv");
+            List<Diagnosis> data = CsvManager.GetSamplesDiagnosis();
             Console.WriteLine(data == null ? "File doesn't exist" : data.ToString());
 
             foreach (object value in data[0].Values())
