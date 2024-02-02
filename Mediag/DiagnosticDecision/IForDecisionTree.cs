@@ -1,4 +1,4 @@
-﻿namespace Mediag.DecisionTree
+﻿namespace Mediag.DiagnosticDecision
 {
     interface IForDecisionTree
     {
