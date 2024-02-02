@@ -35,5 +35,20 @@
             Status = status;
             Selected = selected;
         }
+
+
+        public override string ToString()
+        {
+            string str = "Diagnosis " + Id + ": "
+                + RadiusWorst + ", "
+                + AreaWorst + ", "
+                + PerimeterWorst + ", "
+                + ConcavePointsWorst + ", "
+                + ConcavePointsMean + ", "
+                + PerimeterMean + ", "
+                + Status + ", "
+                + Selected;
+            return str;
+        }
     }
 }
