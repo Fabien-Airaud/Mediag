@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Mediag.DiagnosticDecision
 {
@@ -31,9 +30,6 @@ namespace Mediag.DiagnosticDecision
             if (Check(Set, factor)) return -1;
 
             List<object[]> setFactor = Set.FindAll(row => row[factor].Equals(valueFactor));
-            //if (Check(setFactor, result)) return -1;
-
-            //return (double)setFactor.Count(row => row[result].Equals(valueResult)) / setFactor.Count;
             return ProbabilityFactor(setFactor, result, valueResult);
         }
 
@@ -55,7 +51,6 @@ namespace Mediag.DiagnosticDecision
             foreach (object value in ExtractFactorValues(set, factor))
             {
                 double prob = ProbabilityFactor(set, factor, value);
-                Console.WriteLine(prob);
                 entropy -= prob * Log2(prob);
             }
             return entropy;
@@ -66,9 +61,22 @@ namespace Mediag.DiagnosticDecision
             if (Check(Set, factor)) return -1;
 
             List<object[]> setFactor = Set.FindAll(row => row[factor].Equals(valueFactor));
-            Console.WriteLine(setFactor.Count);
 
             return EntropyFactor(setFactor, result);
+        }
+
+        private double Gain(int result, int factor)
+        {
+            if (Check(Set, result)) return -1;
+            if (Check(Set, factor)) return -1;
+
+            double gain = EntropyFactor(Set, result);
+
+            foreach (object value in ExtractFactorValues(Set, factor))
+            {
+                gain -= ProbabilityFactor(Set, factor, value) * EntropyResultKnowingFactor(result, factor, value);
+            }
+            return gain;
         }
     }
 }
