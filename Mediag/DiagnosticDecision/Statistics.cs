@@ -19,11 +19,11 @@ namespace Mediag.DiagnosticDecision
             return set.Count == 0 || factor < 0 || factor >= set[0].Length;
         }
 
-        private double ProbabilityFactor(int factor, object value)
+        private double ProbabilityFactor(List<object[]> set, int factor, object value)
         {
-            if (Check(Set, factor)) return -1;
+            if (Check(set, factor)) return -1;
 
-            return (double)Set.Count(row => row[factor].Equals(value)) / Set.Count;
+            return (double)set.Count(row => row[factor].Equals(value)) / set.Count;
         }
 
         private double ProbabilityResultKnowingFactor(int result, object valueResult, int factor, object valueFactor)
@@ -31,9 +31,10 @@ namespace Mediag.DiagnosticDecision
             if (Check(Set, factor)) return -1;
 
             List<object[]> setFactor = Set.FindAll(row => row[factor].Equals(valueFactor));
-            if (Check(setFactor, result)) return -1;
+            //if (Check(setFactor, result)) return -1;
 
-            return (double)setFactor.Count(row => row[result].Equals(valueResult)) / setFactor.Count;
+            //return (double)setFactor.Count(row => row[result].Equals(valueResult)) / setFactor.Count;
+            return ProbabilityFactor(setFactor, result, valueResult);
         }
 
         private List<object> ExtractFactorValues(List<object[]> set, int factor)
@@ -46,17 +47,28 @@ namespace Mediag.DiagnosticDecision
 
         private double Log2(double x) { return Math.Log(x) / Math.Log(2); }
 
-        private double EntropyFactor(int factor)
+        private double EntropyFactor(List<object[]> set, int factor)
         {
-            if (Check(Set, factor)) return -1;
+            if (Check(set, factor)) return -1;
 
             double entropy = 0;
-            foreach (object value in ExtractFactorValues(Set, factor))
+            foreach (object value in ExtractFactorValues(set, factor))
             {
-                double prob = ProbabilityFactor(factor, value);
+                double prob = ProbabilityFactor(set, factor, value);
+                Console.WriteLine(prob);
                 entropy -= prob * Log2(prob);
             }
             return entropy;
+        }
+
+        private double EntropyResultKnowingFactor(int result, int factor, object valueFactor)
+        {
+            if (Check(Set, factor)) return -1;
+
+            List<object[]> setFactor = Set.FindAll(row => row[factor].Equals(valueFactor));
+            Console.WriteLine(setFactor.Count);
+
+            return EntropyFactor(setFactor, result);
         }
     }
 }
