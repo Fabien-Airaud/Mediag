@@ -8,7 +8,7 @@ namespace Mediag.Medical
 
         public string Name { get; set; }
 
-        public string Address { get; set; }
+        public string City { get; set; }
 
         public List<Doctor> Doctors { get; set; } = new List<Doctor>();
 
@@ -17,11 +17,11 @@ namespace Mediag.Medical
 
         public Hospital() { }
 
-        public Hospital(long id, string name, string address)
+        public Hospital(long id, string name, string city)
         {
             Id = id;
             Name = name;
-            Address = address;
+            City = city;
         }
     }
 }
