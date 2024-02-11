@@ -17,16 +17,6 @@ namespace Mediag.Database
         }
     }
 
-    internal class SelectedConverter : TypeConverter
-    {
-        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
-        {
-            if (text == "No") return false;
-            if (text == "Yes") return true;
-            return base.ConvertFromString(text, row, memberMapData);
-        }
-    }
-
     class DiagnosisMap : ClassMap<Diagnosis>
     {
         public DiagnosisMap()
@@ -38,7 +28,6 @@ namespace Mediag.Database
             Map(m => m.ConcavePointsMean).Index(4).Name("concave_points_mean");
             Map(m => m.PerimeterMean).Index(5).Name("perimeter_mean");
             Map(m => m.Result).Index(6).Name("diagnosis").TypeConverter(new ResultConverter());
-            Map(m => m.Selected).Index(7).Name("selected").TypeConverter(new SelectedConverter());
         }
     }
 }
