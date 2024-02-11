@@ -4,7 +4,9 @@ namespace Mediag.Medical
 {
     abstract class Person
     {
-        public long Id { get; set; }
+        private static long lastId = 0;
+
+        public long Id { get; set; } = ++lastId;
 
         public string LastName { get; set; }
 
@@ -21,9 +23,8 @@ namespace Mediag.Medical
 
         public Person() { }
 
-        public Person(long id, string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
+        public Person(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
         {
-            Id = id;
             LastName = lastName;
             FirstName = firstName;
             Birthdate = birthdate;
