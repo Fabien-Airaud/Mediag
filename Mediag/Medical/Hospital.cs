@@ -4,9 +4,7 @@ namespace Mediag.Medical
 {
     class Hospital
     {
-        private static long lastId = 0;
-
-        public long Id { get; set; } = ++lastId;
+        public long Id { get; set; }
 
         public string Name { get; set; }
 
@@ -19,8 +17,9 @@ namespace Mediag.Medical
 
         public Hospital() { }
 
-        public Hospital(string name, string city)
+        public Hospital(long id, string name, string city)
         {
+            Id = id;
             Name = name;
             City = city;
         }

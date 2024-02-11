@@ -76,7 +76,7 @@
     <Compile Include="DiagnosticDecision\DecisionTree.cs" />
     <Compile Include="DiagnosticDecision\IForDecisionTree.cs" />
     <Compile Include="DiagnosticDecision\Statistics.cs" />
-    <Compile Include="diag\Diagnosis.cs" />
+    <Compile Include="Hospital\Diagnosis.cs" />
     <Compile Include="Medical\Doctor.cs" />
     <Compile Include="Medical\Hospital.cs" />
     <Compile Include="Medical\Patient.cs" />
