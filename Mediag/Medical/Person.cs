@@ -19,6 +19,20 @@ namespace Mediag.Medical
         public string Address { get; set; }
 
 
+        public Person() { }
+
+        public Person(long id, string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
+        {
+            Id = id;
+            LastName = lastName;
+            FirstName = firstName;
+            Birthdate = birthdate;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            Address = address;
+        }
+
+
         public override string ToString()
         {
             return GetType().Name + " " + FirstName + " " + LastName;
