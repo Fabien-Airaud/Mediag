@@ -78,6 +78,7 @@
     <Compile Include="DiagnosticDecision\Statistics.cs" />
     <Compile Include="Hospital\Diagnosis.cs" />
     <Compile Include="Medical\Hospital.cs" />
+    <Compile Include="Medical\Person.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
