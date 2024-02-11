@@ -35,7 +35,7 @@ namespace Mediag.Medical
 
         public override string ToString()
         {
-            return GetType().Name + " " + FirstName + " " + LastName;
+            return $"{GetType().Name} {Id}: {FirstName} {LastName}";
         }
     }
 }
