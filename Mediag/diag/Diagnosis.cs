@@ -1,6 +1,6 @@
 ﻿using Mediag.DiagnosticDecision;
 
-namespace Mediag.Hospital
+namespace Mediag.Diag
 {
     class Diagnosis : IForDecisionTree
     {

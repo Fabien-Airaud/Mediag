@@ -1,7 +1,7 @@
 ﻿using CsvHelper;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using Mediag.Hospital;
+using Mediag.Diag;
 
 namespace Mediag.Database
 {

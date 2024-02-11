@@ -1,5 +1,5 @@
 ﻿using CsvHelper;
-using Mediag.Hospital;
+using Mediag.Diag;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
