@@ -71,12 +71,33 @@ namespace Mediag.DiagnosticDecision
             if (Check(Set, factor)) return -1;
 
             double gain = EntropyFactor(Set, result);
-
             foreach (object value in ExtractFactorValues(Set, factor))
             {
                 gain -= ProbabilityFactor(Set, factor, value) * EntropyResultKnowingFactor(result, factor, value);
             }
             return gain;
+        }
+
+        public double SplitInfo(int factor)
+        {
+            if (Check(Set, factor)) return -1;
+
+            double splitInfo = 0;
+            foreach (object value in ExtractFactorValues(Set, factor))
+            {
+                double prob = ProbabilityFactor(Set, factor, value);
+                splitInfo -= prob * Log2(prob);
+            }
+            return splitInfo;
+        }
+
+        public double GainRatio(int result, int factor)
+        {
+            double gain = Gain(result, factor);
+            double splitInfo = SplitInfo(factor);
+
+            if (gain == -1 || splitInfo == -1) return -1;
+            return splitInfo == 0 ? 0 : gain / splitInfo;
         }
     }
 }
