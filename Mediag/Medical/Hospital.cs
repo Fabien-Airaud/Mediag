@@ -23,5 +23,11 @@ namespace Mediag.Medical
             Name = name;
             City = city;
         }
+
+
+        public override string ToString()
+        {
+            return $"Hospital {Id}: \"{Name}\" in {City}";
+        }
     }
 }
