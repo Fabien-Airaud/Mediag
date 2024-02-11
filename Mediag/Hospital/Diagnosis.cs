@@ -20,12 +20,10 @@ namespace Mediag.Hospital
 
         public bool Result { get; set; }
 
-        public bool Selected { get; set; }
-
 
         public Diagnosis() { }
 
-        public Diagnosis(long id, double radiusWorst, double areaWorst, double perimeterWorst, double concavePointsWorst, double concavePointsMean, double perimeterMean, bool status, bool selected)
+        public Diagnosis(long id, double radiusWorst, double areaWorst, double perimeterWorst, double concavePointsWorst, double concavePointsMean, double perimeterMean, bool result)
         {
             Id = id;
             RadiusWorst = radiusWorst;
@@ -34,8 +32,7 @@ namespace Mediag.Hospital
             ConcavePointsWorst = concavePointsWorst;
             ConcavePointsMean = concavePointsMean;
             PerimeterMean = perimeterMean;
-            Result = status;
-            Selected = selected;
+            Result = result;
         }
 
 
@@ -58,8 +55,7 @@ namespace Mediag.Hospital
                 + ConcavePointsWorst + ", "
                 + ConcavePointsMean + ", "
                 + PerimeterMean + ", "
-                + Result + ", "
-                + Selected;
+                + Result;
             return str;
         }
     }
