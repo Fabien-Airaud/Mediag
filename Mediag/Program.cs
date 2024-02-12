@@ -51,6 +51,29 @@ namespace Mediag
             Doctor DMaximeDupont1 = new Doctor("Dupont", "Maxime", new DateTime(1986, 11, 28), "phoneNumber", "email@email.com", "Perpignan");
             Doctor DLauraMorel1 = new Doctor("Morel", "Laura", new DateTime(1997, 4, 2), "phoneNumber", "email@email.com", "Rouen");
 
+            // Add doctors to hospitals
+            hospital1.AddDoctor(DThomasRichard1);
+            hospital1.AddDoctor(DAnneMarieLeroux1);
+            hospital1.AddDoctor(DSebastienRoux1);
+            hospital1.AddDoctor(DCelineGautier1);
+            hospital2.AddDoctor(DAlexandreDupuy1);
+            hospital2.AddDoctor(DElodieMartin1);
+            hospital2.AddDoctor(DRomainLefebvre1);
+            hospital2.AddDoctor(DSarahLeroy1);
+            hospital3.AddDoctor(DMaximeDupont1);
+            hospital3.AddDoctor(DLauraMorel1);
+            
+            // Add patients to hospitals
+            hospital1.AddPatient(PJeanneDupont1);
+            hospital1.AddPatient(PPierreDurand1);
+            hospital1.AddPatient(PMarieBernard1);
+            hospital1.AddPatient(PJacquesPetit1);
+            hospital1.AddPatient(PSophieLemaire1);
+            hospital2.AddPatient(PDanielleRobert1);
+            hospital2.AddPatient(PMichelLacroix1);
+            hospital2.AddPatient(PNathalieSimon1);
+            hospital2.AddPatient(PBernardMorel1);
+            hospital3.AddPatient(PIsabelleGirard1);
 
             // Display some fake data
             Console.WriteLine("Some hospitals:");
