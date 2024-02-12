@@ -15,14 +15,8 @@ namespace Mediag.Medical
 
         public DateTime EndDate { get; set; }
 
-        /// <summary>
-        /// Must be initialized
-        /// </summary>
         public Patient Patient { get; set; }
 
-        /// <summary>
-        /// Must be initialized
-        /// </summary>
         public Hospital Hospital { get; set; }
 
         public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
