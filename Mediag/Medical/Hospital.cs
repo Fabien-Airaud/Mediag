@@ -16,6 +16,10 @@ namespace Mediag.Medical
 
         public List<Patient> Patients { get; set; } = new List<Patient>();
 
+        public List<MedicalFile> OnGoingFiles { get; set; } = new List<MedicalFile>();
+
+        public List<MedicalFile> ClosedFiles { get; set; } = new List<MedicalFile>();
+
 
         public Hospital() { }
 

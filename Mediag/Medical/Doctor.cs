@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
@@ -11,6 +12,8 @@ namespace Mediag.Medical
         public string Password { get; set; }
 
         public bool Active { get; set; } = true;
+
+        public List<MedicalFile> FilesToTreat { get; set; } = new List<MedicalFile>();
 
 
         public Doctor() : base() { Id = ++lastId; }
