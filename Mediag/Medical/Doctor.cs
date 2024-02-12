@@ -24,7 +24,7 @@ namespace Mediag.Medical
         }
 
 
-        public Doctor() : base() { Id = ++lastId; }
+        //public Doctor() : base() { Id = ++lastId; }
 
         public Doctor(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
             : base(lastName, firstName, birthdate, phoneNumber, email, address)

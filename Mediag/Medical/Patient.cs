@@ -18,7 +18,7 @@ namespace Mediag.Medical
         }
 
 
-        public Patient() : base() { Id = ++lastId; }
+        //public Patient() : base() { Id = ++lastId; }
 
         public Patient(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
             : base(lastName, firstName, birthdate, phoneNumber, email, address) { Id = ++lastId; }

@@ -21,7 +21,7 @@ namespace Mediag.Medical
         public Hospital Hospital { get; set; }
 
 
-        public Person() { }
+        //public Person() { }
 
         public Person(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
         {

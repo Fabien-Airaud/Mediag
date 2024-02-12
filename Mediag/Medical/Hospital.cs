@@ -44,7 +44,7 @@ namespace Mediag.Medical
         }
 
 
-        public Hospital() { }
+        //public Hospital() { }
 
         public Hospital(string name, string city)
         {

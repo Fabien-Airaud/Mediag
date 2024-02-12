@@ -30,7 +30,7 @@ namespace Mediag.Medical
         }
 
 
-        public MedicalFile() { }
+        //public MedicalFile() { }
 
         public MedicalFile(Patient patient)
         {
