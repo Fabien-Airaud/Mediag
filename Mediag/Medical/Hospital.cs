@@ -13,13 +13,35 @@ namespace Mediag.Medical
 
         public string City { get; set; }
 
-        public List<Doctor> Doctors { get; set; } = new List<Doctor>();
+        public List<Doctor> Doctors { get; private set; } = new List<Doctor>();
+        public void AddDoctor(Doctor doctor)
+        {
+            Doctors.Add(doctor);
+        }
+        public void RemoveDoctor(Doctor doctor)
+        {
+            Doctors.Remove(doctor);
+        }
 
-        public List<Patient> Patients { get; set; } = new List<Patient>();
+        public List<Patient> Patients { get; private set; } = new List<Patient>();
+        public void AddPatient(Patient patient)
+        {
+            Patients.Add(patient);
+        }
+        public void RemovePatient(Patient patient)
+        {
+            Patients.Remove(patient);
+        }
 
-        public List<MedicalFile> OnGoingFiles { get; set; } = new List<MedicalFile>();
-
-        public List<MedicalFile> ClosedFiles { get; set; } = new List<MedicalFile>();
+        public List<MedicalFile> Files { get; private set; } = new List<MedicalFile>();
+        public void AddFile(MedicalFile file)
+        {
+            Files.Add(file);
+        }
+        public void RemoveFile(MedicalFile file)
+        {
+            Files.Remove(file);
+        }
 
 
         public Hospital() { }
