@@ -32,6 +32,11 @@ namespace Mediag.Medical
 
         public MedicalFile() { }
 
+        public MedicalFile(Patient patient)
+        {
+            Patient = patient;
+        }
+
         public MedicalFile(Patient patient, Hospital hospital)
         {
             Patient = patient;
