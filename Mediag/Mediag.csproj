@@ -79,6 +79,7 @@
     <Compile Include="Medical\Diagnosis.cs" />
     <Compile Include="Medical\Doctor.cs" />
     <Compile Include="Medical\Hospital.cs" />
+    <Compile Include="Medical\MedicalFile.cs" />
     <Compile Include="Medical\Patient.cs" />
     <Compile Include="Medical\Person.cs" />
     <Compile Include="Program.cs" />
