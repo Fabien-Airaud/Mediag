@@ -115,6 +115,70 @@ namespace Mediag
             hospital2.AddPatient(PIsabelleGirard2);
             hospital3.AddPatient(PIsabelleGirard3);
 
+            // Patients' medical files
+            MedicalFile FJeanneDupont1 = new MedicalFile(PJeanneDupont1);
+            MedicalFile FJeanneDupont2 = new MedicalFile(PJeanneDupont2);
+            MedicalFile FJeanneDupont3 = new MedicalFile(PJeanneDupont3);
+            MedicalFile FPierreDurand1 = new MedicalFile(PPierreDurand1);
+            MedicalFile FPierreDurand2 = new MedicalFile(PPierreDurand2);
+            MedicalFile FPierreDurand3 = new MedicalFile(PPierreDurand3);
+            MedicalFile FMarieBernard1 = new MedicalFile(PMarieBernard1);
+            MedicalFile FMarieBernard2 = new MedicalFile(PMarieBernard2);
+            MedicalFile FMarieBernard3 = new MedicalFile(PMarieBernard3);
+            MedicalFile FJacquesPetit1 = new MedicalFile(PJacquesPetit1);
+            MedicalFile FJacquesPetit2 = new MedicalFile(PJacquesPetit2);
+            MedicalFile FJacquesPetit3 = new MedicalFile(PJacquesPetit3);
+            MedicalFile FSophieLemaire1 = new MedicalFile(PSophieLemaire1);
+            MedicalFile FSophieLemaire2 = new MedicalFile(PSophieLemaire2);
+            MedicalFile FSophieLemaire3 = new MedicalFile(PSophieLemaire3);
+            MedicalFile FDanielleRobert1 = new MedicalFile(PDanielleRobert1);
+            MedicalFile FDanielleRobert2 = new MedicalFile(PDanielleRobert2);
+            MedicalFile FDanielleRobert3 = new MedicalFile(PDanielleRobert3);
+            MedicalFile FMichelLacroix1 = new MedicalFile(PMichelLacroix1);
+            MedicalFile FMichelLacroix2 = new MedicalFile(PMichelLacroix2);
+            MedicalFile FMichelLacroix3 = new MedicalFile(PMichelLacroix3);
+            MedicalFile FNathalieSimon1 = new MedicalFile(PNathalieSimon1);
+            MedicalFile FNathalieSimon2 = new MedicalFile(PNathalieSimon2);
+            MedicalFile FNathalieSimon3 = new MedicalFile(PNathalieSimon3);
+            MedicalFile FBernardMorel1 = new MedicalFile(PBernardMorel1);
+            MedicalFile FBernardMorel2 = new MedicalFile(PBernardMorel2);
+            MedicalFile FBernardMorel3 = new MedicalFile(PBernardMorel3);
+            MedicalFile FIsabelleGirard1 = new MedicalFile(PIsabelleGirard1);
+            MedicalFile FIsabelleGirard2 = new MedicalFile(PIsabelleGirard2);
+            MedicalFile FIsabelleGirard3 = new MedicalFile(PIsabelleGirard3);
+
+            // Add files to hospitals
+            hospital1.AddFile(FJeanneDupont1);
+            hospital2.AddFile(FJeanneDupont2);
+            hospital3.AddFile(FJeanneDupont3);
+            hospital2.AddFile(FPierreDurand1);
+            hospital3.AddFile(FPierreDurand2);
+            hospital1.AddFile(FPierreDurand3);
+            hospital3.AddFile(FMarieBernard1);
+            hospital1.AddFile(FMarieBernard2);
+            hospital2.AddFile(FMarieBernard3);
+            hospital3.AddFile(FJacquesPetit1);
+            hospital2.AddFile(FJacquesPetit2);
+            hospital1.AddFile(FJacquesPetit3);
+            hospital1.AddFile(FSophieLemaire1);
+            hospital3.AddFile(FSophieLemaire2);
+            hospital2.AddFile(FSophieLemaire3);
+            hospital1.AddFile(FDanielleRobert1);
+            hospital2.AddFile(FDanielleRobert2);
+            hospital1.AddFile(FDanielleRobert3);
+            hospital2.AddFile(FMichelLacroix1);
+            hospital1.AddFile(FMichelLacroix2);
+            hospital2.AddFile(FMichelLacroix3);
+            hospital1.AddFile(FNathalieSimon1);
+            hospital1.AddFile(FNathalieSimon2);
+            hospital2.AddFile(FNathalieSimon3);
+            hospital2.AddFile(FBernardMorel1);
+            hospital2.AddFile(FBernardMorel2);
+            hospital1.AddFile(FBernardMorel3);
+            hospital1.AddFile(FIsabelleGirard1);
+            hospital2.AddFile(FIsabelleGirard2);
+            hospital3.AddFile(FIsabelleGirard3);
+
             // Display some fake data
             Console.WriteLine("Some hospitals:");
             Console.WriteLine(hospital1.ToString());
