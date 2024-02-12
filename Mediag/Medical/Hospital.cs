@@ -6,7 +6,7 @@ namespace Mediag.Medical
     {
         private static long lastId = 0;
 
-        public long Id { get; set; } = ++lastId;
+        public long Id { get; protected set; } = ++lastId;
 
         public string Name { get; set; }
 
