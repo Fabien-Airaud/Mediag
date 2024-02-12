@@ -38,5 +38,18 @@ namespace Mediag.Medical
         {
             return $"{GetType().Name} {Id}: {FirstName} {LastName}";
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Person person &&
+                   Id == person.Id &&
+                   LastName == person.LastName &&
+                   FirstName == person.FirstName;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, LastName, FirstName);
+        }
     }
 }

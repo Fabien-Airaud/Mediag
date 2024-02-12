@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
@@ -33,6 +34,19 @@ namespace Mediag.Medical
         public override string ToString()
         {
             return $"Hospital {Id}: \"{Name}\" in {City}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Hospital hospital &&
+                   Id == hospital.Id &&
+                   Name == hospital.Name &&
+                   City == hospital.City;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name, City);
         }
     }
 }

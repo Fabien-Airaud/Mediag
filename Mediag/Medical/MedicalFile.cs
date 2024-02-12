@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Xml.Linq;
 
 namespace Mediag.Medical
 {
@@ -48,6 +47,18 @@ namespace Mediag.Medical
         public override string ToString()
         {
             return $"Medical file {Id}: {Patient.FirstName} {Patient.LastName}";
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is MedicalFile file &&
+                   Id == file.Id &&
+                   StartDate == file.StartDate;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, StartDate);
         }
     }
 }
