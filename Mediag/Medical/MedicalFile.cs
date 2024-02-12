@@ -53,7 +53,7 @@ namespace Mediag.Medical
 
         public override string ToString()
         {
-            return $"Medical file {Id}: {Patient.FirstName} {Patient.LastName}";
+            return $"Medical file {Id}: {Patient.FirstName} {Patient.LastName}, {DoctorsInCharge.Count} doctors in charge";
         }
 
         public override bool Equals(object obj)
