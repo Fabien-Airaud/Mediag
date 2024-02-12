@@ -55,7 +55,7 @@ namespace Mediag.Medical
 
         public override string ToString()
         {
-            return $"Hospital {Id}: \"{Name}\" in {City}";
+            return $"Hospital {Id}: \"{Name}\" in {City} ; {Doctors.Count} doctors, {Patients.Count} patients, {Files.Count} files";
         }
 
         public override bool Equals(object obj)
