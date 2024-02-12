@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Mediag.Medical
@@ -24,6 +25,8 @@ namespace Mediag.Medical
         /// Must be initialized
         /// </summary>
         public Hospital Hospital { get; set; }
+
+        public List<Doctor> DoctorsInCharge { get; set; } = new List<Doctor>();
 
 
         public MedicalFile() { }
