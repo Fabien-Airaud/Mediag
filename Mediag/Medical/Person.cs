@@ -18,6 +18,8 @@ namespace Mediag.Medical
 
         public string Address { get; set; }
 
+        public Hospital CurrentHospital { get; set; }
+
 
         public Person() { }
 
