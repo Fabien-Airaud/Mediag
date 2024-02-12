@@ -179,6 +179,38 @@ namespace Mediag
             hospital2.AddFile(FIsabelleGirard2);
             hospital3.AddFile(FIsabelleGirard3);
 
+            // Add doctors to medical files
+            FJeanneDupont1.AddDoctorInCharge(DThomasRichard1);
+            FSophieLemaire1.AddDoctorInCharge(DThomasRichard1);
+            FNathalieSimon1.AddDoctorInCharge(DThomasRichard1);
+            FPierreDurand3.AddDoctorInCharge(DAnneMarieLeroux1);
+            FDanielleRobert1.AddDoctorInCharge(DAnneMarieLeroux1);
+            FNathalieSimon2.AddDoctorInCharge(DAnneMarieLeroux1);
+            FMarieBernard2.AddDoctorInCharge(DSebastienRoux1);
+            FDanielleRobert3.AddDoctorInCharge(DSebastienRoux1);
+            FBernardMorel3.AddDoctorInCharge(DSebastienRoux1);
+            FJacquesPetit3.AddDoctorInCharge(DCelineGautier1);
+            FMichelLacroix2.AddDoctorInCharge(DCelineGautier1);
+            FIsabelleGirard1.AddDoctorInCharge(DCelineGautier1);
+            FJeanneDupont2.AddDoctorInCharge(DAlexandreDupuy1);
+            FSophieLemaire3.AddDoctorInCharge(DAlexandreDupuy1);
+            FNathalieSimon3.AddDoctorInCharge(DAlexandreDupuy1);
+            FPierreDurand1.AddDoctorInCharge(DElodieMartin1);
+            FDanielleRobert2.AddDoctorInCharge(DElodieMartin1);
+            FBernardMorel1.AddDoctorInCharge(DElodieMartin1);
+            FMarieBernard3.AddDoctorInCharge(DRomainLefebvre1);
+            FMichelLacroix1.AddDoctorInCharge(DRomainLefebvre1);
+            FBernardMorel2.AddDoctorInCharge(DRomainLefebvre1);
+            FJacquesPetit2.AddDoctorInCharge(DSarahLeroy1);
+            FMichelLacroix3.AddDoctorInCharge(DSarahLeroy1);
+            FIsabelleGirard2.AddDoctorInCharge(DSarahLeroy1);
+            FJeanneDupont3.AddDoctorInCharge(DMaximeDupont1);
+            FMarieBernard1.AddDoctorInCharge(DMaximeDupont1);
+            FSophieLemaire2.AddDoctorInCharge(DMaximeDupont1);
+            FPierreDurand2.AddDoctorInCharge(DLauraMorel1);
+            FJacquesPetit1.AddDoctorInCharge(DLauraMorel1);
+            FIsabelleGirard3.AddDoctorInCharge(DLauraMorel1);
+
             // Display some fake data
             Console.WriteLine("Some hospitals:");
             Console.WriteLine(hospital1.ToString());
