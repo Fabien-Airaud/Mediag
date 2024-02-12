@@ -15,9 +15,25 @@ namespace Mediag.Medical
 
         public DateTime EndDate { get; set; }
 
-        public Patient Patient { get; set; }
+        public Patient Patient { get; private set; }
+        public void AddPatient(Patient patient)
+        {
+            Patient = patient;
+        }
+        public void RemovePatient()
+        {
+            Patient = null;
+        }
 
-        public Hospital Hospital { get; set; }
+        public Hospital Hospital { get; private set; }
+        public void AddHospital(Hospital hospital)
+        {
+            Hospital = hospital;
+        }
+        public void RemoveHospital()
+        {
+            Hospital = null;
+        }
 
         public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
         public void AddDoctorInCharge(Doctor doctor)
@@ -34,20 +50,20 @@ namespace Mediag.Medical
 
         public MedicalFile(Patient patient)
         {
-            Patient = patient;
+            AddPatient(patient);
         }
 
         public MedicalFile(Patient patient, Hospital hospital)
         {
-            Patient = patient;
-            Hospital = hospital;
+            AddPatient(patient);
+            AddHospital(hospital);
         }
 
         public MedicalFile(DateTime startDate, Patient patient, Hospital hospital)
         {
             StartDate = startDate;
-            Patient = patient;
-            Hospital = hospital;
+            AddPatient(patient);
+            AddHospital(hospital);
         }
 
 
