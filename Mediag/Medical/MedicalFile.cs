@@ -25,7 +25,15 @@ namespace Mediag.Medical
         /// </summary>
         public Hospital Hospital { get; set; }
 
-        public List<Doctor> DoctorsInCharge { get; set; } = new List<Doctor>();
+        public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
+        public void AddDoctorInCharge(Doctor doctor)
+        {
+            DoctorsInCharge.Add(doctor);
+        }
+        public void RemoveDoctorInCharge(Doctor doctor)
+        {
+            DoctorsInCharge.Remove(doctor);
+        }
 
 
         public MedicalFile() { }
