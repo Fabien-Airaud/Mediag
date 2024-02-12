@@ -11,7 +11,7 @@ namespace Mediag.Medical
 
         public DateTime StartDate { get; set; } = DateTime.Now;
 
-        public DateTime LastUpdate { get; set; }
+        public DateTime LastUpdate { get; set; } = DateTime.Now;
 
         public DateTime EndDate { get; set; }
 
