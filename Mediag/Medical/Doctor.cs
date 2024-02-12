@@ -13,7 +13,15 @@ namespace Mediag.Medical
 
         public bool Active { get; set; } = true;
 
-        public List<MedicalFile> FilesToTreat { get; set; } = new List<MedicalFile>();
+        public List<MedicalFile> FilesToTreat { get; private set; } = new List<MedicalFile>();
+        public void AddFileToTreat(MedicalFile file)
+        {
+            FilesToTreat.Add(file);
+        }
+        public void RemoveFileToTreat(MedicalFile file)
+        {
+            FilesToTreat.Remove(file);
+        }
 
 
         public Doctor() : base() { Id = ++lastId; }
