@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Mediag.Medical
 {
@@ -16,31 +17,62 @@ namespace Mediag.Medical
         public List<Doctor> Doctors { get; private set; } = new List<Doctor>();
         public void AddDoctor(Doctor doctor)
         {
-            Doctors.Add(doctor);
+            if (doctor != null)
+            {
+                Doctors.Add(doctor);
+
+                if (!doctor.Hospital.Equals(this)) doctor.AddHospital(this);
+            }
         }
         public void RemoveDoctor(Doctor doctor)
         {
+            if (doctor != null)
+            {
+                Doctors.Remove(doctor);
+
+                if (doctor.Hospital.Equals(this)) doctor.RemoveHospital();
+            }
             Doctors.Remove(doctor);
         }
 
         public List<Patient> Patients { get; private set; } = new List<Patient>();
         public void AddPatient(Patient patient)
         {
-            Patients.Add(patient);
+            if (patient != null)
+            {
+                Patients.Add(patient);
+
+                if (!patient.Hospital.Equals(this)) patient.AddHospital(this);
+            }
         }
         public void RemovePatient(Patient patient)
         {
-            Patients.Remove(patient);
+            if (patient != null)
+            {
+                Patients.Remove(patient);
+
+                if (patient.Hospital.Equals(this)) patient.RemoveHospital();
+            }
         }
 
         public List<MedicalFile> Files { get; private set; } = new List<MedicalFile>();
         public void AddFile(MedicalFile file)
         {
-            Files.Add(file);
+            if (file != null)
+            {
+                Files.Add(file);
+
+                if (!file.Hospital.Equals(this)) file.AddHospital(this);
+            }
         }
         public void RemoveFile(MedicalFile file)
         {
-            Files.Remove(file);
+            if (file != null)
+            {
+                Files.Remove(file);
+
+                if (file.Hospital.Equals(this)) file.RemoveHospital();
+            }
         }
 
 
