@@ -1,10 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
     class Patient : Person
     {
         private static long lastId = 0;
+
+        public List<MedicalFile> Files { get; private set; }
+        public void AddFile(MedicalFile file)
+        {
+            Files.Add(file);
+        }
+        public void RemoveFile(MedicalFile file)
+        {
+            Files.Remove(file);
+        }
 
 
         public Patient() : base() { Id = ++lastId; }
