@@ -185,15 +185,20 @@ namespace Mediag
             Console.WriteLine(hospital2.ToString());
             Console.WriteLine(hospital3.ToString());
             Console.WriteLine();
+            Console.WriteLine("Some doctors:");
+            Console.WriteLine(DThomasRichard1.ToString());
+            Console.WriteLine(DAnneMarieLeroux1.ToString());
+            Console.WriteLine(DSebastienRoux1.ToString());
+            Console.WriteLine();
             Console.WriteLine("Some patients:");
             Console.WriteLine(PJeanneDupont1.ToString());
             Console.WriteLine(PPierreDurand1.ToString());
             Console.WriteLine(PMarieBernard1.ToString());
             Console.WriteLine();
-            Console.WriteLine("Some doctors:");
-            Console.WriteLine(DThomasRichard1.ToString());
-            Console.WriteLine(DAnneMarieLeroux1.ToString());
-            Console.WriteLine(DSebastienRoux1.ToString());
+            Console.WriteLine("Some medical files:");
+            Console.WriteLine(FJeanneDupont1.ToString());
+            Console.WriteLine(FPierreDurand1.ToString());
+            Console.WriteLine(FMarieBernard1.ToString());
             Console.WriteLine();
 
 
