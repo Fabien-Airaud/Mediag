@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Numerics;
 
 namespace Mediag.Medical
 {
@@ -20,7 +21,7 @@ namespace Mediag.Medical
             {
                 Doctors.Add(doctor);
 
-                if (!doctor.Hospital.Equals(this)) doctor.AddHospital(this);
+                if (!Equals(doctor.Hospital)) doctor.AddHospital(this);
             }
         }
         public void RemoveDoctor(Doctor doctor)
@@ -29,7 +30,7 @@ namespace Mediag.Medical
             {
                 Doctors.Remove(doctor);
 
-                if (doctor.Hospital.Equals(this)) doctor.RemoveHospital();
+                if (Equals(doctor.Hospital)) doctor.RemoveHospital();
             }
             Doctors.Remove(doctor);
         }
@@ -41,7 +42,7 @@ namespace Mediag.Medical
             {
                 Patients.Add(patient);
 
-                if (!patient.Hospital.Equals(this)) patient.AddHospital(this);
+                if (!Equals(patient.Hospital)) patient.AddHospital(this);
             }
         }
         public void RemovePatient(Patient patient)
@@ -50,7 +51,7 @@ namespace Mediag.Medical
             {
                 Patients.Remove(patient);
 
-                if (patient.Hospital.Equals(this)) patient.RemoveHospital();
+                if (Equals(patient.Hospital)) patient.RemoveHospital();
             }
         }
 
@@ -61,7 +62,7 @@ namespace Mediag.Medical
             {
                 Files.Add(file);
 
-                if (!file.Hospital.Equals(this)) file.AddHospital(this);
+                if (!Equals(file.Hospital)) file.AddHospital(this);
             }
         }
         public void RemoveFile(MedicalFile file)
@@ -70,7 +71,7 @@ namespace Mediag.Medical
             {
                 Files.Remove(file);
 
-                if (file.Hospital.Equals(this)) file.RemoveHospital();
+                if (Equals(file.Hospital)) file.RemoveHospital();
             }
         }
 
