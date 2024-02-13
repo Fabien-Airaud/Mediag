@@ -64,7 +64,7 @@ namespace Mediag.Medical
             {
                 DoctorsInCharge.Add(doctor);
 
-                if (!Equals(doctor.FilesToTreat)) doctor.AddFileToTreat(this);
+                if (!doctor.FilesToTreat.Contains(this)) doctor.AddFileToTreat(this);
             }
         }
         public void RemoveDoctorInCharge(Doctor doctor)
@@ -73,7 +73,7 @@ namespace Mediag.Medical
             {
                 DoctorsInCharge.Remove(doctor);
 
-                if (Equals(doctor.FilesToTreat)) doctor.RemoveFileToTreat(this);
+                if (doctor.FilesToTreat.Contains(this)) doctor.RemoveFileToTreat(this);
             }
         }
 

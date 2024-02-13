@@ -1,5 +1,4 @@
-﻿using Mediag.DiagnosticDecision;
-using Mediag.Medical;
+﻿using Mediag.Medical;
 using System;
 
 namespace Mediag
