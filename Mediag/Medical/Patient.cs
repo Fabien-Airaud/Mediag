@@ -30,11 +30,21 @@ namespace Mediag.Medical
         public List<MedicalFile> Files { get; private set; }
         public void AddFile(MedicalFile file)
         {
-            Files.Add(file);
+            if (Files != null)
+            {
+                Files.Add(file);
+
+                if (!file.Patient.Equals(this)) file.AddPatient(this);
+            }
         }
         public void RemoveFile(MedicalFile file)
         {
-            Files.Remove(file);
+            if (Files != null)
+            {
+                Files.Remove(file);
+
+                if (file.Patient.Equals(this)) file.RemovePatient();
+            }
         }
 
 
