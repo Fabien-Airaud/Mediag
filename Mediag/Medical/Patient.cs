@@ -30,7 +30,7 @@ namespace Mediag.Medical
         public List<MedicalFile> Files { get; private set; }
         public void AddFile(MedicalFile file)
         {
-            if (Files != null)
+            if (file != null)
             {
                 Files.Add(file);
 
@@ -39,7 +39,7 @@ namespace Mediag.Medical
         }
         public void RemoveFile(MedicalFile file)
         {
-            if (Files != null)
+            if (file != null)
             {
                 Files.Remove(file);
 
