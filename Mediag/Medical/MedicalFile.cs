@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mediag.Medical
 {
@@ -18,21 +19,43 @@ namespace Mediag.Medical
         public Patient Patient { get; private set; }
         public void AddPatient(Patient patient)
         {
-            Patient = patient;
+            if (patient != null)
+            {
+                Patient = patient;
+
+                if (!patient.Files.Contains(this)) patient.AddFile(this);
+            }
         }
         public void RemovePatient()
         {
-            Patient = null;
+            if (Patient != null)
+            {
+                Patient patient = Patient;
+                Patient = null;
+
+                if (patient.Files.Contains(this)) patient.RemoveFile(this);
+            }
         }
 
         public Hospital Hospital { get; private set; }
         public void AddHospital(Hospital hospital)
         {
-            Hospital = hospital;
+            if (hospital != null)
+            {
+                Hospital = hospital;
+
+                if (!hospital.Files.Contains(this)) hospital.AddFile(this);
+            }
         }
         public void RemoveHospital()
         {
-            Hospital = null;
+            if (Hospital != null)
+            {
+                Hospital hospital = Hospital;
+                Hospital = null;
+
+                if (hospital.Files.Contains(this)) hospital.RemoveFile(this);
+            }
         }
 
         public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
