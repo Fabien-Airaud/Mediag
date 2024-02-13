@@ -40,7 +40,7 @@ namespace Mediag.Medical
             {
                 FilesToTreat.Add(file);
 
-                if (!file.DoctorsInCharge.Equals(this)) file.AddDoctorInCharge(this);
+                if (!Equals(file.DoctorsInCharge)) file.AddDoctorInCharge(this);
             }
         }
         public void RemoveFileToTreat(MedicalFile file)
@@ -49,7 +49,7 @@ namespace Mediag.Medical
             {
                 FilesToTreat.Remove(file);
 
-                if (file.DoctorsInCharge.Equals(this)) file.RemoveDoctorInCharge(this);
+                if (Equals(file.DoctorsInCharge)) file.RemoveDoctorInCharge(this);
             }
         }
 
