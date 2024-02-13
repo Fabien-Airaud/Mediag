@@ -7,6 +7,26 @@ namespace Mediag.Medical
     {
         private static long lastId = 0;
 
+        public override void AddHospital(Hospital hospital)
+        {
+            if (hospital != null)
+            {
+                Hospital = hospital;
+
+                if (!hospital.Patients.Contains(this)) hospital.AddPatient(this);
+            }
+        }
+        public override void RemoveHospital()
+        {
+            if (Hospital != null)
+            {
+                Hospital hospital = Hospital;
+                Hospital = null;
+
+                if (hospital.Patients.Contains(this)) hospital.RemovePatient(this);
+            }
+        }
+
         public List<MedicalFile> Files { get; private set; }
         public void AddFile(MedicalFile file)
         {

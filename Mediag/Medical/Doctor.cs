@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mediag.Medical
 {
@@ -12,6 +13,26 @@ namespace Mediag.Medical
         public string Password { get; set; }
 
         public bool Active { get; set; } = true;
+
+        public override void AddHospital(Hospital hospital)
+        {
+            if (hospital != null)
+            {
+                Hospital = hospital;
+
+                if (!hospital.Doctors.Contains(this)) hospital.AddDoctor(this);
+            }
+        }
+        public override void RemoveHospital()
+        {
+            if (Hospital != null)
+            {
+                Hospital hospital = Hospital;
+                Hospital = null;
+
+                if (hospital.Doctors.Contains(this)) hospital.RemoveDoctor(this);
+            }
+        }
 
         public List<MedicalFile> FilesToTreat { get; private set; } = new List<MedicalFile>();
         public void AddFileToTreat(MedicalFile file)
