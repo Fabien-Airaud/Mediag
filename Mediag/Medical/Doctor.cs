@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Mediag.Medical
 {
@@ -37,11 +36,21 @@ namespace Mediag.Medical
         public List<MedicalFile> FilesToTreat { get; private set; } = new List<MedicalFile>();
         public void AddFileToTreat(MedicalFile file)
         {
-            FilesToTreat.Add(file);
+            if (file != null)
+            {
+                FilesToTreat.Add(file);
+
+                if (!file.DoctorsInCharge.Equals(this)) file.AddDoctorInCharge(this);
+            }
         }
         public void RemoveFileToTreat(MedicalFile file)
         {
-            FilesToTreat.Remove(file);
+            if (file != null)
+            {
+                FilesToTreat.Remove(file);
+
+                if (file.DoctorsInCharge.Equals(this)) file.RemoveDoctorInCharge(this);
+            }
         }
 
 
