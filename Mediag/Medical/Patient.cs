@@ -34,7 +34,7 @@ namespace Mediag.Medical
             {
                 Files.Add(file);
 
-                if (!file.Patient.Equals(this)) file.AddPatient(this);
+                if (!Equals(file.Patient)) file.AddPatient(this);
             }
         }
         public void RemoveFile(MedicalFile file)
@@ -43,7 +43,7 @@ namespace Mediag.Medical
             {
                 Files.Remove(file);
 
-                if (file.Patient.Equals(this)) file.RemovePatient();
+                if (Equals(file.Patient)) file.RemovePatient();
             }
         }
 
