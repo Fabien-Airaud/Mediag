@@ -61,11 +61,21 @@ namespace Mediag.Medical
         public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
         public void AddDoctorInCharge(Doctor doctor)
         {
-            DoctorsInCharge.Add(doctor);
+            if (doctor != null)
+            {
+                DoctorsInCharge.Add(doctor);
+
+                if (!doctor.FilesToTreat.Equals(this)) doctor.AddFileToTreat(this);
+            }
         }
         public void RemoveDoctorInCharge(Doctor doctor)
         {
-            DoctorsInCharge.Remove(doctor);
+            if (doctor != null)
+            {
+                DoctorsInCharge.Remove(doctor);
+
+                if (doctor.FilesToTreat.Equals(this)) doctor.RemoveFileToTreat(this);
+            }
         }
 
 
