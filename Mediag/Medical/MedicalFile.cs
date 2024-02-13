@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Mediag.Medical
 {
@@ -65,7 +64,7 @@ namespace Mediag.Medical
             {
                 DoctorsInCharge.Add(doctor);
 
-                if (!doctor.FilesToTreat.Equals(this)) doctor.AddFileToTreat(this);
+                if (!Equals(doctor.FilesToTreat)) doctor.AddFileToTreat(this);
             }
         }
         public void RemoveDoctorInCharge(Doctor doctor)
@@ -74,7 +73,7 @@ namespace Mediag.Medical
             {
                 DoctorsInCharge.Remove(doctor);
 
-                if (doctor.FilesToTreat.Equals(this)) doctor.RemoveFileToTreat(this);
+                if (Equals(doctor.FilesToTreat)) doctor.RemoveFileToTreat(this);
             }
         }
 
