@@ -1,6 +1,6 @@
 ﻿namespace Mediag.Medical
 {
-    class BreastCancerData
+    class BreastCancerData : IMedicalData
     {
         private static long lastId = 0;
 
