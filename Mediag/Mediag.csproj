@@ -80,6 +80,7 @@
     <Compile Include="Medical\Diagnosis.cs" />
     <Compile Include="Medical\Doctor.cs" />
     <Compile Include="Medical\Hospital.cs" />
+    <Compile Include="Medical\IMedicalData.cs" />
     <Compile Include="Medical\MedicalFile.cs" />
     <Compile Include="Medical\Patient.cs" />
     <Compile Include="Medical\Person.cs" />
@@ -89,6 +90,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DatabaseCSV\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
