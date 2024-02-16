@@ -88,18 +88,5 @@ namespace Mediag.Medical
         {
             return $"Hospital {Id}: \"{Name}\" in {City} ; {Doctors.Count} doctors, {Patients.Count} patients, {Files.Count} files";
         }
-
-        public override bool Equals(object obj)
-        {
-            return obj is Hospital hospital &&
-                   Id == hospital.Id &&
-                   Name == hospital.Name &&
-                   City == hospital.City;
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Id, Name, City);
-        }
     }
 }

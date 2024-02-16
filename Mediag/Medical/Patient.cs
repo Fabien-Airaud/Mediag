@@ -7,7 +7,8 @@ namespace Mediag.Medical
     {
         private static long lastId = 0;
 
-        public override void AddHospital(Hospital hospital)
+        public Hospital Hospital { get; protected set; }
+        public void AddHospital(Hospital hospital)
         {
             if (hospital != null)
             {
@@ -16,7 +17,7 @@ namespace Mediag.Medical
                 if (!hospital.Patients.Contains(this)) hospital.AddPatient(this);
             }
         }
-        public override void RemoveHospital()
+        public void RemoveHospital()
         {
             if (Hospital != null)
             {
@@ -52,5 +53,17 @@ namespace Mediag.Medical
 
         public Patient(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
             : base(lastName, firstName, birthdate, phoneNumber, email, address) { Id = ++lastId; }
+
+
+        public override bool Equals(object obj)
+        {
+            return obj is Patient &&
+                   base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode());
+        }
     }
 }

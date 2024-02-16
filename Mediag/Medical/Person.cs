@@ -18,10 +18,6 @@ namespace Mediag.Medical
 
         public string Address { get; set; }
 
-        public Hospital Hospital { get; protected set; }
-        public abstract void AddHospital(Hospital hospital);
-        public abstract void RemoveHospital();
-
 
         //public Person() { }
 

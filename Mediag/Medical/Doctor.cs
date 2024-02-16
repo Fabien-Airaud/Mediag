@@ -13,7 +13,8 @@ namespace Mediag.Medical
 
         public bool Active { get; set; } = true;
 
-        public override void AddHospital(Hospital hospital)
+        public Hospital Hospital { get; protected set; }
+        public void AddHospital(Hospital hospital)
         {
             if (hospital != null)
             {
@@ -22,7 +23,7 @@ namespace Mediag.Medical
                 if (!hospital.Doctors.Contains(this)) hospital.AddDoctor(this);
             }
         }
-        public override void RemoveHospital()
+        public void RemoveHospital()
         {
             if (Hospital != null)
             {
@@ -62,6 +63,18 @@ namespace Mediag.Medical
             Id = ++lastId;
             Username = firstName + lastName;
             Password = lastName.ToUpper()[0] + firstName.ToLower()[0] + birthdate.ToString("yyyy-MM-dd");
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            return obj is Patient &&
+                   base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode());
         }
     }
 }
