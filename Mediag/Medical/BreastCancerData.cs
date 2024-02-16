@@ -33,5 +33,8 @@
             PerimeterMean = perimeterMean;
             Result = result;
         }
+
+
+        public IllnessTypes TargettedIllness() { return IllnessTypes.BreastCancer; }
     }
 }
