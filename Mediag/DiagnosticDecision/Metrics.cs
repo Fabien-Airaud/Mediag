@@ -85,5 +85,41 @@ namespace Mediag.DiagnosticDecision
 
             return entropy;
         }
+
+        public static double GainDiscrete(List<string[]> values, int labelIndex)
+        {
+            double gain = Entropy(values);
+            List<string> differentValues = DifferentValues(values, labelIndex);
+
+            foreach (string value in differentValues)
+            {
+                List<string[]> subset = SubsetDiscrete(values, labelIndex, value);
+                gain -= (double)subset.Count / values.Count * Entropy(subset);
+            }
+
+            return gain;
+        }
+
+        public static double GainPivot(List<string[]> values, int labelIndex, out double pivot)
+        {
+            List<double> splitValues = PossibleSplitValues(values, labelIndex);
+
+            Dictionary<double, double> gainsPivots = new Dictionary<double, double>(splitValues.Count);
+            foreach (double splitValue in splitValues)
+            {
+                double gain = Entropy(values);
+
+                List<string[]> subsetHigher = SubsetPivot(values, labelIndex, splitValue, true);
+                gain -= (double)subsetHigher.Count / values.Count * Entropy(subsetHigher);
+
+                List<string[]> subsetLower = SubsetPivot(values, labelIndex, splitValue, false);
+                gain -= (double)subsetLower.Count / values.Count * Entropy(subsetLower);
+
+                gainsPivots.Add(splitValue, gain);
+            }
+            pivot = gainsPivots.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
+
+            return gainsPivots[pivot];
+        }
     }
 }
