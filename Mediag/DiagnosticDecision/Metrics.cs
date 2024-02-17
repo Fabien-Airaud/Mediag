@@ -4,6 +4,16 @@ namespace Mediag.DiagnosticDecision
 {
     class Metrics
     {
+        public static bool IsDiscretizable(List<string[]> values, int labelIndex)
+        {
+            foreach (string[] value in values)
+            {
+                try { double.Parse(value[labelIndex]); }
+                catch { return false; }
+            }
+            return true;
+        }
+
         public static List<double> PossibleSplitValues(List<string[]> values, int labelIndex)
         {
             List<double> splitValues = new List<double>();
