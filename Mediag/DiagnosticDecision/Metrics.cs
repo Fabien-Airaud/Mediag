@@ -4,8 +4,14 @@ using System.Linq;
 
 namespace Mediag.DiagnosticDecision
 {
-    class Metrics
+    static class Metrics
     {
+        public static string MostCommonResult(List<string[]> values)
+        {
+            int resultIndex = values[0].Length - 1;
+            return values.GroupBy(row => row[resultIndex]).OrderByDescending(group => group.Count()).First().Key.ToString();
+        }
+
         public static bool IsDiscretizable(List<string[]> values, int labelIndex)
         {
             foreach (string[] value in values)
@@ -16,7 +22,7 @@ namespace Mediag.DiagnosticDecision
             return true;
         }
 
-        public static List<double> PossiblePivotValues(List<string[]> values, int labelIndex)
+        private static List<double> PossiblePivotValues(List<string[]> values, int labelIndex)
         {
             List<double> splitValues = new List<double>();
 
@@ -53,12 +59,6 @@ namespace Mediag.DiagnosticDecision
             return differentValues;
         }
 
-        public static string MostCommonResult(List<string[]> values)
-        {
-            int resultIndex = values[0].Length - 1;
-            return values.GroupBy(row => row[resultIndex]).OrderByDescending(group => group.Count()).First().Key.ToString();
-        }
-
         public static List<string[]> SubsetDiscrete(List<string[]> values, int labelIndex, string value)
         {
             return values.FindAll(row => row[labelIndex].Equals(value));
@@ -71,7 +71,7 @@ namespace Mediag.DiagnosticDecision
 
         private static double Log2(double x) { return Math.Log(x) / Math.Log(2); }
 
-        public static double Entropy(List<string[]> values)
+        private static double Entropy(List<string[]> values)
         {
             double entropy = 0;
             int resultIndex = values[0].Length - 1;
@@ -86,7 +86,7 @@ namespace Mediag.DiagnosticDecision
             return entropy;
         }
 
-        public static double GainDiscrete(List<string[]> values, int labelIndex)
+        private static double GainDiscrete(List<string[]> values, int labelIndex)
         {
             double gain = Entropy(values);
             List<string> differentValues = DifferentValues(values, labelIndex);
@@ -100,7 +100,7 @@ namespace Mediag.DiagnosticDecision
             return gain;
         }
 
-        public static double GainPivot(List<string[]> values, int labelIndex, double pivot)
+        private static double GainPivot(List<string[]> values, int labelIndex, double pivot)
         {
             double gain = Entropy(values);
 
@@ -113,7 +113,7 @@ namespace Mediag.DiagnosticDecision
             return gain;
         }
 
-        public static double SplitInfoDiscrete(List<string[]> values, int labelIndex)
+        private static double SplitInfoDiscrete(List<string[]> values, int labelIndex)
         {
             double splitInfo = 0;
             List<string> differentValues = DifferentValues(values, labelIndex);
@@ -127,7 +127,7 @@ namespace Mediag.DiagnosticDecision
             return splitInfo;
         }
 
-        public static double SplitInfoPivot(List<string[]> values, int labelIndex, double pivot)
+        private static double SplitInfoPivot(List<string[]> values, int labelIndex, double pivot)
         {
             double splitInfo = 0;
 
