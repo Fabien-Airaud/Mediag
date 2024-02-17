@@ -246,8 +246,10 @@ namespace Mediag
             {
                 values.Add(data.Values());
             }
-            List<double> splitValues = Metrics.PossibleSplitValues(values, 0);
-            Console.WriteLine("Possible split values: " + string.Join(", ", splitValues));
+            List<string> labels = new List<string>(dataManager.GetSamplesData()[0].Labels());
+
+            Console.WriteLine("Possible split values (index=0): " + string.Join(", ", Metrics.PossibleSplitValues(values, 0)));
+            Console.WriteLine("Different values (result): " + string.Join(", ", Metrics.DifferentValues(values, labels.Count - 1)));
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
