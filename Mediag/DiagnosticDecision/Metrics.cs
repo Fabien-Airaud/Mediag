@@ -131,11 +131,11 @@ namespace Mediag.DiagnosticDecision
         {
             double splitInfo = 0;
 
-            List<string[]> subsetHigher = SubsetPivot(values, labelIndex, pivot, true);
-            splitInfo -= (double)subsetHigher.Count / values.Count * Entropy(subsetHigher);
+            double ratio = (double)SubsetPivot(values, labelIndex, pivot, true).Count / values.Count;
+            splitInfo -= ratio * Log2(ratio);
 
-            List<string[]> subsetLower = SubsetPivot(values, labelIndex, pivot, false);
-            splitInfo -= (double)subsetLower.Count / values.Count * Entropy(subsetLower);
+            ratio = (double)SubsetPivot(values, labelIndex, pivot, false).Count / values.Count;
+            splitInfo -= ratio * Log2(ratio);
 
             return splitInfo;
         }
