@@ -156,8 +156,8 @@ namespace Mediag.DiagnosticDecision
 
             foreach (double pivotValue in pivotValues)
             {
-                double gain = GainDiscrete(values, labelIndex);
-                double splitInfo = SplitInfoDiscrete(values, labelIndex);
+                double gain = GainPivot(values, labelIndex, pivotValue);
+                double splitInfo = SplitInfoPivot(values, labelIndex, pivotValue);
                 double gainRatio = splitInfo != 0 ? gain / splitInfo : 1;
 
                 if (gainRatio > maxGainRatio)
