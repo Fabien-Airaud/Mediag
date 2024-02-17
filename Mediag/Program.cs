@@ -252,7 +252,7 @@ namespace Mediag
             Console.WriteLine("Labels: " + string.Join(", ", labels));
             Console.WriteLine("Is discretizable (index=0): " + Metrics.IsDiscretizable(values, 0));
             Console.WriteLine("Is discretizable (result): " + Metrics.IsDiscretizable(values, labels.Count - 1));
-            Console.WriteLine("Possible split values (index=0): " + string.Join(", ", Metrics.PossibleSplitValues(values, 0)));
+            Console.WriteLine("Possible split values (index=0): " + string.Join(", ", Metrics.PossiblePivotValues(values, 0)));
             Console.WriteLine("Different values (result): " + string.Join(", ", Metrics.DifferentValues(values, labels.Count - 1)));
             Console.WriteLine("Most common result: " + Metrics.MostCommonResult(values));
             Console.WriteLine("Subset discrete (result, True): " + Metrics.SubsetDiscrete(values, labels.Count - 1, "True").Count);
