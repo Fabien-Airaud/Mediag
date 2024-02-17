@@ -53,32 +53,12 @@ namespace Mediag.DiagnosticDecision
 
         public static List<string[]> SubsetDiscrete(List<string[]> values, int labelIndex, string value)
         {
-            List<string[]> subset = new List<string[]>();
-
-            foreach (string[] row in values)
-            {
-                if (row[labelIndex].Equals(value))
-                {
-                    subset.Add(row);
-                }
-            }
-
-            return subset;
+            return values.FindAll(row => row[labelIndex].Equals(value));
         }
 
         public static List<string[]> SubsetPivot(List<string[]> values, int labelIndex, double pivot, bool higher = true)
         {
-            List<string[]> subset = new List<string[]>();
-
-            foreach (string[] row in values)
-            {
-                if ((double.Parse(row[labelIndex]) > pivot) == higher) // if higher is true, then we want the values higher than the pivot
-                {
-                    subset.Add(row);
-                }
-            }
-
-            return subset;
+            return values.FindAll(row => (double.Parse(row[labelIndex]) > pivot) == higher);
         }
     }
 }
