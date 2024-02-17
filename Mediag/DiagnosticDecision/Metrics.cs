@@ -62,16 +62,6 @@ namespace Mediag.DiagnosticDecision
             return values.FindAll(row => (double.Parse(row[labelIndex]) > pivot) == higher);
         }
 
-        public static int SizeSubsetDiscrete(List<string[]> values, int labelIndex, string value)
-        {
-            return SubsetDiscrete(values, labelIndex, value).Count;
-        }
-
-        public static int SizeSubsetPivot(List<string[]> values, int labelIndex, double pivot, bool higher = true)
-        {
-            return SubsetPivot(values, labelIndex, pivot, higher).Count;
-        }
-
         private static double Log2(double x) { return Math.Log(x) / Math.Log(2); }
 
         public static double Entropy(List<string[]> values)
@@ -82,7 +72,7 @@ namespace Mediag.DiagnosticDecision
 
             foreach (string value in differentValues)
             {
-                double prob = (double)SizeSubsetDiscrete(values, resultIndex, value) / values.Count;
+                double prob = (double)SubsetDiscrete(values, resultIndex, value).Count / values.Count;
                 entropy -= prob * Log2(prob);
             }
 
