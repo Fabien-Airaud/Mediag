@@ -1,5 +1,7 @@
-﻿using Mediag.Medical;
+﻿using Mediag.DatabaseCSV;
+using Mediag.Medical;
 using System;
+using System.Collections.Generic;
 
 namespace Mediag
 {
@@ -232,6 +234,10 @@ namespace Mediag
             Console.WriteLine(FMarieBernard1.ToString());
             Console.WriteLine();
 
+
+            DataManager<BreastCancerData, BreastCancerMap> dataManager = new DataManager<BreastCancerData, BreastCancerMap>("BreastCancer");
+            List<BreastCancerData> breastCancerDataList = dataManager.GetSamplesData();
+            Console.WriteLine("Breast Cancer samples count: " + breastCancerDataList.Count);
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
