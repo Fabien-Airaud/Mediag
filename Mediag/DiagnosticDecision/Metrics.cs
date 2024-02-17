@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Mediag.DiagnosticDecision
 {
@@ -50,6 +51,12 @@ namespace Mediag.DiagnosticDecision
             }
 
             return differentValues;
+        }
+
+        public static string MostCommonResult(List<string[]> values)
+        {
+            int resultIndex = values[0].Length - 1;
+            return values.GroupBy(row => row[resultIndex]).OrderByDescending(group => group.Count()).First().Key.ToString();
         }
 
         public static List<string[]> SubsetDiscrete(List<string[]> values, int labelIndex, string value)
