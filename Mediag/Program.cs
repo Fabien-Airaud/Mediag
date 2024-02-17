@@ -259,6 +259,7 @@ namespace Mediag
             Console.WriteLine("Subset higher than pivot (index=0, value=12.5): " + Metrics.SubsetPivot(values, 0, 12.5).Count);
             Console.WriteLine("Entropy (result): " + Metrics.Entropy(values));
             Console.WriteLine("Gain (index=0): " + Metrics.GainPivot(values, 0, out double pivot) + ", " + pivot);
+            Console.WriteLine("Split info (index=0, pivot=15.15): " + Metrics.SplitInfoPivot(values, 0, 15.15));
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());

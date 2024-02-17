@@ -121,5 +121,32 @@ namespace Mediag.DiagnosticDecision
 
             return gainsPivots[pivot];
         }
+
+        public static double SplitInfoDiscrete(List<string[]> values, int labelIndex)
+        {
+            double splitInfo = 0;
+            List<string> differentValues = DifferentValues(values, labelIndex);
+
+            foreach (string value in differentValues)
+            {
+                double ratio = (double)SubsetDiscrete(values, labelIndex, value).Count / values.Count;
+                splitInfo -= ratio * Log2(ratio);
+            }
+
+            return splitInfo;
+        }
+
+        public static double SplitInfoPivot(List<string[]> values, int labelIndex, double pivot)
+        {
+            double splitInfo = 0;
+
+            List<string[]> subsetHigher = SubsetPivot(values, labelIndex, pivot, true);
+            splitInfo -= (double)subsetHigher.Count / values.Count * Entropy(subsetHigher);
+
+            List<string[]> subsetLower = SubsetPivot(values, labelIndex, pivot, false);
+            splitInfo -= (double)subsetLower.Count / values.Count * Entropy(subsetLower);
+
+            return splitInfo;
+        }
     }
 }
