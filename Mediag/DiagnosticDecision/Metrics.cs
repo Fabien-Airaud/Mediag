@@ -25,5 +25,20 @@ namespace Mediag.DiagnosticDecision
 
             return splitValues;
         }
+
+        public static List<string> DifferentValues(List<string[]> values, int labelIndex)
+        {
+            List<string> differentValues = new List<string>();
+
+            foreach (string[] value in values)
+            {
+                if (!differentValues.Contains(value[labelIndex]))
+                {
+                    differentValues.Add(value[labelIndex]);
+                }
+            }
+
+            return differentValues;
+        }
     }
 }
