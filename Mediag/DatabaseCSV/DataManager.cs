@@ -20,9 +20,8 @@ namespace Mediag.DatabaseCSV
         }
 
 
-        public List<T> GetSamplesData()
+        private List<T> GetData(string filename)
         {
-            string filename = Path.Combine(DatabaseFolder, SamplesFilename);
             if (!File.Exists(filename)) { return null; }
 
             List<T> dataList = null;
@@ -34,6 +33,12 @@ namespace Mediag.DatabaseCSV
                 dataList = new List<T>(records);
             }
             return dataList;
+        }
+
+        public List<T> GetSamplesData()
+        {
+            string filename = Path.Combine(DatabaseFolder, SamplesFilename);
+            return GetData(filename);
         }
     }
 }
