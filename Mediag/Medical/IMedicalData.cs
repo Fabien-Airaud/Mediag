@@ -3,5 +3,9 @@
     interface IMedicalData
     {
         IllnessTypes TargettedIllness();
+
+        string[] Values();
+
+        string[] Labels();
     }
 }
