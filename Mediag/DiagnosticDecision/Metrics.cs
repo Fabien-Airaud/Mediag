@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Mediag.DiagnosticDecision
 {
@@ -59,6 +60,16 @@ namespace Mediag.DiagnosticDecision
         public static List<string[]> SubsetPivot(List<string[]> values, int labelIndex, double pivot, bool higher = true)
         {
             return values.FindAll(row => (double.Parse(row[labelIndex]) > pivot) == higher);
+        }
+
+        public static int SizeSubsetDiscrete(List<string[]> values, int labelIndex, string value)
+        {
+            return SubsetDiscrete(values, labelIndex, value).Count;
+        }
+
+        public static int SizeSubsetPivot(List<string[]> values, int labelIndex, double pivot, bool higher = true)
+        {
+            return SubsetPivot(values, labelIndex, pivot, higher).Count;
         }
     }
 }
