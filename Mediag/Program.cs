@@ -1,4 +1,5 @@
 ﻿using Mediag.DatabaseCSV;
+using Mediag.DiagnosticDecision;
 using Mediag.Medical;
 using System;
 using System.Collections.Generic;
@@ -239,6 +240,14 @@ namespace Mediag
             Console.WriteLine("Breast Cancer train count: " + dataManager.GetTrainData().Count);
             Console.WriteLine("Breast Cancer test count: " + dataManager.GetTestData().Count);
             Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
+
+            List<string[]> values = new List<string[]>();
+            foreach (BreastCancerData data in dataManager.GetSamplesData())
+            {
+                values.Add(data.Values());
+            }
+            List<double> splitValues = Metrics.PossibleSplitValues(values, 0);
+            Console.WriteLine("Possible split values: " + string.Join(", ", splitValues));
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
