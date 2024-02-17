@@ -100,26 +100,17 @@ namespace Mediag.DiagnosticDecision
             return gain;
         }
 
-        public static double GainPivot(List<string[]> values, int labelIndex, out double pivot)
+        public static double GainPivot(List<string[]> values, int labelIndex, double pivot)
         {
-            List<double> splitValues = PossiblePivotValues(values, labelIndex);
+            double gain = Entropy(values);
 
-            Dictionary<double, double> gainsPivots = new Dictionary<double, double>(splitValues.Count);
-            foreach (double pivotValue in splitValues)
-            {
-                double gain = Entropy(values);
+            List<string[]> subsetHigher = SubsetPivot(values, labelIndex, pivot, true);
+            gain -= (double)subsetHigher.Count / values.Count * Entropy(subsetHigher);
 
-                List<string[]> subsetHigher = SubsetPivot(values, labelIndex, pivotValue, true);
-                gain -= (double)subsetHigher.Count / values.Count * Entropy(subsetHigher);
+            List<string[]> subsetLower = SubsetPivot(values, labelIndex, pivot, false);
+            gain -= (double)subsetLower.Count / values.Count * Entropy(subsetLower);
 
-                List<string[]> subsetLower = SubsetPivot(values, labelIndex, pivotValue, false);
-                gain -= (double)subsetLower.Count / values.Count * Entropy(subsetLower);
-
-                gainsPivots.Add(pivotValue, gain);
-            }
-            pivot = gainsPivots.Aggregate((l, r) => l.Value > r.Value ? l : r).Key;
-
-            return gainsPivots[pivot];
+            return gain;
         }
 
         public static double SplitInfoDiscrete(List<string[]> values, int labelIndex)
