@@ -11,6 +11,10 @@ namespace Mediag.DatabaseCSV
     {
         public string DatabaseFolder { get; set; }
 
+        public string TrainFilename { get; set; } = "train.csv";
+
+        public string TestFilename { get; set; } = "test.csv";
+
         public string SamplesFilename { get; set; } = "samples.csv";
 
 
@@ -33,6 +37,18 @@ namespace Mediag.DatabaseCSV
                 dataList = new List<T>(records);
             }
             return dataList;
+        }
+
+        public List<T> GetTrainData()
+        {
+            string filename = Path.Combine(DatabaseFolder, TrainFilename);
+            return GetData(filename);
+        }
+
+        public List<T> GetTestData()
+        {
+            string filename = Path.Combine(DatabaseFolder, TestFilename);
+            return GetData(filename);
         }
 
         public List<T> GetSamplesData()
