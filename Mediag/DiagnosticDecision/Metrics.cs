@@ -71,5 +71,22 @@ namespace Mediag.DiagnosticDecision
         {
             return SubsetPivot(values, labelIndex, pivot, higher).Count;
         }
+
+        private static double Log2(double x) { return Math.Log(x) / Math.Log(2); }
+
+        public static double Entropy(List<string[]> values)
+        {
+            double entropy = 0;
+            int resultIndex = values[0].Length - 1;
+            List<string> differentValues = DifferentValues(values, resultIndex);
+
+            foreach (string value in differentValues)
+            {
+                double prob = (double)SizeSubsetDiscrete(values, resultIndex, value) / values.Count;
+                entropy -= prob * Log2(prob);
+            }
+
+            return entropy;
+        }
     }
 }
