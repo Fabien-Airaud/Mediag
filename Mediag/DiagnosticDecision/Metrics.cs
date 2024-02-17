@@ -139,5 +139,35 @@ namespace Mediag.DiagnosticDecision
 
             return splitInfo;
         }
+
+        public static double GainRatioDiscrete(List<string[]> values, int labelIndex)
+        {
+            double gain = GainDiscrete(values, labelIndex);
+            double splitInfo = SplitInfoDiscrete(values, labelIndex);
+
+            return splitInfo != 0 ? gain / splitInfo : 1;
+        }
+
+        public static double GainRatioPivot(List<string[]> values, int labelIndex, out double pivot)
+        {
+            List<double> pivotValues = PossiblePivotValues(values, labelIndex);
+            double maxGainRatio = 0;
+            pivot = pivotValues[0];
+
+            foreach (double pivotValue in pivotValues)
+            {
+                double gain = GainDiscrete(values, labelIndex);
+                double splitInfo = SplitInfoDiscrete(values, labelIndex);
+                double gainRatio = splitInfo != 0 ? gain / splitInfo : 1;
+
+                if (gainRatio > maxGainRatio)
+                {
+                    maxGainRatio = gainRatio;
+                    pivot = pivotValue;
+                }
+            }
+
+            return maxGainRatio;
+        }
     }
 }

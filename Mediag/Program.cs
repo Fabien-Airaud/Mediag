@@ -260,6 +260,7 @@ namespace Mediag
             Console.WriteLine("Entropy (result): " + Metrics.Entropy(values));
             Console.WriteLine("Gain (index=0): " + Metrics.GainPivot(values, 0, 15.15));
             Console.WriteLine("Split info (index=0, pivot=15.15): " + Metrics.SplitInfoPivot(values, 0, 15.15));
+            Console.WriteLine("Gain ratio (index=0): " + Metrics.GainRatioPivot(values, 0, out double pivot) + ", " + pivot);
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
