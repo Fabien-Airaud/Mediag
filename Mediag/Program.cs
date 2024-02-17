@@ -236,8 +236,9 @@ namespace Mediag
 
 
             DataManager<BreastCancerData, BreastCancerMap> dataManager = new DataManager<BreastCancerData, BreastCancerMap>("BreastCancer");
-            List<BreastCancerData> breastCancerDataList = dataManager.GetSamplesData();
-            Console.WriteLine("Breast Cancer samples count: " + breastCancerDataList.Count);
+            Console.WriteLine("Breast Cancer train count: " + dataManager.GetTrainData().Count);
+            Console.WriteLine("Breast Cancer test count: " + dataManager.GetTestData().Count);
+            Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
