@@ -73,8 +73,6 @@
   <ItemGroup>
     <Compile Include="DatabaseCSV\BreastCancerMap.cs" />
     <Compile Include="DatabaseCSV\DataManager.cs" />
-    <Compile Include="Database\CsvManager.cs" />
-    <Compile Include="Database\DiagnosisMap.cs" />
     <Compile Include="DiagnosticDecision\DecisionTree.cs" />
     <Compile Include="DiagnosticDecision\IForDecisionTree.cs" />
     <Compile Include="DiagnosticDecision\Statistics.cs" />
