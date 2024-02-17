@@ -75,6 +75,7 @@
     <Compile Include="DatabaseCSV\DataManager.cs" />
     <Compile Include="DiagnosticDecision\DecisionTree.cs" />
     <Compile Include="DiagnosticDecision\IForDecisionTree.cs" />
+    <Compile Include="DiagnosticDecision\Metrics.cs" />
     <Compile Include="DiagnosticDecision\Statistics.cs" />
     <Compile Include="Medical\BreastCancerData.cs" />
     <Compile Include="Medical\Diagnosis.cs" />
