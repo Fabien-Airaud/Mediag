@@ -50,5 +50,20 @@ namespace Mediag.DiagnosticDecision
 
             return differentValues;
         }
+
+        public static List<string[]> SubsetDiscrete(List<string[]> values, int labelIndex, string value)
+        {
+            List<string[]> subset = new List<string[]>();
+
+            foreach (string[] row in values)
+            {
+                if (row[labelIndex].Equals(value))
+                {
+                    subset.Add(row);
+                }
+            }
+
+            return subset;
+        }
     }
 }

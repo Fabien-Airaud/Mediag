@@ -252,6 +252,7 @@ namespace Mediag
             Console.WriteLine("Different values (result): " + string.Join(", ", Metrics.DifferentValues(values, labels.Count - 1)));
             Console.WriteLine("Is discretizable (index=0): " + Metrics.IsDiscretizable(values, 0));
             Console.WriteLine("Is discretizable (result): " + Metrics.IsDiscretizable(values, labels.Count - 1));
+            Console.WriteLine("Subset discrete (result, True): " + Metrics.SubsetDiscrete(values, labels.Count - 1, "True").Count);
 
             //DecisionTree decisionTree = new DecisionTree();
             //Console.WriteLine(decisionTree.ToString());
