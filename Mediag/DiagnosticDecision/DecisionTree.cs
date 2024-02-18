@@ -17,7 +17,7 @@ namespace Mediag.DiagnosticDecision
         }
 
 
-        public string BestLabel(List<string[]> values, List<string> labels, out double pivot)
+        private string BestLabel(List<string[]> values, List<string> labels, out double pivot)
         {
             pivot = double.NaN;
             string bestLabel = "";
@@ -40,7 +40,7 @@ namespace Mediag.DiagnosticDecision
             return bestLabel;
         }
 
-        public List<string[]> RemoveLabel(List<string[]> values, int labelIndex)
+        private List<string[]> RemoveLabel(List<string[]> values, int labelIndex)
         {
             List<string[]> subset = new List<string[]>(values.Count);
             for (int i = 0; i < values.Count; i++)
