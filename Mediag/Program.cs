@@ -261,17 +261,8 @@ namespace Mediag
             Console.WriteLine();
 
             DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer);
-            Console.WriteLine("Best label: " + decisionTree.BestLabel(values, labels, out double pivotBest) + ", pivot = " + pivotBest);
-            Console.WriteLine();
-
-            Console.WriteLine("Labels: " + string.Join(", ", labels));
-            Console.WriteLine("Values[0]: " + string.Join(", ", values[0]));
-            Console.WriteLine("Remove PerimeterWorst (2)");
-            int indexToRemove = labels.FindIndex(label => label.Equals("PerimeterWorst"));
-            labels.RemoveAt(indexToRemove);
-            decisionTree.RemoveLabel(values, indexToRemove);
-            Console.WriteLine("Labels: " + string.Join(", ", labels));
-            Console.WriteLine("Values[0]: " + string.Join(", ", values[0]));
+            Node node = decisionTree.BuildTree(values, labels);
+            Console.WriteLine(node.ToString());
             Console.WriteLine();
             Console.WriteLine();
 
