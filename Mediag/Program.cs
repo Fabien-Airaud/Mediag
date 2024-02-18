@@ -257,9 +257,22 @@ namespace Mediag
             Console.WriteLine("Subset discrete (result, True): " + Metrics.SubsetDiscrete(values, labels.Count - 1, "True").Count);
             Console.WriteLine("Subset higher than pivot (index=0, value=12.5): " + Metrics.SubsetPivot(values, 0, 12.5).Count);
             Console.WriteLine("Gain ratio (index=0): " + Metrics.GainRatioPivot(values, 0, out double pivot) + ", " + pivot);
+            Console.WriteLine();
+            Console.WriteLine();
 
-            //DecisionTree decisionTree = new DecisionTree();
-            //Console.WriteLine(decisionTree.ToString());
+            Node nodeOutlook = new Node("Outlook");
+            Node nodeHumidity = new Node("Humidity");
+            Node nodeWind = new Node("Wind");
+            Node nodeYes = new Node("Result", "Yes");
+            Node nodeNo = new Node("Result", "No");
+            nodeOutlook.AddChild("Sunny", nodeHumidity);
+            nodeOutlook.AddChild("Overcast", nodeYes);
+            nodeOutlook.AddChild("Rain", nodeWind);
+            nodeHumidity.AddChild("High", nodeNo);
+            nodeHumidity.AddChild("Normal", nodeYes);
+            nodeWind.AddChild("Strong", nodeNo);
+            nodeWind.AddChild("Weak", nodeYes);
+            Console.WriteLine(nodeOutlook.ToString());
         }
     }
 }
