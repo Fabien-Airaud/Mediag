@@ -24,24 +24,26 @@ namespace Mediag.DiagnosticDecision
 
         private static List<double> PossiblePivotValues(List<string[]> values, int labelIndex)
         {
-            List<double> splitValues = new List<double>();
+            List<double> pivotValues = new List<double>();
 
-            SortedList<double, bool> valueLabelPairs = new SortedList<double, bool>();
+            SortedList<double, string> valueLabelPairs = new SortedList<double, string>();
             foreach (string[] value in values)
             {
-                valueLabelPairs.Add(double.Parse(value[labelIndex]), bool.Parse(value[value.Length - 1]));
+                double key = double.Parse(value[labelIndex]);
+                if (valueLabelPairs.ContainsKey(key)) valueLabelPairs[key] += value[value.Length - 1];
+                else valueLabelPairs.Add(key, value[value.Length - 1]);
             }
 
             // Split value if the result changes (mean value)
             for (int i = 0; i < valueLabelPairs.Count - 1; i++)
             {
-                if (valueLabelPairs.Values[i] != valueLabelPairs.Values[i + 1])
+                if (!valueLabelPairs.Values[i].Equals(valueLabelPairs.Values[i + 1]))
                 {
-                    splitValues.Add((valueLabelPairs.Keys[i] + valueLabelPairs.Keys[i + 1]) / 2);
+                    pivotValues.Add((valueLabelPairs.Keys[i] + valueLabelPairs.Keys[i + 1]) / 2);
                 }
             }
 
-            return splitValues;
+            return pivotValues;
         }
 
         public static List<string> DifferentValues(List<string[]> values, int labelIndex)
