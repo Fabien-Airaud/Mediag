@@ -272,8 +272,9 @@ namespace Mediag
                 trainValues.Add(data.Values());
             }
             List<string> trainLabels = new List<string>(dataManager.GetTrainData()[0].Labels());
-            node = decisionTree.BuildTree(trainValues, trainLabels);
-            Console.WriteLine(node.ToString());
+            decisionTree.BuildTree(trainValues, trainLabels);
+            Console.WriteLine(decisionTree.Root.ToString());
+            Console.WriteLine("Decision tree labels: " + string.Join(", ", decisionTree.Labels));
             Console.WriteLine();
             Console.WriteLine();
 

@@ -10,6 +10,8 @@ namespace Mediag.DiagnosticDecision
 
         public Node Root { get; private set; }
 
+        public List<string> Labels { get; private set; }
+
 
         public DecisionTree(IllnessTypes illness)
         {
@@ -128,6 +130,8 @@ namespace Mediag.DiagnosticDecision
         public Node BuildTree(List<string[]> values, List<string> labels)
         {
             Root = BuildTreeRec(values, labels);
+            if (Root != null) Labels = new List<string>(labels);
+            else Labels = null;
             return Root;
         }
     }
