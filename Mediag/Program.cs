@@ -258,11 +258,16 @@ namespace Mediag
             Console.WriteLine("Subset higher than pivot (index=0, value=12.5): " + Metrics.SubsetPivot(values, 0, 12.5).Count);
             Console.WriteLine("Gain ratio (index=0): " + Metrics.GainRatioPivot(values, 0, out double pivot) + ", " + pivot);
             Console.WriteLine();
+            Console.WriteLine();
+
+            DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer);
+            Console.WriteLine("Best label: " + decisionTree.BestLabel(values, labels, out double pivotBest) + ", pivot = " + pivotBest);
+            Console.WriteLine();
 
             Console.WriteLine("Labels: " + string.Join(", ", labels));
             Console.WriteLine("Values[0]: " + string.Join(", ", values[0]));
-            Console.WriteLine("Remove RadiusWorst (0)");
-            int indexToRemove = labels.FindIndex(label => label.Equals("RadiusWorst"));
+            Console.WriteLine("Remove PerimeterWorst (2)");
+            int indexToRemove = labels.FindIndex(label => label.Equals("PerimeterWorst"));
             labels.RemoveAt(indexToRemove);
             for (int i = 0; i < values.Count; i++)
             {
@@ -293,6 +298,7 @@ namespace Mediag
             nodeWind.AddChild("Strong", nodeNo);
             nodeWind.AddChild("Weak", nodeYes);
             Console.WriteLine(nodeOutlook.ToString());
+            Console.WriteLine();
             Console.WriteLine();
         }
     }
