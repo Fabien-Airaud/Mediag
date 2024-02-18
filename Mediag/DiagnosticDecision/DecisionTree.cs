@@ -57,6 +57,59 @@ namespace Mediag.DiagnosticDecision
             return subset;
         }
 
+        private Node BuildDiscreteNode(List<string[]> values, List<string> labels, string bestLabel)
+        {
+            Node node = new Node(bestLabel);
+            int indexBestLabel = labels.IndexOf(bestLabel);
+            Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel);
+
+            List<string> differentValues = Metrics.DifferentValues(values, indexBestLabel);
+            foreach (string value in differentValues)
+            {
+                // Create a subset of values and labels without the best label
+                List<string[]> subValues = Metrics.SubsetDiscrete(values, indexBestLabel, value);
+                List<string> subLabels = new List<string>(labels);
+
+                // Remove the best label from the subsets
+                subLabels.RemoveAt(indexBestLabel);
+                subValues = RemoveLabel(subValues, indexBestLabel);
+
+                // Create a child node and add it to the parent node
+                Node child = BuildTreeRec(subValues, subLabels);
+                node.AddChild(value, child);
+            }
+            return node;
+        }
+
+        private Node BuildPivotNode(List<string[]> values, List<string> labels, string bestLabel, double pivot)
+        {
+            Node node = new Node(bestLabel, pivot);
+            int indexBestLabel = labels.IndexOf(bestLabel);
+            Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel + ", Pivot: " + pivot);
+
+            // Create a subset of labels without the best label
+            List<string> subLabels = new List<string>(labels);
+            subLabels.RemoveAt(indexBestLabel);
+
+            // Create a subset of values without the best label for higher values
+            List<string[]> subValues = Metrics.SubsetPivot(values, indexBestLabel, pivot);
+            subValues = RemoveLabel(subValues, indexBestLabel);
+
+            // Create a child node for higher values and add it to the parent node
+            Node childHigher = BuildTreeRec(subValues, subLabels);
+            node.AddChild(">", childHigher);
+
+            // Create a subset of values without the best label for lower values
+            subValues = Metrics.SubsetPivot(values, indexBestLabel, pivot, false);
+            subValues = RemoveLabel(subValues, indexBestLabel);
+
+            // Create a child node for lower values and add it to the parent node
+            Node childLower = BuildTreeRec(subValues, subLabels);
+            node.AddChild("<=", childLower);
+
+            return node;
+        }
+
         private Node BuildTreeRec(List<string[]> values, List<string> labels)
         {
             if (values.Count == 0 || labels.Count == 0 || values[0].Length != labels.Count) return null;
@@ -68,57 +121,8 @@ namespace Mediag.DiagnosticDecision
             }
 
             string bestLabel = BestLabel(values, labels, out double pivot);
-            int indexBestLabel = labels.IndexOf(bestLabel);
-
-            if (pivot == double.NaN) // Discrete label
-            {
-                Node node = new Node(bestLabel);
-                Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel);
-
-                List<string> differentValues = Metrics.DifferentValues(values, indexBestLabel);
-                foreach (string value in differentValues)
-                {
-                    // Create a subset of values and labels without the best label
-                    List<string[]> subValues = Metrics.SubsetDiscrete(values, indexBestLabel, value);
-                    List<string> subLabels = new List<string>(labels);
-
-                    // Remove the best label from the subsets
-                    subLabels.RemoveAt(indexBestLabel);
-                    subValues = RemoveLabel(subValues, indexBestLabel);
-
-                    // Create a child node and add it to the parent node
-                    Node child = BuildTreeRec(subValues, subLabels);
-                    node.AddChild(value, child);
-                }
-                return node;
-            }
-            else // Pivot label
-            {
-                Node node = new Node(bestLabel, pivot);
-                Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel + ", Pivot: " + pivot);
-
-                // Create a subset of labels without the best label
-                List<string> subLabels = new List<string>(labels);
-                subLabels.RemoveAt(indexBestLabel);
-
-                // Create a subset of values without the best label for higher values
-                List<string[]> subValues = Metrics.SubsetPivot(values, indexBestLabel, pivot);
-                subValues = RemoveLabel(subValues, indexBestLabel);
-
-                // Create a child node for higher values and add it to the parent node
-                Node childHigher = BuildTreeRec(subValues, subLabels);
-                node.AddChild(">", childHigher);
-
-                // Create a subset of values without the best label for lower values
-                subValues = Metrics.SubsetPivot(values, indexBestLabel, pivot, false);
-                subValues = RemoveLabel(subValues, indexBestLabel);
-
-                // Create a child node for lower values and add it to the parent node
-                Node childLower = BuildTreeRec(subValues, subLabels);
-                node.AddChild("<=", childLower);
-
-                return node;
-            }
+            if (pivot == double.NaN) return BuildDiscreteNode(values, labels, bestLabel); // Discrete label
+            else return BuildPivotNode(values, labels, bestLabel, pivot); // Pivot label
         }
 
         public Node BuildTree(List<string[]> values, List<string> labels)
