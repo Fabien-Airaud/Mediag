@@ -1,5 +1,4 @@
 ﻿using Mediag.Medical;
-using System.Collections.Generic;
 
 namespace Mediag.DiagnosticDecision
 {
@@ -13,13 +12,6 @@ namespace Mediag.DiagnosticDecision
         public DecisionTree(IllnessTypes illness)
         {
             Illness = illness;
-        }
-
-
-        public string BestLabel(List<string[]> values, List<string> labels, out double pivot)
-        {
-            pivot = 0;
-            return "";
         }
     }
 }
