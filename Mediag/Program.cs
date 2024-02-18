@@ -266,6 +266,17 @@ namespace Mediag
             Console.WriteLine();
             Console.WriteLine();
 
+            List<string[]> trainValues = new List<string[]>();
+            foreach (BreastCancerData data in dataManager.GetTrainData())
+            {
+                trainValues.Add(data.Values());
+            }
+            List<string> trainLabels = new List<string>(dataManager.GetTrainData()[0].Labels());
+            node = decisionTree.BuildTree(trainValues, trainLabels);
+            Console.WriteLine(node.ToString());
+            Console.WriteLine();
+            Console.WriteLine();
+
             Node nodeOutlook = new Node("Outlook");
             Node nodeHumidity = new Node("Humidity");
             Node nodeWind = new Node("Wind");
