@@ -150,5 +150,28 @@ namespace Mediag.DiagnosticDecision
             }
             return str;
         }
+
+        private string Classify(string[] values, Node node)
+        {
+            if (node.IsLeaf()) return node.Value;
+
+            int indexLabel = Labels.IndexOf(node.Label);
+            if (node.HasPivot())
+            {
+                double pivot = node.Pivot.Value;
+                double value = double.Parse(values[indexLabel]);
+
+                if (value > pivot) return Classify(values, node.Children[">"]);
+                else return Classify(values, node.Children["<="]);
+            }
+            else return Classify(values, node.Children[values[indexLabel]]);
+        }
+
+        public string Classify(string[] values)
+        {
+            if (Root == null || Labels == null || values.Length != Labels.Count) return null;
+
+            return Classify(values, Root);
+        }
     }
 }

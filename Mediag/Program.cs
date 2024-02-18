@@ -276,6 +276,13 @@ namespace Mediag
             Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
             Console.WriteLine();
+
+            int indexResult = values[0].Length - 1;
+            foreach (string[] value in values)
+            {
+                string result = decisionTree.Classify(value);
+                Console.WriteLine("Classify " + value[indexResult] + ": " + result);
+            }
         }
     }
 }
