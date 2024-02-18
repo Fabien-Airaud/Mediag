@@ -276,22 +276,6 @@ namespace Mediag
             Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
             Console.WriteLine();
-
-            Node nodeOutlook = new Node("Outlook");
-            Node nodeHumidity = new Node("Humidity");
-            Node nodeWind = new Node("Wind");
-            Node nodeYes = new Node("Result", "Yes");
-            Node nodeNo = new Node("Result", "No");
-            nodeOutlook.AddChild("Sunny", nodeHumidity);
-            nodeOutlook.AddChild("Overcast", nodeYes);
-            nodeOutlook.AddChild("Rain", nodeWind);
-            nodeHumidity.AddChild("High", nodeNo);
-            nodeHumidity.AddChild("Normal", nodeYes);
-            nodeWind.AddChild("Strong", nodeNo);
-            nodeWind.AddChild("Weak", nodeYes);
-            Console.WriteLine(nodeOutlook.ToString());
-            Console.WriteLine();
-            Console.WriteLine();
         }
     }
 }
