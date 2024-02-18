@@ -39,5 +39,22 @@ namespace Mediag.DiagnosticDecision
             }
             return bestLabel;
         }
+
+        public List<string[]> RemoveLabel(List<string[]> values, int labelIndex)
+        {
+            List<string[]> subset = new List<string[]>(values);
+            for (int i = 0; i < values.Count; i++)
+            {
+                string[] value = values[i];
+                string[] strings = new string[value.Length - 1];
+                for (int j = 0; j < value.Length; j++)
+                {
+                    if (j < labelIndex) strings[j] = value[j];
+                    else if (j > labelIndex) strings[j - 1] = value[j];
+                }
+                subset.Add(strings);
+            }
+            return subset;
+        }
     }
 }

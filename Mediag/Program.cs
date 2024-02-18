@@ -269,17 +269,7 @@ namespace Mediag
             Console.WriteLine("Remove PerimeterWorst (2)");
             int indexToRemove = labels.FindIndex(label => label.Equals("PerimeterWorst"));
             labels.RemoveAt(indexToRemove);
-            for (int i = 0; i < values.Count; i++)
-            {
-                string[] value = values[i];
-                string[] strings = new string[value.Length - 1];
-                for (int j = 0; j < value.Length; j++)
-                {
-                    if (j < indexToRemove) strings[j] = value[j];
-                    else if (j > indexToRemove) strings[j - 1] = value[j];
-                }
-                values[i] = strings;
-            }
+            decisionTree.RemoveLabel(values, indexToRemove);
             Console.WriteLine("Labels: " + string.Join(", ", labels));
             Console.WriteLine("Values[0]: " + string.Join(", ", values[0]));
             Console.WriteLine();
