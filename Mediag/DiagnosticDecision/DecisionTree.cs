@@ -135,22 +135,6 @@ namespace Mediag.DiagnosticDecision
             return Root;
         }
 
-        public override string ToString()
-        {
-            string str = "Decision Tree for " + Illness;
-            if (Labels != null)
-            {
-                str += "\nLabels: ";
-                foreach (string label in Labels) str += label + " ";
-            }
-            if (Root != null)
-            {
-                str += "\nRoot: ";
-                str += Root.ToString();
-            }
-            return str;
-        }
-
         private string Classify(string[] values, Node node)
         {
             if (node.IsLeaf()) return node.Value;
@@ -172,6 +156,22 @@ namespace Mediag.DiagnosticDecision
             if (Root == null || Labels == null || values.Length != Labels.Count) return null;
 
             return Classify(values, Root);
+        }
+
+        public override string ToString()
+        {
+            string str = "Decision Tree for " + Illness;
+            if (Labels != null)
+            {
+                str += "\nLabels: ";
+                foreach (string label in Labels) str += label + " ";
+            }
+            if (Root != null)
+            {
+                str += "\nRoot: ";
+                str += Root.ToString();
+            }
+            return str;
         }
     }
 }
