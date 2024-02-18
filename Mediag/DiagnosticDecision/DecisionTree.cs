@@ -134,5 +134,21 @@ namespace Mediag.DiagnosticDecision
             else Labels = null;
             return Root;
         }
+
+        public override string ToString()
+        {
+            string str = "Decision Tree for " + Illness;
+            if (Labels != null)
+            {
+                str += "\nLabels: ";
+                foreach (string label in Labels) str += label + " ";
+            }
+            if (Root != null)
+            {
+                str += "\nRoot: ";
+                str += Root.ToString();
+            }
+            return str;
+        }
     }
 }

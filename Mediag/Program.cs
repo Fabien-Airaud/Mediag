@@ -261,8 +261,8 @@ namespace Mediag
             Console.WriteLine();
 
             DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer);
-            Node node = decisionTree.BuildTree(values, labels);
-            Console.WriteLine(node.ToString());
+            decisionTree.BuildTree(values, labels);
+            Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
             Console.WriteLine();
 
@@ -273,8 +273,7 @@ namespace Mediag
             }
             List<string> trainLabels = new List<string>(dataManager.GetTrainData()[0].Labels());
             decisionTree.BuildTree(trainValues, trainLabels);
-            Console.WriteLine(decisionTree.Root.ToString());
-            Console.WriteLine("Decision tree labels: " + string.Join(", ", decisionTree.Labels));
+            Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
             Console.WriteLine();
 
