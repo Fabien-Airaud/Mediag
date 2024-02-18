@@ -135,7 +135,7 @@ namespace Mediag.DiagnosticDecision
             return Root;
         }
 
-        private string Classify(string[] instances, Node node)
+        private string Classify(string[] instance, Node node)
         {
             if (node.IsLeaf()) return node.Value;
 
@@ -143,19 +143,19 @@ namespace Mediag.DiagnosticDecision
             if (node.HasPivot())
             {
                 double pivot = node.Pivot.Value;
-                double value = double.Parse(instances[indexLabel]);
+                double value = double.Parse(instance[indexLabel]);
 
-                if (value > pivot) return Classify(instances, node.Children[">"]);
-                else return Classify(instances, node.Children["<="]);
+                if (value > pivot) return Classify(instance, node.Children[">"]);
+                else return Classify(instance, node.Children["<="]);
             }
-            else return Classify(instances, node.Children[instances[indexLabel]]);
+            else return Classify(instance, node.Children[instance[indexLabel]]);
         }
 
-        public string Classify(string[] instances)
+        public string Classify(string[] instance)
         {
-            if (Root == null || Labels == null || instances.Length != Labels.Count) return null;
+            if (Root == null || Labels == null || instance.Length != Labels.Count) return null;
 
-            return Classify(instances, Root);
+            return Classify(instance, Root);
         }
 
         public override string ToString()
