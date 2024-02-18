@@ -71,7 +71,7 @@ namespace Mediag.DiagnosticDecision
 
         private static double Log2(double x) { return Math.Log(x) / Math.Log(2); }
 
-        private static double Entropy(List<string[]> values)
+        public static double Entropy(List<string[]> values)
         {
             double entropy = 0;
             int resultIndex = values[0].Length - 1;
