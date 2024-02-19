@@ -280,6 +280,7 @@ namespace Mediag
             Console.WriteLine("Accuracy: " + decisionTree.Accuracy(values));
             string[] results = decisionTree.ClassifyAll(values);
             Console.WriteLine("Accuracy with predicted results: " + decisionTree.Accuracy(values, results));
+            Console.WriteLine("Confusion matrix: " + decisionTree.ConfusionMatrix(values, results).Length);
         }
     }
 }

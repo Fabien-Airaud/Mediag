@@ -189,6 +189,44 @@ namespace Mediag.DiagnosticDecision
             return (double)correct / instances.Count;
         }
 
+        private int[,] ConfusionMatrix(List<string[]> instances, string[] predictedResults, List<string> resultLabels)
+        {
+            int[,] confusionMatrix = new int[resultLabels.Count, resultLabels.Count];
+
+            int resultIndex = Labels.Count - 1;
+            for (int i = 0; i < instances.Count; i++)
+            {
+                int expectedIndex = resultLabels.IndexOf(instances[i][resultIndex]);
+                int predictedIndex = resultLabels.IndexOf(predictedResults[i]);
+                confusionMatrix[expectedIndex, predictedIndex]++;
+            }
+            return confusionMatrix;
+        }
+
+        public string[,] ConfusionMatrix(List<string[]> instances, string[] predictedResults)
+        {
+            List<string> resultLabels = Metrics.DifferentValues(instances, Labels.Count - 1);
+            int nbLabels = resultLabels.Count;
+
+            string[,] confusionMatrix = new string[nbLabels + 1, nbLabels + 1];
+
+            confusionMatrix[0,0] = "Act \\ Pre";
+
+            for (int i = 0; i < nbLabels; i++)
+            {
+                confusionMatrix[0, i + 1] = resultLabels[i];
+                confusionMatrix[i + 1, 0] = resultLabels[i];
+            }
+
+            int[,] intMatrix = ConfusionMatrix(instances, predictedResults, resultLabels);
+            for (int i = 0; i < nbLabels; i++)
+            {
+                for (int j = 0; j < nbLabels; j++) confusionMatrix[i + 1, j + 1] = intMatrix[i, j].ToString();
+            }
+            
+            return confusionMatrix;
+        }
+
         public override string ToString()
         {
             string str = "Decision Tree for " + Illness;
