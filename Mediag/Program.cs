@@ -277,9 +277,9 @@ namespace Mediag
             Console.WriteLine();
             Console.WriteLine();
 
-            int indexResult = values[0].Length - 1;
+            Console.WriteLine("Accuracy: " + decisionTree.Accuracy(values));
             string[] results = decisionTree.ClassifyAll(values);
-            for (int i = 0; i < values.Count; i++) Console.WriteLine("Classify " + values[i][indexResult] + ": " + results[i]);
+            Console.WriteLine("Accuracy with predicted results: " + decisionTree.Accuracy(values, results));
         }
     }
 }

@@ -167,6 +167,28 @@ namespace Mediag.DiagnosticDecision
             return results;
         }
 
+        public double Accuracy(List<string[]> instances)
+        {
+            if (instances.Count == 0) return double.NaN;
+
+            int correct = 0;
+            foreach (string[] instance in instances)
+            {
+                string result = Classify(instance);
+                if (result == instance[Labels.Count - 1]) correct++;
+            }
+            return (double)correct / instances.Count;
+        }
+
+        public double Accuracy(List<string[]> instances, string[] predictedResults)
+        {
+            if (instances.Count == 0 || predictedResults.Length != instances.Count) return double.NaN;
+
+            int correct = 0;
+            for (int i = 0; i < instances.Count; i++) if (instances[i][Labels.Count - 1] == predictedResults[i]) correct++;
+            return (double)correct / instances.Count;
+        }
+
         public override string ToString()
         {
             string str = "Decision Tree for " + Illness;
