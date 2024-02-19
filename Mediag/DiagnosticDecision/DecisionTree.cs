@@ -227,6 +227,33 @@ namespace Mediag.DiagnosticDecision
             return confusionMatrix;
         }
 
+        public string ConfusionMatrixString(string[,] confusionMatrix)
+        {
+            int[] maxLength = new int[confusionMatrix.GetLength(0)];
+            for (int i = 0; i < confusionMatrix.GetLength(0); i++)
+            {
+                int length = confusionMatrix[0, i].Length;
+                if (length > maxLength[i]) maxLength[i] = length;
+            }
+
+            string str = "";
+            for (int i = 0; i < confusionMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < confusionMatrix.GetLength(1); j++)
+                {
+                    str += confusionMatrix[i, j].PadLeft(maxLength[j] + 1);
+                }
+                str += "\n";
+            }
+            return str;
+        }
+
+        public string ConfusionMatrixString(List<string[]> instances, string[] predictedResults)
+        {
+            string[,] confusionMatrix = ConfusionMatrix(instances, predictedResults);
+            return ConfusionMatrixString(confusionMatrix);
+        }
+
         public override string ToString()
         {
             string str = "Decision Tree for " + Illness;
