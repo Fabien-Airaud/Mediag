@@ -63,7 +63,6 @@ namespace Mediag.DiagnosticDecision
         {
             Node node = new Node(bestLabel);
             int indexBestLabel = labels.IndexOf(bestLabel);
-            Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel);
 
             List<string> differentValues = Metrics.DifferentValues(values, indexBestLabel);
             foreach (string value in differentValues)
@@ -87,7 +86,6 @@ namespace Mediag.DiagnosticDecision
         {
             Node node = new Node(bestLabel, pivot);
             int indexBestLabel = labels.IndexOf(bestLabel);
-            Console.WriteLine("Best label (" + indexBestLabel + "): " + bestLabel + ", Pivot: " + pivot);
 
             // Create a subset of labels without the best label
             List<string> subLabels = new List<string>(labels);
@@ -118,7 +116,6 @@ namespace Mediag.DiagnosticDecision
 
             if (Metrics.Entropy(values) == 0 || labels.Count == 1) // All values have the same result or no more labels (only result label)
             {
-                Console.WriteLine("Leaf: " + labels[labels.Count - 1] + " = " + Metrics.MostCommonResult(values));
                 return new Node(labels[labels.Count - 1], Metrics.MostCommonResult(values));
             }
 
