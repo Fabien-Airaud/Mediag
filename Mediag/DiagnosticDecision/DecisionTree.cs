@@ -158,6 +158,15 @@ namespace Mediag.DiagnosticDecision
             return Classify(instance, Root);
         }
 
+        public string[] ClassifyAll(List<string[]> instances)
+        {
+            if (instances.Count == 0) return null;
+
+            string[] results = new string[instances.Count];
+            for (int i = 0; i < instances.Count; i++) results[i] = Classify(instances[i]);
+            return results;
+        }
+
         public override string ToString()
         {
             string str = "Decision Tree for " + Illness;
