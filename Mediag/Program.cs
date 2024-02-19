@@ -277,10 +277,14 @@ namespace Mediag
             Console.WriteLine();
             Console.WriteLine();
 
-            Console.WriteLine("Accuracy: " + decisionTree.Accuracy(values));
-            string[] results = decisionTree.ClassifyAll(values);
-            Console.WriteLine("Accuracy with predicted results: " + decisionTree.Accuracy(values, results));
-            Console.WriteLine("Confusion matrix:\n" + decisionTree.ConfusionMatrixString(values, results));
+            List<string[]> testValues = new List<string[]>();
+            foreach (BreastCancerData data in dataManager.GetTestData())
+            {
+                testValues.Add(data.Values());
+            }
+            string[] testResults = decisionTree.ClassifyAll(testValues);
+            Console.WriteLine("Accuracy: " + decisionTree.Accuracy(testValues, testResults));
+            Console.WriteLine("Confusion matrix:\n" + decisionTree.ConfusionMatrixString(testValues, testResults));
         }
     }
 }
