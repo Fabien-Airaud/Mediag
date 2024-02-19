@@ -254,6 +254,18 @@ namespace Mediag.DiagnosticDecision
             return ConfusionMatrixString(confusionMatrix);
         }
 
+        public string Evaluate(List<string[]> instances, out string[] predictedResults, out double accuracy, out string[,] confusionMatrix)
+        {
+            predictedResults = ClassifyAll(instances);
+            accuracy = Accuracy(instances, predictedResults);
+            confusionMatrix = ConfusionMatrix(instances, predictedResults);
+            string str = "Nb instances: " + instances.Count + "\n";
+            str += "Accuracy: " + accuracy + "\n";
+            str += "Confusion Matrix:\n";
+            str += ConfusionMatrixString(confusionMatrix);
+            return str;
+        }
+
         public override string ToString()
         {
             string str = "Decision Tree for " + Illness;

@@ -282,9 +282,8 @@ namespace Mediag
             {
                 testValues.Add(data.Values());
             }
-            string[] testResults = decisionTree.ClassifyAll(testValues);
-            Console.WriteLine("Accuracy: " + decisionTree.Accuracy(testValues, testResults));
-            Console.WriteLine("Confusion matrix:\n" + decisionTree.ConfusionMatrixString(testValues, testResults));
+            Console.WriteLine(decisionTree.Evaluate(testValues, out _, out _, out _));
+            Console.WriteLine();
         }
     }
 }
