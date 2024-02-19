@@ -234,6 +234,7 @@ namespace Mediag
             Console.WriteLine(FPierreDurand1.ToString());
             Console.WriteLine(FMarieBernard1.ToString());
             Console.WriteLine();
+            Console.WriteLine();
 
 
             DataManager<BreastCancerData, BreastCancerMap> dataManager = new DataManager<BreastCancerData, BreastCancerMap>("BreastCancer");
@@ -242,29 +243,7 @@ namespace Mediag
             Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
             Console.WriteLine();
 
-            List<string[]> values = new List<string[]>();
-            foreach (BreastCancerData data in dataManager.GetSamplesData())
-            {
-                values.Add(data.Values());
-            }
-            List<string> labels = new List<string>(dataManager.GetSamplesData()[0].Labels());
-
-            Console.WriteLine("Labels: " + string.Join(", ", labels));
-            Console.WriteLine("Most common result: " + Metrics.MostCommonResult(values));
-            Console.WriteLine("Is discretizable (index=0): " + Metrics.IsDiscretizable(values, 0));
-            Console.WriteLine("Is discretizable (result): " + Metrics.IsDiscretizable(values, labels.Count - 1));
-            Console.WriteLine("Different values (result): " + string.Join(", ", Metrics.DifferentValues(values, labels.Count - 1)));
-            Console.WriteLine("Subset discrete (result, True): " + Metrics.SubsetDiscrete(values, labels.Count - 1, "True").Count);
-            Console.WriteLine("Subset higher than pivot (index=0, value=12.5): " + Metrics.SubsetPivot(values, 0, 12.5).Count);
-            Console.WriteLine("Gain ratio (index=0): " + Metrics.GainRatioPivot(values, 0, out double pivot) + ", " + pivot);
-            Console.WriteLine();
-            Console.WriteLine();
-
             DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer);
-            decisionTree.BuildTree(values, labels);
-            Console.WriteLine(decisionTree.ToString());
-            Console.WriteLine();
-            Console.WriteLine();
 
             List<string[]> trainValues = new List<string[]>();
             foreach (BreastCancerData data in dataManager.GetTrainData())
@@ -274,7 +253,6 @@ namespace Mediag
             List<string> trainLabels = new List<string>(dataManager.GetTrainData()[0].Labels());
             decisionTree.BuildTree(trainValues, trainLabels);
             Console.WriteLine(decisionTree.ToString());
-            Console.WriteLine();
             Console.WriteLine();
 
             List<string[]> testValues = new List<string[]>();
