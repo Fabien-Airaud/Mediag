@@ -13,5 +13,8 @@ namespace Mediag.DiagnosticDecision
         string[] ClassifyAll(List<string[]> instances);
         double Accuracy(List<string[]> instances);
         double Accuracy(List<string[]> instances, string[] predictedResults);
+        string[,] ConfusionMatrix(List<string[]> instances, string[] predictedResults);
+        string ConfusionMatrixString(string[,] confusionMatrix);
+        string ConfusionMatrixString(List<string[]> instances, string[] predictedResults);
     }
 }
