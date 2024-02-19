@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Mediag.DiagnosticDecision
 {
-    class DecisionTree
+    class DecisionTree : IDecisionTree
     {
         public IllnessTypes Illness { get; set; }
 
