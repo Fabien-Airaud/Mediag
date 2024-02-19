@@ -10,5 +10,6 @@ namespace Mediag.DiagnosticDecision
 
         Node BuildTree(List<string[]> values, List<string> labels);
         string Classify(string[] instance);
+        string[] ClassifyAll(List<string[]> instances);
     }
 }
