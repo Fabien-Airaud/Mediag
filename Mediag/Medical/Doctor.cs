@@ -34,7 +34,7 @@ namespace Mediag.Medical
             }
         }
 
-        public List<MedicalFile> FilesToTreat { get; private set; } = new List<MedicalFile>();
+        public List<MedicalFile> FilesToTreat { get; private set; } = [];
         public void AddFileToTreat(MedicalFile file)
         {
             if (file != null)
