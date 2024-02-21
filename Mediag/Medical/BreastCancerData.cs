@@ -39,12 +39,12 @@
 
         public string[] Values()
         {
-            return new string[] { RadiusWorst.ToString(), AreaWorst.ToString(), PerimeterWorst.ToString(), ConcavePointsWorst.ToString(), ConcavePointsMean.ToString(), PerimeterMean.ToString(), Result.ToString() };
+            return [RadiusWorst.ToString(), AreaWorst.ToString(), PerimeterWorst.ToString(), ConcavePointsWorst.ToString(), ConcavePointsMean.ToString(), PerimeterMean.ToString(), Result.ToString()];
         }
 
         public string[] Labels()
         {
-            return new string[] { "RadiusWorst", "AreaWorst", "PerimeterWorst", "ConcavePointsWorst", "ConcavePointsMean", "PerimeterMean", "Result" };
+            return ["RadiusWorst", "AreaWorst", "PerimeterWorst", "ConcavePointsWorst", "ConcavePointsMean", "PerimeterMean", "Result"];
         }
     }
 }
