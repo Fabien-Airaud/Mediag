@@ -243,7 +243,7 @@ namespace Mediag
             Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
             Console.WriteLine();
 
-            DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer);
+            DecisionTree decisionTree = new DecisionTree(IllnessTypes.BreastCancer.ToString());
 
             List<string[]> trainValues = new List<string[]>();
             foreach (BreastCancerData data in dataManager.GetTrainData())

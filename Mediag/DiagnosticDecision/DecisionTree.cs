@@ -1,21 +1,19 @@
-﻿using Mediag.Medical;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Mediag.DiagnosticDecision
 {
     class DecisionTree : IDecisionTree
     {
-        public IllnessTypes Illness { get; set; }
+        public string Name { get; set; }
 
         public Node Root { get; private set; }
 
         public List<string> Labels { get; private set; }
 
 
-        public DecisionTree(IllnessTypes illness)
+        public DecisionTree(string name)
         {
-            Illness = illness;
+            Name = name;
         }
 
 
@@ -265,7 +263,7 @@ namespace Mediag.DiagnosticDecision
 
         public override string ToString()
         {
-            string str = "Decision Tree for " + Illness;
+            string str = "Decision Tree:";
             if (Labels != null)
             {
                 str += "\nLabels: ";
