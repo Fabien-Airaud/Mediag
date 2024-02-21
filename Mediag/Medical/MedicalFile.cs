@@ -57,7 +57,7 @@ namespace Mediag.Medical
             }
         }
 
-        public List<Doctor> DoctorsInCharge { get; private set; } = new List<Doctor>();
+        public List<Doctor> DoctorsInCharge { get; private set; } = [];
         public void AddDoctorInCharge(Doctor doctor)
         {
             if (doctor != null)
