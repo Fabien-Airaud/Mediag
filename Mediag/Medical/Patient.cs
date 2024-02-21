@@ -28,7 +28,7 @@ namespace Mediag.Medical
             }
         }
 
-        public List<MedicalFile> Files { get; private set; } = new List<MedicalFile>();
+        public List<MedicalFile> Files { get; private set; } = [];
         public void AddFile(MedicalFile file)
         {
             if (file != null)
