@@ -9,7 +9,7 @@ namespace DiagnosticDecision
         public Dictionary<string, Node> Children { get; private set; }
         public void AddChild(string value, Node child)
         {
-            if (Children == null) Children = new Dictionary<string, Node>();
+            Children ??= [];
             Children.Add(value, child);
         }
         public void RemoveChild(string value) { Children.Remove(value); }
