@@ -42,7 +42,7 @@ namespace DiagnosticDecision
 
         private List<string[]> RemoveLabel(List<string[]> values, int labelIndex)
         {
-            List<string[]> subset = new List<string[]>(values.Count);
+            List<string[]> subset = new(values.Count);
             for (int i = 0; i < values.Count; i++)
             {
                 string[] value = values[i];
@@ -59,7 +59,7 @@ namespace DiagnosticDecision
 
         private Node BuildDiscreteNode(List<string[]> values, List<string> labels, string bestLabel)
         {
-            Node node = new Node(bestLabel);
+            Node node = new(bestLabel);
             int indexBestLabel = labels.IndexOf(bestLabel);
 
             List<string> differentValues = Metrics.DifferentValues(values, indexBestLabel);
@@ -67,7 +67,7 @@ namespace DiagnosticDecision
             {
                 // Create a subset of values and labels without the best label
                 List<string[]> subValues = Metrics.SubsetDiscrete(values, indexBestLabel, value);
-                List<string> subLabels = new List<string>(labels);
+                List<string> subLabels = new(labels);
 
                 // Remove the best label from the subsets
                 subLabels.RemoveAt(indexBestLabel);
@@ -82,11 +82,11 @@ namespace DiagnosticDecision
 
         private Node BuildPivotNode(List<string[]> values, List<string> labels, string bestLabel, double pivot)
         {
-            Node node = new Node(bestLabel, pivot);
+            Node node = new(bestLabel, pivot);
             int indexBestLabel = labels.IndexOf(bestLabel);
 
             // Create a subset of labels without the best label
-            List<string> subLabels = new List<string>(labels);
+            List<string> subLabels = new(labels);
             subLabels.RemoveAt(indexBestLabel);
 
             // Create a subset of values without the best label for higher values
@@ -114,11 +114,11 @@ namespace DiagnosticDecision
 
             if (Metrics.Entropy(values) == 0 || labels.Count == 1) // All values have the same result or no more labels (only result label)
             {
-                return new Node(labels[labels.Count - 1], Metrics.MostCommonResult(values));
+                return new Node(labels[^1], Metrics.MostCommonResult(values));
             }
 
             string bestLabel = BestLabel(values, labels, out double pivot);
-            if (pivot == double.NaN) return BuildDiscreteNode(values, labels, bestLabel); // Discrete label
+            if (double.IsNaN(pivot)) return BuildDiscreteNode(values, labels, bestLabel); // Discrete label
             else return BuildPivotNode(values, labels, bestLabel, pivot); // Pivot label
         }
 
