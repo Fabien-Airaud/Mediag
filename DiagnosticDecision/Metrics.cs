@@ -24,14 +24,14 @@ namespace DiagnosticDecision
 
         private static List<double> PossiblePivotValues(List<string[]> values, int labelIndex)
         {
-            List<double> pivotValues = new List<double>();
+            List<double> pivotValues = [];
 
-            SortedList<double, string> valueLabelPairs = new SortedList<double, string>();
+            SortedList<double, string> valueLabelPairs = [];
             foreach (string[] value in values)
             {
                 double key = double.Parse(value[labelIndex]);
-                if (valueLabelPairs.ContainsKey(key)) valueLabelPairs[key] += value[value.Length - 1];
-                else valueLabelPairs.Add(key, value[value.Length - 1]);
+                if (valueLabelPairs.ContainsKey(key)) valueLabelPairs[key] += value[^1];
+                else valueLabelPairs.Add(key, value[^1]);
             }
 
             // Split value if the result changes (mean value)
@@ -48,7 +48,7 @@ namespace DiagnosticDecision
 
         public static List<string> DifferentValues(List<string[]> values, int labelIndex)
         {
-            List<string> differentValues = new List<string>();
+            List<string> differentValues = [];
 
             foreach (string[] value in values)
             {
