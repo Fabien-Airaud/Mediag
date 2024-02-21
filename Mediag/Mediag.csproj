@@ -36,6 +36,9 @@
     <Reference Include="CsvHelper, Version=30.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\packages\CsvHelper.30.1.0\lib\net47\CsvHelper.dll</HintPath>
     </Reference>
+    <Reference Include="DiagnosticDecision">
+      <HintPath>..\DiagnosticDecision\bin\Debug\DiagnosticDecision.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -73,10 +76,6 @@
   <ItemGroup>
     <Compile Include="DatabaseCSV\BreastCancerMap.cs" />
     <Compile Include="DatabaseCSV\DataManager.cs" />
-    <Compile Include="DiagnosticDecision\DecisionTree.cs" />
-    <Compile Include="DiagnosticDecision\IDecisionTree.cs" />
-    <Compile Include="DiagnosticDecision\Metrics.cs" />
-    <Compile Include="DiagnosticDecision\Node.cs" />
     <Compile Include="Medical\BreastCancerData.cs" />
     <Compile Include="Medical\Doctor.cs" />
     <Compile Include="Medical\Hospital.cs" />

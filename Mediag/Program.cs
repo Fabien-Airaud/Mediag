@@ -1,5 +1,5 @@
-﻿using Mediag.DatabaseCSV;
-using Mediag.DiagnosticDecision;
+﻿using DiagnosticDecision;
+using Mediag.DatabaseCSV;
 using Mediag.Medical;
 using System;
 using System.Collections.Generic;
