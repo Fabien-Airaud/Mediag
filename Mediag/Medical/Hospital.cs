@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
@@ -13,7 +12,7 @@ namespace Mediag.Medical
 
         public string City { get; set; }
 
-        public List<Doctor> Doctors { get; private set; } = new List<Doctor>();
+        public List<Doctor> Doctors { get; private set; } = [];
         public void AddDoctor(Doctor doctor)
         {
             if (doctor != null)
@@ -34,7 +33,7 @@ namespace Mediag.Medical
             Doctors.Remove(doctor);
         }
 
-        public List<Patient> Patients { get; private set; } = new List<Patient>();
+        public List<Patient> Patients { get; private set; } = [];
         public void AddPatient(Patient patient)
         {
             if (patient != null)
@@ -54,7 +53,7 @@ namespace Mediag.Medical
             }
         }
 
-        public List<MedicalFile> Files { get; private set; } = new List<MedicalFile>();
+        public List<MedicalFile> Files { get; private set; } = [];
         public void AddFile(MedicalFile file)
         {
             if (file != null)
