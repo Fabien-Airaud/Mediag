@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DiagnosticDecision
 {
-    static class Metrics
+    public static class Metrics
     {
         public static string MostCommonResult(List<string[]> values)
         {

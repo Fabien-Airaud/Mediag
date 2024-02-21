@@ -2,7 +2,7 @@
 
 namespace DiagnosticDecision
 {
-    class Node
+    public class Node
     {
         public string Label { get; set; }
 

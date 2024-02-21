@@ -2,7 +2,7 @@
 
 namespace DiagnosticDecision
 {
-    class DecisionTree : IDecisionTree
+    public class DecisionTree : IDecisionTree
     {
         public string Name { get; set; }
 

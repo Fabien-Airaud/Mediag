@@ -2,7 +2,7 @@
 
 namespace DiagnosticDecision
 {
-    interface IDecisionTree
+    public interface IDecisionTree
     {
         string Name { get; set; }
         Node Root { get; }
