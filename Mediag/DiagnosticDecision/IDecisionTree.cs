@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Mediag.Medical;
+using System.Collections.Generic;
 
 namespace Mediag.DiagnosticDecision
 {
     interface IDecisionTree
     {
+        IllnessTypes Illness { get; set; }
         Node Root { get; }
         List<string> Labels { get; }
 
