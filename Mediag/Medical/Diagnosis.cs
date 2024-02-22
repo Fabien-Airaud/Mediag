@@ -14,15 +14,19 @@ namespace Mediag.Medical
 
         public bool Result { get; set; }
 
+        public MedicalFile File { get; private set; }
 
-        public Diagnosis(IllnessTypes illness, bool result)
+
+        public Diagnosis(MedicalFile file, IllnessTypes illness, bool result)
         {
+            File = file;
             Illness = illness;
             Result = result;
         }
 
-        public Diagnosis(IllnessTypes illness, bool result, DateTime date)
+        public Diagnosis(MedicalFile file, IllnessTypes illness, bool result, DateTime date)
         {
+            File = file;
             Illness = illness;
             Result = result;
             Date = date;
@@ -31,7 +35,7 @@ namespace Mediag.Medical
 
         public override string ToString()
         {
-            return $"Diagnosis for {Illness}: {Result} on {Date}";
+            return $"{File.Patient.FirstName} {File.Patient.LastName}'s diagnosis for {Illness}: {Result} on {Date}";
         }
     }
 }
