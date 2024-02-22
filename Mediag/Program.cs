@@ -17,7 +17,7 @@ namespace Mediag
                 foreach (MedicalFile file in hospital.Files)
                 {
                     if (nbSamples == 0) return;
-                    file.MedicalData = samples[--nbSamples];
+                    file.AddMedicalData(samples[--nbSamples]);
                 }
             }
         }

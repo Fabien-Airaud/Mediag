@@ -77,7 +77,21 @@ namespace Mediag.Medical
             }
         }
 
-        public IMedicalData MedicalData { get; set; }
+        public IMedicalData MedicalData { get; private set; }
+        public void AddMedicalData(IMedicalData medicalData)
+        {
+            if (medicalData != null)
+            {
+                MedicalData = medicalData;
+            }
+        }
+        public void RemoveMedicalData()
+        {
+            if (MedicalData != null)
+            {
+                MedicalData = null;
+            }
+        }
 
         public Diagnosis Diagnosis { get; private set; }
         public void AddDiagnosis(Diagnosis diagnosis)
