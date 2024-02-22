@@ -77,6 +77,8 @@ namespace Mediag.Medical
             }
         }
 
+        public IMedicalData MedicalData { get; set; }
+
 
         //public MedicalFile() { }
 
