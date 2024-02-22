@@ -81,6 +81,26 @@ namespace Mediag.Medical
             return files;
         }
 
+        public List<Diagnosis> DiagnoseAllFiles()
+        {
+            List<Diagnosis> diagnosisList = [];
+            foreach (MedicalFile file in FilesToDiagnose())
+            {
+                diagnosisList.Add(Diagnose(file));
+            }
+            return diagnosisList;
+        }
+
+        public List<Diagnosis> DiagnoseAllFiles(List<MedicalFile> filesToDiagnose)
+        {
+            List<Diagnosis> diagnosisList = [];
+            foreach (MedicalFile file in filesToDiagnose)
+            {
+                diagnosisList.Add(Diagnose(file));
+            }
+            return diagnosisList;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Doctor &&

@@ -289,13 +289,12 @@ namespace Mediag
             MedicalFile medicalFile = DThomasRichard1.FilesToTreat[0];
             Console.WriteLine(DThomasRichard1.Diagnose(medicalFile).ToString() + " ; Expert result = " + medicalFile.MedicalData.Values()[^1]);
             Console.WriteLine("Nb files to diagnose = " + DThomasRichard1.FilesToDiagnose().Count);
+            Console.WriteLine();
             foreach (Doctor doctor in hospital1.Doctors)
             {
-                foreach (MedicalFile file in doctor.FilesToDiagnose())
-                {
-                    Diagnosis diagnosis = doctor.Diagnose(file);
-                    if (diagnosis != null) Console.WriteLine(diagnosis.ToString() + " ; Expert result = " + file.MedicalData.Values()[^1]);
-                }
+                List<Diagnosis> diagnosisList = doctor.DiagnoseAllFiles();
+                Console.WriteLine(doctor.ToString());
+                Console.WriteLine(string.Join("\n", diagnosisList));
             }
         }
     }
