@@ -15,18 +15,37 @@ namespace Mediag.Medical
         public bool Result { get; set; }
 
         public MedicalFile File { get; private set; }
+        public void AddFile(MedicalFile file)
+        {
+            if (file != null)
+            {
+                File = file;
+
+                if (!Equals(file.Diagnosis)) file.AddDiagnosis(this);
+            }
+        }
+        public void RemoveFile()
+        {
+            if (File != null)
+            {
+                MedicalFile file = File;
+                File = null;
+
+                if (Equals(file.Diagnosis)) file.RemoveDiagnosis();
+            }
+        }
 
 
         public Diagnosis(MedicalFile file, IllnessTypes illness, bool result)
         {
-            File = file;
+            AddFile(file);
             Illness = illness;
             Result = result;
         }
 
         public Diagnosis(MedicalFile file, IllnessTypes illness, bool result, DateTime date)
         {
-            File = file;
+            AddFile(file);
             Illness = illness;
             Result = result;
             Date = date;
