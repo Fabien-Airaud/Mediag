@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using DiagnosticDecision;
+using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
@@ -71,6 +72,19 @@ namespace Mediag.Medical
 
                 if (Equals(file.Hospital)) file.RemoveHospital();
             }
+        }
+
+        public Dictionary<IllnessTypes, IDecisionTree> DecisionTrees { get; private set; } = [];
+        public void AddDecisionTree(IllnessTypes illness, IDecisionTree tree)
+        {
+            if (tree != null && !DecisionTrees.ContainsKey(illness))
+            {
+                DecisionTrees.Add(illness, tree);
+            }
+        }
+        public void RemoveDecisionTree(IllnessTypes illness)
+        {
+            DecisionTrees.Remove(illness);
         }
 
 
