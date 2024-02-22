@@ -13,7 +13,7 @@ namespace Mediag.Medical
 
         public DateTime LastUpdate { get; set; } = DateTime.Now;
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public Patient Patient { get; private set; }
         public void AddPatient(Patient patient)
