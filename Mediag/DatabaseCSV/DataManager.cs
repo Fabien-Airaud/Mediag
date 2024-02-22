@@ -24,34 +24,36 @@ namespace Mediag.DatabaseCSV
         }
 
 
-        private List<T> GetData(string filename)
+        private List<IMedicalData> GetData(string filename)
         {
             if (!File.Exists(filename)) { return null; }
 
-            List<T> dataList = null;
+            List<IMedicalData> dataList = null;
             using (var reader = new StreamReader(filename))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Context.RegisterClassMap<K>();
                 var records = csv.GetRecords<T>();
-                dataList = new List<T>(records);
+
+                dataList = [];
+                foreach (T record in records) dataList.Add(record);
             }
             return dataList;
         }
 
-        public List<T> GetTrainData()
+        public List<IMedicalData> GetTrainData()
         {
             string filename = Path.Combine(DatabaseFolder, TrainFilename);
             return GetData(filename);
         }
 
-        public List<T> GetTestData()
+        public List<IMedicalData> GetTestData()
         {
             string filename = Path.Combine(DatabaseFolder, TestFilename);
             return GetData(filename);
         }
 
-        public List<T> GetSamplesData()
+        public List<IMedicalData> GetSamplesData()
         {
             string filename = Path.Combine(DatabaseFolder, SamplesFilename);
             return GetData(filename);
