@@ -261,20 +261,14 @@ namespace Mediag
             DecisionTree decisionTree = new(IllnessTypes.BreastCancer.ToString());
 
             List<string[]> trainValues = [];
-            foreach (BreastCancerData data in dataManager.GetTrainData())
-            {
-                trainValues.Add(data.Values());
-            }
+            foreach (IMedicalData data in dataManager.GetTrainData()) trainValues.Add(data.Values());
             List<string> trainLabels = new(dataManager.GetTrainData()[0].Labels());
             decisionTree.BuildTree(trainValues, trainLabels);
             Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
 
             List<string[]> testValues = [];
-            foreach (BreastCancerData data in dataManager.GetTestData())
-            {
-                testValues.Add(data.Values());
-            }
+            foreach (IMedicalData data in dataManager.GetTestData()) testValues.Add(data.Values());
             Console.WriteLine(decisionTree.Evaluate(testValues, out _, out _, out _));
             Console.WriteLine();
 
