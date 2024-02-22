@@ -38,16 +38,16 @@ namespace Mediag
             //Hospital hospital10 = new("Hôpital de La Malbaie", "La Malbaie");
 
             // Doctors
-            Doctor DThomasRichard1 = new("Richard", "Thomas", new DateTime(1985, 6, 16), "phoneNumber", "email@email.com", "Clermont-Ferrand");
-            Doctor DAnneMarieLeroux1 = new("Leroux", "AnneMarie", new DateTime(1992, 12, 10), "phoneNumber", "email@email.com", "Angers");
-            Doctor DSebastienRoux1 = new("Roux", "Sébastien", new DateTime(1989, 4, 8), "phoneNumber", "email@email.com", "Nancy");
-            Doctor DCelineGautier1 = new("Gautier", "Céline", new DateTime(1996, 1, 13), "phoneNumber", "email@email.com", "Le Havre");
-            Doctor DAlexandreDupuy1 = new("Dupuy", "Alexandre", new DateTime(1987, 9, 5), "phoneNumber", "email@email.com", "Metz");
-            Doctor DElodieMartin1 = new("Martin", "Élodie", new DateTime(1993, 10, 17), "phoneNumber", "email@email.com", "Brest");
-            Doctor DRomainLefebvre1 = new("Lefebvre", "Romain", new DateTime(1988, 3, 6), "phoneNumber", "email@email.com", "Limoges");
-            Doctor DSarahLeroy1 = new("Leroy", "Sarah", new DateTime(1994, 6, 20), "phoneNumber", "email@email.com", "Amiens");
-            Doctor DMaximeDupont1 = new("Dupont", "Maxime", new DateTime(1986, 11, 28), "phoneNumber", "email@email.com", "Perpignan");
-            Doctor DLauraMorel1 = new("Morel", "Laura", new DateTime(1997, 4, 2), "phoneNumber", "email@email.com", "Rouen");
+            Doctor DThomasRichard1 = new("Richard", "Thomas", new DateOnly(1985, 6, 16), "phoneNumber", "email@email.com", "Clermont-Ferrand");
+            Doctor DAnneMarieLeroux1 = new("Leroux", "AnneMarie", new DateOnly(1992, 12, 10), "phoneNumber", "email@email.com", "Angers");
+            Doctor DSebastienRoux1 = new("Roux", "Sébastien", new DateOnly(1989, 4, 8), "phoneNumber", "email@email.com", "Nancy");
+            Doctor DCelineGautier1 = new("Gautier", "Céline", new DateOnly(1996, 1, 13), "phoneNumber", "email@email.com", "Le Havre");
+            Doctor DAlexandreDupuy1 = new("Dupuy", "Alexandre", new DateOnly(1987, 9, 5), "phoneNumber", "email@email.com", "Metz");
+            Doctor DElodieMartin1 = new("Martin", "Élodie", new DateOnly(1993, 10, 17), "phoneNumber", "email@email.com", "Brest");
+            Doctor DRomainLefebvre1 = new("Lefebvre", "Romain", new DateOnly(1988, 3, 6), "phoneNumber", "email@email.com", "Limoges");
+            Doctor DSarahLeroy1 = new("Leroy", "Sarah", new DateOnly(1994, 6, 20), "phoneNumber", "email@email.com", "Amiens");
+            Doctor DMaximeDupont1 = new("Dupont", "Maxime", new DateOnly(1986, 11, 28), "phoneNumber", "email@email.com", "Perpignan");
+            Doctor DLauraMorel1 = new("Morel", "Laura", new DateOnly(1997, 4, 2), "phoneNumber", "email@email.com", "Rouen");
 
             // Add doctors to hospitals
             hospital1.AddDoctor(DThomasRichard1);
@@ -62,42 +62,42 @@ namespace Mediag
             hospital3.AddDoctor(DLauraMorel1);
 
             // Young patients
-            //Patient PLucieMartin1 = new("Martin", "Lucie", new DateTime(1998, 2, 12), "phoneNumber", "email@email.com", "Lyon");
-            //Patient PMathieuDubois1 = new("Dubois", "Mathieu", new DateTime(2002, 5, 7), "phoneNumber", "email@email.com", "Paris");
-            //Patient PClaraLeroy1 = new("Leroy", "Clara", new DateTime(1995, 9, 21), "phoneNumber", "email@email.com", "Bordeaux");
-            //Patient PAntoineLefevre1 = new("Lefèvre", "Antoine", new DateTime(2001, 3, 14), "phoneNumber", "email@email.com", "Nantes");
-            //Patient PJulieMoreau1 = new("Moreau", "Julie", new DateTime(1997, 8, 18), "phoneNumber", "email@email.com", "Toulouse");
+            //Patient PLucieMartin1 = new("Martin", "Lucie", new DateOnly(1998, 2, 12), "phoneNumber", "email@email.com", "Lyon");
+            //Patient PMathieuDubois1 = new("Dubois", "Mathieu", new DateOnly(2002, 5, 7), "phoneNumber", "email@email.com", "Paris");
+            //Patient PClaraLeroy1 = new("Leroy", "Clara", new DateOnly(1995, 9, 21), "phoneNumber", "email@email.com", "Bordeaux");
+            //Patient PAntoineLefevre1 = new("Lefèvre", "Antoine", new DateOnly(2001, 3, 14), "phoneNumber", "email@email.com", "Nantes");
+            //Patient PJulieMoreau1 = new("Moreau", "Julie", new DateOnly(1997, 8, 18), "phoneNumber", "email@email.com", "Toulouse");
 
             // Old patients
-            Patient PJeanneDupont1 = new("Dupont", "Jeanne", new DateTime(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
-            Patient PJeanneDupont2 = new("Dupont", "Jeanne", new DateTime(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
-            Patient PJeanneDupont3 = new("Dupont", "Jeanne", new DateTime(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
-            Patient PPierreDurand1 = new("Durand", "Pierre", new DateTime(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
-            Patient PPierreDurand2 = new("Durand", "Pierre", new DateTime(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
-            Patient PPierreDurand3 = new("Durand", "Pierre", new DateTime(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
-            Patient PMarieBernard1 = new("Bernard", "Marie", new DateTime(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
-            Patient PMarieBernard2 = new("Bernard", "Marie", new DateTime(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
-            Patient PMarieBernard3 = new("Bernard", "Marie", new DateTime(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
-            Patient PJacquesPetit1 = new("Petit", "Jacques", new DateTime(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
-            Patient PJacquesPetit2 = new("Petit", "Jacques", new DateTime(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
-            Patient PJacquesPetit3 = new("Petit", "Jacques", new DateTime(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
-            Patient PSophieLemaire1 = new("Lemaire", "Sophie", new DateTime(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
-            Patient PSophieLemaire2 = new("Lemaire", "Sophie", new DateTime(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
-            Patient PSophieLemaire3 = new("Lemaire", "Sophie", new DateTime(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
-            Patient PDanielleRobert1 = new("Robert", "Danielle", new DateTime(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
-            Patient PDanielleRobert2 = new("Robert", "Danielle", new DateTime(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
-            Patient PDanielleRobert3 = new("Robert", "Danielle", new DateTime(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
-            Patient PMichelLacroix1 = new("Lacroix", "Michel", new DateTime(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
-            Patient PMichelLacroix2 = new("Lacroix", "Michel", new DateTime(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
-            Patient PMichelLacroix3 = new("Lacroix", "Michel", new DateTime(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
-            Patient PNathalieSimon1 = new("Simon", "Nathalie", new DateTime(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
-            Patient PNathalieSimon2 = new("Simon", "Nathalie", new DateTime(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
-            Patient PNathalieSimon3 = new("Simon", "Nathalie", new DateTime(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
-            Patient PBernardMorel1 = new("Morel", "Bernard", new DateTime(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
-            Patient PBernardMorel2 = new("Morel", "Bernard", new DateTime(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
-            Patient PBernardMorel3 = new("Morel", "Bernard", new DateTime(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
-            Patient PIsabelleGirard1 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
-            Patient PIsabelleGirard2 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+            Patient PJeanneDupont1 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PJeanneDupont2 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PJeanneDupont3 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PPierreDurand1 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PPierreDurand2 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PPierreDurand3 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PMarieBernard1 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PMarieBernard2 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PMarieBernard3 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PJacquesPetit1 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PJacquesPetit2 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PJacquesPetit3 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PSophieLemaire1 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PSophieLemaire2 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PSophieLemaire3 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PDanielleRobert1 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PDanielleRobert2 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PDanielleRobert3 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PMichelLacroix1 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PMichelLacroix2 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PMichelLacroix3 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PNathalieSimon1 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PNathalieSimon2 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PNathalieSimon3 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PBernardMorel1 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PBernardMorel2 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PBernardMorel3 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PIsabelleGirard1 = new("Girard", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+            Patient PIsabelleGirard2 = new("Girard", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
             //Patient PIsabelleGirard3 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
 
             // Add patients to hospitals
