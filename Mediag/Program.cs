@@ -278,6 +278,11 @@ namespace Mediag
 
             // Add samples to medical files in hospitals
             AddAllSamples([hospital1, hospital2, hospital3], dataManager.GetSamplesData());
+
+            // Add decision tree to hospitals
+            hospital1.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
+            hospital2.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
+            hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
         }
     }
 }
