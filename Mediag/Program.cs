@@ -284,8 +284,12 @@ namespace Mediag
             hospital2.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
             hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
 
-            Console.WriteLine(new Diagnosis(FJeanneDupont1, IllnessTypes.BreastCancer, true).ToString());
-            Console.WriteLine(new Diagnosis(FPierreDurand1, IllnessTypes.BreastCancer, false, new DateTime(2022, 02, 22, 17, 07, 31)).ToString());
+            // Diagnose
+            foreach (MedicalFile file in hospital1.Files)
+            {
+                Diagnosis diagnosis = hospital1.Diagnose(file);
+                if (diagnosis != null) Console.WriteLine(diagnosis.ToString() + " ; Expert result = " + file.MedicalData.Values()[^1]);
+            }
         }
     }
 }

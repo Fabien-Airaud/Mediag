@@ -97,6 +97,23 @@ namespace Mediag.Medical
         }
 
 
+        public Diagnosis Diagnose(MedicalFile file)
+        {
+            if (file != null && file.MedicalData != null)
+            {
+                IMedicalData data = file.MedicalData;
+                if (DecisionTrees.ContainsKey(data.TargettedIllness()))
+                {
+                    string result = DecisionTrees[data.TargettedIllness()].Classify(data.Values()); // Get the result of the decision tree
+                    if (result != null && result != "")
+                    {
+                        return new Diagnosis(file, data.TargettedIllness(), bool.Parse(result)); // Create and return a diagnosis with the result
+                    }
+                }
+            }
+            return null;
+        }
+
         public override string ToString()
         {
             return $"Hospital {Id}: \"{Name}\" in {City} ; {Doctors.Count} doctors, {Patients.Count} patients, {Files.Count} files";
