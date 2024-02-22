@@ -83,7 +83,7 @@ namespace Mediag.Medical
 
         public override bool Equals(object obj)
         {
-            return obj is Patient &&
+            return obj is Doctor &&
                    base.Equals(obj);
         }
 
