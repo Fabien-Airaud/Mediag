@@ -283,6 +283,9 @@ namespace Mediag
             hospital1.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
             hospital2.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
             hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
+
+            Console.WriteLine(new Diagnosis(IllnessTypes.BreastCancer, true).ToString());
+            Console.WriteLine(new Diagnosis(IllnessTypes.HeartDisease, false, new DateTime(2022, 02, 22, 17, 07, 31)).ToString());
         }
     }
 }
