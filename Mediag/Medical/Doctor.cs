@@ -71,6 +71,16 @@ namespace Mediag.Medical
             return Hospital.Diagnose(file); 
         }
 
+        public List<MedicalFile> FilesToDiagnose()
+        {
+            List<MedicalFile> files = [];
+            foreach (MedicalFile file in FilesToTreat)
+            {
+                if (file.EndDate == null && file.Diagnosis == null) files.Add(file);
+            }
+            return files;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Patient &&
