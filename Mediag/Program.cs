@@ -285,10 +285,13 @@ namespace Mediag
             hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
 
             // Diagnose
-            foreach (MedicalFile file in hospital1.Files)
+            foreach (Doctor doctor in hospital1.Doctors)
             {
-                Diagnosis diagnosis = hospital1.Diagnose(file);
-                if (diagnosis != null) Console.WriteLine(diagnosis.ToString() + " ; Expert result = " + file.MedicalData.Values()[^1]);
+                foreach (MedicalFile file in doctor.FilesToTreat)
+                {
+                    Diagnosis diagnosis = doctor.Diagnose(file);
+                    if (diagnosis != null) Console.WriteLine(diagnosis.ToString() + " ; Expert result = " + file.MedicalData.Values()[^1]);
+                }
             }
         }
     }

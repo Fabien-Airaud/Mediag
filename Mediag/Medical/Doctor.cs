@@ -66,6 +66,11 @@ namespace Mediag.Medical
         }
 
 
+        public Diagnosis Diagnose(MedicalFile file)
+        {
+            return Hospital.Diagnose(file); 
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Patient &&
