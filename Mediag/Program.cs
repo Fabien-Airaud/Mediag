@@ -8,6 +8,21 @@ namespace Mediag
 {
     internal class Program
     {
+        private static void AddAllSamples(Hospital[] hospitals, List<IMedicalData> samples)
+        {
+            int nbSamples = samples.Count;
+
+            foreach (Hospital hospital in hospitals)
+            {
+                foreach (MedicalFile file in hospital.Files)
+                {
+                    if (nbSamples == 0) return;
+                    file.MedicalData = samples[--nbSamples];
+                }
+            }
+        }
+
+
         static void Main(string[] args)
         {
             // Hospitals
@@ -83,7 +98,7 @@ namespace Mediag
             Patient PBernardMorel3 = new("Morel", "Bernard", new DateTime(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
             Patient PIsabelleGirard1 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
             Patient PIsabelleGirard2 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
-            Patient PIsabelleGirard3 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+            //Patient PIsabelleGirard3 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
 
             // Add patients to hospitals
             hospital1.AddPatient(PJeanneDupont1);
@@ -115,7 +130,7 @@ namespace Mediag
             hospital1.AddPatient(PBernardMorel3);
             hospital1.AddPatient(PIsabelleGirard1);
             hospital2.AddPatient(PIsabelleGirard2);
-            hospital3.AddPatient(PIsabelleGirard3);
+            //hospital3.AddPatient(PIsabelleGirard3);
 
             // Patients' medical files
             MedicalFile FJeanneDupont1 = new(PJeanneDupont1);
@@ -147,7 +162,7 @@ namespace Mediag
             MedicalFile FBernardMorel3 = new(PBernardMorel3);
             MedicalFile FIsabelleGirard1 = new(PIsabelleGirard1);
             MedicalFile FIsabelleGirard2 = new(PIsabelleGirard2);
-            MedicalFile FIsabelleGirard3 = new(PIsabelleGirard3);
+            //MedicalFile FIsabelleGirard3 = new(PIsabelleGirard3);
 
             // Add files to hospitals
             hospital1.AddFile(FJeanneDupont1);
@@ -179,7 +194,7 @@ namespace Mediag
             hospital1.AddFile(FBernardMorel3);
             hospital1.AddFile(FIsabelleGirard1);
             hospital2.AddFile(FIsabelleGirard2);
-            hospital3.AddFile(FIsabelleGirard3);
+            //hospital3.AddFile(FIsabelleGirard3);
 
             // Add doctors to medical files
             FJeanneDupont1.AddDoctorInCharge(DThomasRichard1);
@@ -211,7 +226,7 @@ namespace Mediag
             FSophieLemaire2.AddDoctorInCharge(DMaximeDupont1);
             FPierreDurand2.AddDoctorInCharge(DLauraMorel1);
             FJacquesPetit1.AddDoctorInCharge(DLauraMorel1);
-            FIsabelleGirard3.AddDoctorInCharge(DLauraMorel1);
+            //FIsabelleGirard3.AddDoctorInCharge(DLauraMorel1);
 
             // Display some fake data
             Console.WriteLine("Some hospitals:");
@@ -262,6 +277,8 @@ namespace Mediag
             }
             Console.WriteLine(decisionTree.Evaluate(testValues, out _, out _, out _));
             Console.WriteLine();
+
+            AddAllSamples([hospital1, hospital2, hospital3], dataManager.GetSamplesData());
         }
     }
 }
