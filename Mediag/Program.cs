@@ -252,14 +252,17 @@ namespace Mediag
             Console.WriteLine();
 
 
+            // Get data from dataset
             DataManager<BreastCancerData, BreastCancerMap> dataManager = new("BreastCancer");
             Console.WriteLine("Breast Cancer train count: " + dataManager.GetTrainData().Count);
             Console.WriteLine("Breast Cancer test count: " + dataManager.GetTestData().Count);
             Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
             Console.WriteLine();
 
+            // Decision tree
             DecisionTree decisionTree = new(IllnessTypes.BreastCancer.ToString());
 
+            // Train
             List<string[]> trainValues = [];
             foreach (IMedicalData data in dataManager.GetTrainData()) trainValues.Add(data.Values());
             List<string> trainLabels = new(dataManager.GetTrainData()[0].Labels());
@@ -267,11 +270,13 @@ namespace Mediag
             Console.WriteLine(decisionTree.ToString());
             Console.WriteLine();
 
+            // Evaluate
             List<string[]> testValues = [];
             foreach (IMedicalData data in dataManager.GetTestData()) testValues.Add(data.Values());
             Console.WriteLine(decisionTree.Evaluate(testValues, out _, out _, out _));
             Console.WriteLine();
 
+            // Add samples to medical files in hospitals
             AddAllSamples([hospital1, hospital2, hospital3], dataManager.GetSamplesData());
         }
     }
