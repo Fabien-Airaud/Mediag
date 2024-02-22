@@ -10,7 +10,7 @@ namespace Mediag.Medical
 
         public string FirstName { get; set; }
 
-        public DateTime Birthdate { get; set; }
+        public DateOnly Birthdate { get; set; }
 
         public string PhoneNumber { get; set; }
 
@@ -21,7 +21,7 @@ namespace Mediag.Medical
 
         //public Person() { }
 
-        public Person(string lastName, string firstName, DateTime birthdate, string phoneNumber, string email, string address)
+        public Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string address)
         {
             LastName = lastName;
             FirstName = firstName;
