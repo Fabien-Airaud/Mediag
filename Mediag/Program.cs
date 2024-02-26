@@ -25,6 +25,8 @@ namespace Mediag
 
         static void Main(string[] args)
         {
+            // Breast cancer
+
             // Hospitals
             Hospital hospital1 = new("Hôpital général de Montréal", "Montréal");
             Hospital hospital2 = new("Hôpital Charles-Le Moyne", "Greenfield Park");
@@ -300,10 +302,44 @@ namespace Mediag
             Console.WriteLine();
 
 
-            DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
-            Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
-            Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
-            Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
+            // Heart disease
+
+            // Old patients
+            Patient PJeanneDupont_HD1 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PJeanneDupont_HD2 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PJeanneDupont_HD3 = new("Dupont", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
+            Patient PPierreDurand_HD1 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PPierreDurand_HD2 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PPierreDurand_HD3 = new("Durand", "Pierre", new DateOnly(1962, 10, 9), "phoneNumber", "email@email.com", "Strasbourg");
+            Patient PMarieBernard_HD1 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PMarieBernard_HD2 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PMarieBernard_HD3 = new("Bernard", "Marie", new DateOnly(1957, 4, 15), "phoneNumber", "email@email.com", "Lille");
+            Patient PJacquesPetit_HD1 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PJacquesPetit_HD2 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PJacquesPetit_HD3 = new("Petit", "Jacques", new DateOnly(1965, 7, 22), "phoneNumber", "email@email.com", "Nice");
+            Patient PSophieLemaire_HD1 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PSophieLemaire_HD2 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PSophieLemaire_HD3 = new("Lemaire", "Sophie", new DateOnly(1959, 12, 27), "phoneNumber", "email@email.com", "Rennes");
+            Patient PDanielleRobert_HD1 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PDanielleRobert_HD2 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PDanielleRobert_HD3 = new("Robert", "Danielle", new DateOnly(1956, 6, 3), "phoneNumber", "email@email.com", "Montpellier");
+            Patient PMichelLacroix_HD1 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PMichelLacroix_HD2 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PMichelLacroix_HD3 = new("Lacroix", "Michel", new DateOnly(1963, 11, 11), "phoneNumber", "email@email.com", "Reims");
+            Patient PNathalieSimon_HD1 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PNathalieSimon_HD2 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PNathalieSimon_HD3 = new("Simon", "Nathalie", new DateOnly(1958, 2, 19), "phoneNumber", "email@email.com", "Dijon");
+            Patient PBernardMorel_HD1 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PBernardMorel_HD2 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PBernardMorel_HD3 = new("Morel", "Bernard", new DateOnly(1967, 8, 25), "phoneNumber", "email@email.com", "Tours");
+            Patient PIsabelleGirard_HD1 = new("Girard", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+            Patient PIsabelleGirard_HD2 = new("Girard", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+            //Patient PIsabelleGirard_HD3 = new("Girard", "Isabelle", new DateTime(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
+
+            //DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
+            //Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
+            //Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
+            //Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
         }
     }
 }
