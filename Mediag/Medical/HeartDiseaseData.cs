@@ -18,16 +18,16 @@
 
         public MajorVesselsTypes MajorVessels { get; set; }
 
-        public int OldPeak { get; set; }
+        public double OldPeak { get; set; }
 
-        public double MaximumHeartRateAchieved { get; set; }
+        public int MaximumHeartRateAchieved { get; set; }
 
         public bool Result { get; set; }
 
 
         public HeartDiseaseData() { }
 
-        public HeartDiseaseData(ChestPainTypes chestPain, ThalassemiaTypes thalassemia, MajorVesselsTypes majorVessels, int oldPeak, double maximumHeartRateAchieved, bool result)
+        public HeartDiseaseData(ChestPainTypes chestPain, ThalassemiaTypes thalassemia, MajorVesselsTypes majorVessels, double oldPeak, int maximumHeartRateAchieved, bool result)
         {
             ChestPain = chestPain;
             Thalassemia = thalassemia;
