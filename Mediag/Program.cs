@@ -296,6 +296,14 @@ namespace Mediag
                 Console.WriteLine(doctor.ToString());
                 Console.WriteLine(string.Join("\n", diagnosisList));
             }
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
+            Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
+            Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
+            Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
         }
     }
 }
