@@ -300,6 +300,8 @@ namespace Mediag
             }
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
 
             // Heart disease
@@ -613,6 +615,29 @@ namespace Mediag
             FJacquesPetit_HD4.AddDoctorInCharge(DLauraMorel1);
             FIsabelleGirard_HD3.AddDoctorInCharge(DLauraMorel1);
             FIsabelleGirard_HD6.AddDoctorInCharge(DLauraMorel1);
+
+            // Display some fake data
+            Console.WriteLine("Some hospitals:");
+            Console.WriteLine(hospital1.ToString());
+            Console.WriteLine(hospital2.ToString());
+            Console.WriteLine(hospital3.ToString());
+            Console.WriteLine();
+            Console.WriteLine("Some doctors:");
+            Console.WriteLine(DThomasRichard1.ToString());
+            Console.WriteLine(DAnneMarieLeroux1.ToString());
+            Console.WriteLine(DSebastienRoux1.ToString());
+            Console.WriteLine();
+            Console.WriteLine("Some patients:");
+            Console.WriteLine(PJeanneDupont_HD1.ToString());
+            Console.WriteLine(PPierreDurand_HD1.ToString());
+            Console.WriteLine(PMarieBernard_HD1.ToString());
+            Console.WriteLine();
+            Console.WriteLine("Some medical files:");
+            Console.WriteLine(FJeanneDupont_HD1.ToString());
+            Console.WriteLine(FPierreDurand_HD1.ToString());
+            Console.WriteLine(FMarieBernard_HD1.ToString());
+            Console.WriteLine();
+            Console.WriteLine();
 
             //DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
             //Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
