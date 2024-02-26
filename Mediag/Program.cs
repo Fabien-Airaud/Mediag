@@ -639,10 +639,12 @@ namespace Mediag
             Console.WriteLine();
             Console.WriteLine();
 
-            //DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
-            //Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
-            //Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
-            //Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
+
+            // Get data from dataset
+            DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
+            Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
+            Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
+            Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
         }
     }
 }
