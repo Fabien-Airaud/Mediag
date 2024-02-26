@@ -12,13 +12,28 @@
 
         public long Id { get; protected set; } = ++lastId;
 
+        public ChestPainTypes ChestPain { get; set; }
+
+        public ThalassemiaTypes Thalassemia { get; set; }
+
+        public MajorVesselsTypes MajorVessels { get; set; }
+
+        public int OldPeak { get; set; }
+
+        public double MaximumHeartRateAchieved { get; set; }
+
         public bool Result { get; set; }
 
 
         public HeartDiseaseData() { }
 
-        public HeartDiseaseData(bool result)
+        public HeartDiseaseData(ChestPainTypes chestPain, ThalassemiaTypes thalassemia, MajorVesselsTypes majorVessels, int oldPeak, double maximumHeartRateAchieved, bool result)
         {
+            ChestPain = chestPain;
+            Thalassemia = thalassemia;
+            MajorVessels = majorVessels;
+            OldPeak = oldPeak;
+            MaximumHeartRateAchieved = maximumHeartRateAchieved;
             Result = result;
         }
 
@@ -27,12 +42,12 @@
 
         public string[] Values()
         {
-            return [Result.ToString()];
+            return [ ChestPain.ToString(), Thalassemia.ToString(), MajorVessels.ToString(), OldPeak.ToString(), MaximumHeartRateAchieved.ToString(), Result.ToString()];
         }
 
         public string[] Labels()
         {
-            return ["Result"];
+            return ["ChestPain", "Thalassemia", "MajorVessels", "OldPeak", "MaximumHeartRateAchieved", "Result"];
         }
     }
 }
