@@ -645,6 +645,17 @@ namespace Mediag
             Console.WriteLine("Heart Disease train count: " + dataManager_HD.GetTrainData().Count);
             Console.WriteLine("Heart Disease test count: " + dataManager_HD.GetTestData().Count);
             Console.WriteLine("Heart Disease samples count: " + dataManager_HD.GetSamplesData().Count);
+
+            // Decision tree
+            DecisionTree decisionTree_HD = new(IllnessTypes.HeartDisease.ToString());
+
+            // Train
+            List<string[]> trainValues_HD = [];
+            foreach (IMedicalData data in dataManager_HD.GetTrainData()) trainValues_HD.Add(data.Values());
+            List<string> trainLabels_HD = new(dataManager_HD.GetTrainData()[0].Labels());
+            decisionTree_HD.BuildTree(trainValues_HD, trainLabels_HD);
+            Console.WriteLine(decisionTree_HD.ToString());
+            Console.WriteLine();
         }
     }
 }
