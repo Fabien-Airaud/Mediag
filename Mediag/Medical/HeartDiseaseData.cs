@@ -1,5 +1,11 @@
 ﻿namespace Mediag.Medical
 {
+    enum ChestPainTypes { TypicalAngina, AtypicalAngina, NonAnginalPain, Asymptomatic }
+
+    enum ThalassemiaTypes { Normal, Fixed, Reversable }
+
+    enum MajorVesselsTypes { Zero, One, Two, Three }
+
     class HeartDiseaseData : IMedicalData
     {
         private static long lastId = 0;
