@@ -255,36 +255,36 @@ namespace Mediag
 
 
             // Get data from dataset
-            DataManager<BreastCancerData, BreastCancerMap> dataManager = new("BreastCancer");
-            Console.WriteLine("Breast Cancer train count: " + dataManager.GetTrainData().Count);
-            Console.WriteLine("Breast Cancer test count: " + dataManager.GetTestData().Count);
-            Console.WriteLine("Breast Cancer samples count: " + dataManager.GetSamplesData().Count);
+            DataManager<BreastCancerData, BreastCancerMap> dataManager_BC = new("BreastCancer");
+            Console.WriteLine("Breast Cancer train count: " + dataManager_BC.GetTrainData().Count);
+            Console.WriteLine("Breast Cancer test count: " + dataManager_BC.GetTestData().Count);
+            Console.WriteLine("Breast Cancer samples count: " + dataManager_BC.GetSamplesData().Count);
             Console.WriteLine();
 
             // Decision tree
-            DecisionTree decisionTree = new(IllnessTypes.BreastCancer.ToString());
+            DecisionTree decisionTree_BC = new(IllnessTypes.BreastCancer.ToString());
 
             // Train
-            List<string[]> trainValues = [];
-            foreach (IMedicalData data in dataManager.GetTrainData()) trainValues.Add(data.Values());
-            List<string> trainLabels = new(dataManager.GetTrainData()[0].Labels());
-            decisionTree.BuildTree(trainValues, trainLabels);
-            Console.WriteLine(decisionTree.ToString());
+            List<string[]> trainValues_BC = [];
+            foreach (IMedicalData data in dataManager_BC.GetTrainData()) trainValues_BC.Add(data.Values());
+            List<string> trainLabels = new(dataManager_BC.GetTrainData()[0].Labels());
+            decisionTree_BC.BuildTree(trainValues_BC, trainLabels);
+            Console.WriteLine(decisionTree_BC.ToString());
             Console.WriteLine();
 
             // Evaluate
             List<string[]> testValues = [];
-            foreach (IMedicalData data in dataManager.GetTestData()) testValues.Add(data.Values());
-            Console.WriteLine(decisionTree.Evaluate(testValues, out _, out _, out _));
+            foreach (IMedicalData data in dataManager_BC.GetTestData()) testValues.Add(data.Values());
+            Console.WriteLine(decisionTree_BC.Evaluate(testValues, out _, out _, out _));
             Console.WriteLine();
 
             // Add samples to medical files in hospitals
-            AddAllSamples([hospital1, hospital2, hospital3], dataManager.GetSamplesData());
+            AddAllSamples([hospital1, hospital2, hospital3], dataManager_BC.GetSamplesData());
 
             // Add decision tree to hospitals
-            hospital1.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
-            hospital2.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
-            hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree);
+            hospital1.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree_BC);
+            hospital2.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree_BC);
+            hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree_BC);
 
             // Diagnose
             Console.WriteLine("Nb files to diagnose = " + DThomasRichard1.FilesToDiagnose().Count);
@@ -641,10 +641,10 @@ namespace Mediag
 
 
             // Get data from dataset
-            DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager2 = new("HeartDisease");
-            Console.WriteLine("Heart Disease train count: " + dataManager2.GetTrainData().Count);
-            Console.WriteLine("Heart Disease test count: " + dataManager2.GetTestData().Count);
-            Console.WriteLine("Heart Disease samples count: " + dataManager2.GetSamplesData().Count);
+            DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager_HD = new("HeartDisease");
+            Console.WriteLine("Heart Disease train count: " + dataManager_HD.GetTrainData().Count);
+            Console.WriteLine("Heart Disease test count: " + dataManager_HD.GetTestData().Count);
+            Console.WriteLine("Heart Disease samples count: " + dataManager_HD.GetSamplesData().Count);
         }
     }
 }
