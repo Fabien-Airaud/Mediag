@@ -24,7 +24,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DiagnosticDecision">
-      <HintPath>..\DiagnosticDecision\bin\Debug\DiagnosticDecision.dll</HintPath>
+      <HintPath>..\DiagnosticDecision\bin\Debug\net8.0\DiagnosticDecision.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
