@@ -2,9 +2,9 @@
 {
     enum ChestPainTypes { TypicalAngina, AtypicalAngina, NonAnginalPain, Asymptomatic }
 
-    enum ThalassemiaTypes { Normal, Fixed, Reversable }
+    enum ThalassemiaTypes { Strange, Normal, Fixed, Reversable }
 
-    enum MajorVesselsTypes { Zero, One, Two, Three }
+    enum MajorVesselsTypes { Zero, One, Two, Three, Four }
 
     class HeartDiseaseData : IMedicalData
     {
