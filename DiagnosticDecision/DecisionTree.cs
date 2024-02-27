@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace DiagnosticDecision
 {
@@ -143,7 +144,11 @@ namespace DiagnosticDecision
                 if (value > pivot) return Classify(instance, node.Children[">"]);
                 else return Classify(instance, node.Children["<="]);
             }
-            else return Classify(instance, node.Children[instance[indexLabel]]);
+            else
+            {
+                if (!node.Children.TryGetValue(instance[indexLabel], out Node value)) return null; // Instance value not found in the tree
+                return Classify(instance, value);
+            }
         }
 
         public string Classify(string[] instance)
@@ -191,6 +196,7 @@ namespace DiagnosticDecision
             int resultIndex = Labels.Count - 1;
             for (int i = 0; i < instances.Count; i++)
             {
+                if (predictedResults[i] == null) continue; // Instance not classified (null result)
                 int expectedIndex = resultLabels.IndexOf(instances[i][resultIndex]);
                 int predictedIndex = resultLabels.IndexOf(predictedResults[i]);
                 confusionMatrix[expectedIndex, predictedIndex]++;
@@ -255,6 +261,7 @@ namespace DiagnosticDecision
             accuracy = Accuracy(instances, predictedResults);
             confusionMatrix = ConfusionMatrix(instances, predictedResults);
             string str = "Nb instances: " + instances.Count + "\n";
+            str += "Nb null results: " + (predictedResults.Count(value => value == null)) + "\n";
             str += "Accuracy: " + accuracy + "\n";
             str += "Confusion Matrix:\n";
             str += ConfusionMatrixString(confusionMatrix);
