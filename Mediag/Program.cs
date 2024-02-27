@@ -288,10 +288,10 @@ namespace Mediag
             hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree_BC);
 
             // Diagnose
-            Console.WriteLine("Nb files to diagnose = " + DThomasRichard1.FilesToDiagnose().Count);
+            Console.WriteLine("Nb files to diagnose for Thomas Richard = " + DThomasRichard1.FilesToDiagnose().Count);
             MedicalFile medicalFile = DThomasRichard1.FilesToTreat[0];
             Console.WriteLine(DThomasRichard1.Diagnose(medicalFile).ToString() + " ; Expert result = " + medicalFile.MedicalData.Values()[^1]);
-            Console.WriteLine("Nb files to diagnose = " + DThomasRichard1.FilesToDiagnose().Count);
+            Console.WriteLine("Nb files to diagnose for Thomas Richard = " + DThomasRichard1.FilesToDiagnose().Count);
             Console.WriteLine();
             foreach (Doctor doctor in hospital1.Doctors)
             {
