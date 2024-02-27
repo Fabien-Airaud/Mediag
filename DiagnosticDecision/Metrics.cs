@@ -71,7 +71,7 @@ namespace DiagnosticDecision
             return values.FindAll(row => (double.Parse(row[labelIndex]) > pivot) == higher);
         }
 
-        private static double Log2(double x) { return Math.Log(x) / Math.Log(2); }
+        private static double Log2(double x) { return Math.Log(x, 2); }
 
         public static double Entropy(List<string[]> values)
         {
