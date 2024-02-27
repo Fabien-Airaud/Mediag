@@ -274,6 +274,7 @@ namespace Mediag
             Console.WriteLine();
 
             // Evaluate
+            Console.WriteLine("Decision tree evaluation for BreastCancer:");
             List<string[]> testValues = [];
             foreach (IMedicalData data in dataManager_BC.GetTestData()) testValues.Add(data.Values());
             Console.WriteLine(decisionTree_BC.Evaluate(testValues, out _, out _, out _));
@@ -660,6 +661,7 @@ namespace Mediag
             Console.WriteLine();
 
             // Evaluate
+            Console.WriteLine("Decision tree evaluation for HeartDisease:");
             List<string[]> testValues_HD = [];
             foreach (IMedicalData data in dataManager_HD.GetTestData()) testValues_HD.Add(data.Values());
             Console.WriteLine(decisionTree_HD.Evaluate(testValues_HD, out _, out _, out _));
