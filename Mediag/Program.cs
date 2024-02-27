@@ -656,6 +656,12 @@ namespace Mediag
             decisionTree_HD.BuildTree(trainValues_HD, trainLabels_HD);
             Console.WriteLine(decisionTree_HD.ToString());
             Console.WriteLine();
+
+            // Evaluate
+            List<string[]> testValues_HD = [];
+            foreach (IMedicalData data in dataManager_HD.GetTestData()) testValues_HD.Add(data.Values());
+            Console.WriteLine(decisionTree_HD.Evaluate(testValues_HD, out _, out _, out _));
+            Console.WriteLine();
         }
     }
 }
