@@ -298,8 +298,8 @@ namespace Mediag
                 List<Diagnosis> diagnosisList = doctor.DiagnoseAllFiles();
                 Console.WriteLine(doctor.ToString());
                 Console.WriteLine(string.Join("\n", diagnosisList));
+                Console.WriteLine();
             }
-            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
@@ -646,6 +646,7 @@ namespace Mediag
             Console.WriteLine("Heart Disease train count: " + dataManager_HD.GetTrainData().Count);
             Console.WriteLine("Heart Disease test count: " + dataManager_HD.GetTestData().Count);
             Console.WriteLine("Heart Disease samples count: " + dataManager_HD.GetSamplesData().Count);
+            Console.WriteLine();
 
             // Decision tree
             DecisionTree decisionTree_HD = new(IllnessTypes.HeartDisease.ToString());
@@ -678,9 +679,8 @@ namespace Mediag
                 List<Diagnosis> diagnosisList = doctor.DiagnoseAllFiles();
                 Console.WriteLine(doctor.ToString());
                 Console.WriteLine(string.Join("\n", diagnosisList));
+                Console.WriteLine();
             }
-            Console.WriteLine();
-            Console.WriteLine();
         }
     }
 }
