@@ -88,8 +88,6 @@ namespace Mediag.Medical
         }
 
 
-        //public Hospital() { }
-
         public Hospital(string name, string city)
         {
             Name = name;

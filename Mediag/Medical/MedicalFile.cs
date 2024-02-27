@@ -115,8 +115,6 @@ namespace Mediag.Medical
         }
 
 
-        //public MedicalFile() { }
-
         public MedicalFile(Patient patient)
         {
             AddPatient(patient);

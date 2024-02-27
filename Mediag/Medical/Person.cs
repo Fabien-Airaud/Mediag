@@ -19,8 +19,6 @@ namespace Mediag.Medical
         public string Address { get; set; }
 
 
-        //public Person() { }
-
         public Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string address)
         {
             LastName = lastName;
