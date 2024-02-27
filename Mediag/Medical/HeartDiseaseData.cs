@@ -38,7 +38,7 @@
         }
 
 
-        public IllnessTypes TargettedIllness() { return IllnessTypes.BreastCancer; }
+        public IllnessTypes TargettedIllness() { return IllnessTypes.HeartDisease; }
 
         public string[] Values()
         {
