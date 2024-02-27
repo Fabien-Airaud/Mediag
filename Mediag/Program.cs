@@ -17,6 +17,7 @@ namespace Mediag
                 foreach (MedicalFile file in hospital.Files)
                 {
                     if (nbSamples == 0) return;
+                    if (file.MedicalData != null && file.MedicalData.TargettedIllness() != samples[^1].TargettedIllness()) continue;
                     file.AddMedicalData(samples[--nbSamples]);
                 }
             }
@@ -661,6 +662,24 @@ namespace Mediag
             List<string[]> testValues_HD = [];
             foreach (IMedicalData data in dataManager_HD.GetTestData()) testValues_HD.Add(data.Values());
             Console.WriteLine(decisionTree_HD.Evaluate(testValues_HD, out _, out _, out _));
+            Console.WriteLine();
+
+            // Add samples to medical files in hospitals
+            AddAllSamples([hospital1, hospital2, hospital3], dataManager_HD.GetSamplesData());
+
+            // Add decision tree to hospitals
+            hospital1.AddDecisionTree(IllnessTypes.HeartDisease, decisionTree_HD);
+            hospital2.AddDecisionTree(IllnessTypes.HeartDisease, decisionTree_HD);
+            hospital3.AddDecisionTree(IllnessTypes.HeartDisease, decisionTree_HD);
+
+            // Diagnose
+            foreach (Doctor doctor in hospital1.Doctors)
+            {
+                List<Diagnosis> diagnosisList = doctor.DiagnoseAllFiles();
+                Console.WriteLine(doctor.ToString());
+                Console.WriteLine(string.Join("\n", diagnosisList));
+            }
+            Console.WriteLine();
             Console.WriteLine();
         }
     }
