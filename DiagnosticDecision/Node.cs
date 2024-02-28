@@ -43,16 +43,25 @@ namespace DiagnosticDecision
 
         public bool HasValue() { return Value != ""; }
 
+        public string Prefix(string startString)
+        {
+            string str = startString;
+
+            if (IsLeaf()) return str + Value;
+            return str + Label;
+        }
+
         public override string ToString()
         {
-            if (IsLeaf()) return Value;
+            return Prefix("");
+            //if (IsLeaf()) return Value;
             
-            string str = Label;
-            foreach (var child in Children)
-            {
-                str += " " + child.Value.ToString();
-            }
-            return str;
+            //string str = Label;
+            //foreach (var child in Children)
+            //{
+            //    str += " " + child.Value.ToString();
+            //}
+            //return str;
         }
     }
 }
