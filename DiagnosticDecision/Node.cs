@@ -51,7 +51,7 @@ namespace DiagnosticDecision
 
             foreach (var child in Children)
             {
-                str += startString + "    |- - " + child.Value.Prefix(startString + "    |    ");
+                str += startString + "  +--- " + child.Value.Prefix(startString + "  |    ");
             }
             return str;
         }
