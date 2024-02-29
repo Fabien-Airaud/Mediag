@@ -49,9 +49,26 @@ namespace DiagnosticDecision
 
             string str = Label + "\n";
 
+            // Find the longest key
+            int maxLen = 0;
+            foreach (var key in Children.Keys)
+            {
+                int keyLength = (HasPivot() ? key + " " + Pivot : key).Length;
+                if (keyLength > maxLen) maxLen = keyLength;
+            }
+
+            // Create the string to add to the start string
+            string supStartString = "  | ";
+            for (int i = 0; i < maxLen; i++) supStartString += " ";
+            supStartString += "     ";
+
+            // Add children display
             foreach (var child in Children)
             {
-                str += startString + "  +--- " + child.Value.Prefix(startString + "  |    ");
+                str += startString + "  + ";
+                str += ((HasPivot() ? child.Key + " " + Pivot : child.Key) + " ").PadRight(maxLen+4, '-') + " ";
+
+                str += child.Value.Prefix(startString + supStartString);
             }
             return str;
         }
