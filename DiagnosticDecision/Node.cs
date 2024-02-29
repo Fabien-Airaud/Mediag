@@ -45,10 +45,15 @@ namespace DiagnosticDecision
 
         public string Prefix(string startString)
         {
-            string str = startString;
+            if (IsLeaf()) return Value + "\n";
 
-            if (IsLeaf()) return str + Value;
-            return str + Label;
+            string str = Label + "\n";
+
+            foreach (var child in Children)
+            {
+                str += startString + "    |- - " + child.Value.Label + "\n";
+            }
+            return str;
         }
 
         public override string ToString()
