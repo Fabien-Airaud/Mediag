@@ -278,7 +278,7 @@ namespace DiagnosticDecision
             }
             if (Root != null)
             {
-                str += "\nRoot: ";
+                str += "\nRoot:\n";
                 str += Root.ToString();
             }
             return str;
