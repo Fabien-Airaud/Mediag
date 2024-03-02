@@ -76,14 +76,6 @@ namespace DiagnosticDecision
         public override string ToString()
         {
             return Prefix("");
-            //if (IsLeaf()) return Value;
-            
-            //string str = Label;
-            //foreach (var child in Children)
-            //{
-            //    str += " " + child.Value.ToString();
-            //}
-            //return str;
         }
     }
 }
