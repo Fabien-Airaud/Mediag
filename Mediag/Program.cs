@@ -29,6 +29,7 @@ namespace Mediag
             // Breast cancer
 
             // Hospitals
+            Console.WriteLine("Creating hospitals");
             Hospital hospital1 = new("Hôpital général de Montréal", "Montréal");
             Hospital hospital2 = new("Hôpital Charles-Le Moyne", "Greenfield Park");
             Hospital hospital3 = new("Hôtel-Dieu d'Arthabaska", "Victoriaville");
@@ -41,6 +42,7 @@ namespace Mediag
             //Hospital hospital10 = new("Hôpital de La Malbaie", "La Malbaie");
 
             // Doctors
+            Console.WriteLine("Creating doctors");
             Doctor DThomasRichard1 = new("Richard", "Thomas", new DateOnly(1985, 6, 16), "phoneNumber", "email@email.com", "Clermont-Ferrand");
             Doctor DAnneMarieLeroux1 = new("Leroux", "AnneMarie", new DateOnly(1992, 12, 10), "phoneNumber", "email@email.com", "Angers");
             Doctor DSebastienRoux1 = new("Roux", "Sébastien", new DateOnly(1989, 4, 8), "phoneNumber", "email@email.com", "Nancy");
@@ -53,6 +55,7 @@ namespace Mediag
             Doctor DLauraMorel1 = new("Morel", "Laura", new DateOnly(1997, 4, 2), "phoneNumber", "email@email.com", "Rouen");
 
             // Add doctors to hospitals
+            Console.WriteLine("Adding doctors to hospitals");
             hospital1.AddDoctor(DThomasRichard1);
             hospital1.AddDoctor(DAnneMarieLeroux1);
             hospital1.AddDoctor(DSebastienRoux1);
@@ -72,6 +75,7 @@ namespace Mediag
             //Patient PJulieMoreau_BC1 = new("Moreau", "Julie", new DateOnly(1997, 8, 18), "phoneNumber", "email@email.com", "Toulouse");
 
             // Old patients
+            Console.WriteLine("Creating patients");
             Patient PJeanneDupont_BC1 = new("Dupont_BC1", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
             Patient PJeanneDupont_BC2 = new("Dupont_BC2", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
             Patient PJeanneDupont_BC3 = new("Dupont_BC3", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
@@ -104,6 +108,7 @@ namespace Mediag
             //Patient PIsabelleGirard_BC3 = new("Girard_BC3", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
 
             // Add patients to hospitals
+            Console.WriteLine("Adding patients to hospitals");
             hospital1.AddPatient(PJeanneDupont_BC1);
             hospital2.AddPatient(PJeanneDupont_BC2);
             hospital3.AddPatient(PJeanneDupont_BC3);
@@ -136,6 +141,7 @@ namespace Mediag
             //hospital3.AddPatient(PIsabelleGirard_BC3);
 
             // Patients' medical files
+            Console.WriteLine("Creating patients' medical files");
             MedicalFile FJeanneDupont_BC1 = new(PJeanneDupont_BC1);
             MedicalFile FJeanneDupont_BC2 = new(PJeanneDupont_BC2);
             MedicalFile FJeanneDupont_BC3 = new(PJeanneDupont_BC3);
@@ -168,6 +174,7 @@ namespace Mediag
             //MedicalFile FIsabelleGirard_BC3 = new(PIsabelleGirard_BC3);
 
             // Add files to hospitals
+            Console.WriteLine("Adding files to hospitals");
             hospital1.AddFile(FJeanneDupont_BC1);
             hospital2.AddFile(FJeanneDupont_BC2);
             hospital3.AddFile(FJeanneDupont_BC3);
@@ -200,6 +207,7 @@ namespace Mediag
             //hospital3.AddFile(FIsabelleGirard_BC3);
 
             // Add doctors to medical files
+            Console.WriteLine("Adding doctors in charge of medical files");
             FJeanneDupont_BC1.AddDoctorInCharge(DThomasRichard1);
             FSophieLemaire_BC1.AddDoctorInCharge(DThomasRichard1);
             FNathalieSimon_BC1.AddDoctorInCharge(DThomasRichard1);
@@ -230,6 +238,7 @@ namespace Mediag
             FPierreDurand_BC2.AddDoctorInCharge(DLauraMorel1);
             FJacquesPetit_BC1.AddDoctorInCharge(DLauraMorel1);
             //FIsabelleGirard_BC3.AddDoctorInCharge(DLauraMorel1);
+            Console.WriteLine();
 
             // Display some fake data
             Console.WriteLine("Some hospitals:");
@@ -256,6 +265,7 @@ namespace Mediag
 
 
             // Get data from dataset
+            Console.WriteLine("Getting data from dataset");
             DataManager<BreastCancerData, BreastCancerMap> dataManager_BC = new("BreastCancer");
             Console.WriteLine("Breast Cancer train count: " + dataManager_BC.GetTrainData().Count);
             Console.WriteLine("Breast Cancer test count: " + dataManager_BC.GetTestData().Count);
@@ -266,6 +276,7 @@ namespace Mediag
             DecisionTree decisionTree_BC = new(IllnessTypes.BreastCancer.ToString());
 
             // Train
+            Console.WriteLine("Building decision tree for BreastCancer with train data:");
             List<string[]> trainValues_BC = [];
             foreach (IMedicalData data in dataManager_BC.GetTrainData()) trainValues_BC.Add(data.Values());
             List<string> trainLabels = new(dataManager_BC.GetTrainData()[0].Labels());
@@ -274,13 +285,14 @@ namespace Mediag
             Console.WriteLine();
 
             // Evaluate
-            Console.WriteLine("Decision tree evaluation for BreastCancer:");
+            Console.WriteLine("Decision tree evaluation for BreastCancer with test data:");
             List<string[]> testValues = [];
             foreach (IMedicalData data in dataManager_BC.GetTestData()) testValues.Add(data.Values());
             Console.WriteLine(decisionTree_BC.Evaluate(testValues, out _, out _, out _));
             Console.WriteLine();
 
             // Add samples to medical files in hospitals
+            Console.WriteLine("Adding samples (Medical data) to medical files in hospitals\n");
             AddAllSamples([hospital1, hospital2, hospital3], dataManager_BC.GetSamplesData());
 
             // Add decision tree to hospitals
@@ -289,6 +301,7 @@ namespace Mediag
             hospital3.AddDecisionTree(IllnessTypes.BreastCancer, decisionTree_BC);
 
             // Diagnose
+            Console.WriteLine("Diagnosing medical files for each doctors in first hospital\n");
             Console.WriteLine("Nb files to diagnose for Thomas Richard = " + DThomasRichard1.FilesToDiagnose().Count);
             MedicalFile medicalFile = DThomasRichard1.FilesToTreat[0];
             Console.WriteLine(DThomasRichard1.Diagnose(medicalFile).ToString() + " ; Expert result = " + medicalFile.MedicalData.Values()[^1]);
@@ -309,6 +322,7 @@ namespace Mediag
             // Heart disease
 
             // Old patients
+            Console.WriteLine("Creating patients");
             Patient PJeanneDupont_HD1 = new("Dupont_HD1", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
             Patient PJeanneDupont_HD2 = new("Dupont_HD2", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
             Patient PJeanneDupont_HD3 = new("Dupont_HD3", "Jeanne", new DateOnly(1954, 1, 4), "phoneNumber", "email@email.com", "Marseille");
@@ -371,6 +385,7 @@ namespace Mediag
             Patient PIsabelleGirard_HD6 = new("Girard_HD6", "Isabelle", new DateOnly(1960, 3, 30), "phoneNumber", "email@email.com", "Grenoble");
 
             // Add patients to hospitals
+            Console.WriteLine("Adding patients to hospitals");
             hospital1.AddPatient(PJeanneDupont_HD1);
             hospital2.AddPatient(PJeanneDupont_HD2);
             hospital3.AddPatient(PJeanneDupont_HD3);
@@ -433,6 +448,7 @@ namespace Mediag
             hospital3.AddPatient(PIsabelleGirard_HD6);
 
             // Patients' medical files
+            Console.WriteLine("Creating patients' medical files");
             MedicalFile FJeanneDupont_HD1 = new(PJeanneDupont_HD1);
             MedicalFile FJeanneDupont_HD2 = new(PJeanneDupont_HD2);
             MedicalFile FJeanneDupont_HD3 = new(PJeanneDupont_HD3);
@@ -495,6 +511,7 @@ namespace Mediag
             MedicalFile FIsabelleGirard_HD6 = new(PIsabelleGirard_HD6);
 
             // Add files to hospitals
+            Console.WriteLine("Adding medical files to hospitals");
             hospital1.AddFile(FJeanneDupont_HD1);
             hospital2.AddFile(FJeanneDupont_HD2);
             hospital3.AddFile(FJeanneDupont_HD3);
@@ -557,6 +574,7 @@ namespace Mediag
             hospital3.AddFile(FIsabelleGirard_HD6);
 
             // Add doctors to medical files
+            Console.WriteLine("Adding doctors in charge of medical files");
             FJeanneDupont_HD1.AddDoctorInCharge(DThomasRichard1);
             FJeanneDupont_HD4.AddDoctorInCharge(DThomasRichard1);
             FSophieLemaire_HD1.AddDoctorInCharge(DThomasRichard1);
@@ -617,6 +635,7 @@ namespace Mediag
             FJacquesPetit_HD4.AddDoctorInCharge(DLauraMorel1);
             FIsabelleGirard_HD3.AddDoctorInCharge(DLauraMorel1);
             FIsabelleGirard_HD6.AddDoctorInCharge(DLauraMorel1);
+            Console.WriteLine();
 
             // Display some fake data
             Console.WriteLine("Some hospitals:");
@@ -643,6 +662,7 @@ namespace Mediag
 
 
             // Get data from dataset
+            Console.WriteLine("Getting data from dataset");
             DataManager<HeartDiseaseData, HeartDiseaseMap> dataManager_HD = new("HeartDisease");
             Console.WriteLine("Heart Disease train count: " + dataManager_HD.GetTrainData().Count);
             Console.WriteLine("Heart Disease test count: " + dataManager_HD.GetTestData().Count);
@@ -653,6 +673,7 @@ namespace Mediag
             DecisionTree decisionTree_HD = new(IllnessTypes.HeartDisease.ToString());
 
             // Train
+            Console.WriteLine("Building decision tree for HeartDisease with train data:");
             List<string[]> trainValues_HD = [];
             foreach (IMedicalData data in dataManager_HD.GetTrainData()) trainValues_HD.Add(data.Values());
             List<string> trainLabels_HD = new(dataManager_HD.GetTrainData()[0].Labels());
@@ -661,13 +682,14 @@ namespace Mediag
             Console.WriteLine();
 
             // Evaluate
-            Console.WriteLine("Decision tree evaluation for HeartDisease:");
+            Console.WriteLine("Decision tree evaluation for HeartDisease with test data:");
             List<string[]> testValues_HD = [];
             foreach (IMedicalData data in dataManager_HD.GetTestData()) testValues_HD.Add(data.Values());
             Console.WriteLine(decisionTree_HD.Evaluate(testValues_HD, out _, out _, out _));
             Console.WriteLine();
 
             // Add samples to medical files in hospitals
+            Console.WriteLine("Adding samples (Medical data) to medical files in hospitals\n");
             AddAllSamples([hospital1, hospital2, hospital3], dataManager_HD.GetSamplesData());
 
             // Add decision tree to hospitals
@@ -676,6 +698,7 @@ namespace Mediag
             hospital3.AddDecisionTree(IllnessTypes.HeartDisease, decisionTree_HD);
 
             // Diagnose
+            Console.WriteLine("Diagnosing medical files for each doctors in first hospital");
             foreach (Doctor doctor in hospital1.Doctors)
             {
                 List<Diagnosis> diagnosisList = doctor.DiagnoseAllFiles();
