@@ -53,8 +53,6 @@ namespace Mediag.Medical
             : base(lastName, firstName, birthdate, phoneNumber, email, address)
         {
             Id = ++lastId;
-            Username = firstName + lastName;
-            Password = lastName.ToUpper()[0] + firstName.ToLower()[0] + birthdate.ToString("yyyy-MM-dd");
         }
 
 
