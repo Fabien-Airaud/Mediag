@@ -3,15 +3,9 @@ using System.Collections.Generic;
 
 namespace Mediag.Medical
 {
-    class Doctor : Person
+    class Doctor : User
     {
         private static long lastId = 0;
-
-        public string Username { get; set; }
-
-        public string Password { get; set; }
-
-        public bool Active { get; set; } = true;
 
         public Hospital Hospital { get; protected set; }
         public void AddHospital(Hospital hospital)
