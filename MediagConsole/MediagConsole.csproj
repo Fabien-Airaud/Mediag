@@ -3,9 +3,9 @@
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>Mediag</AssemblyTitle>
+    <AssemblyTitle>MediagConsole</AssemblyTitle>
     <Company>HP</Company>
-    <Product>Mediag</Product>
+    <Product>MediagConsole</Product>
     <Copyright>Copyright © HP 2024</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
