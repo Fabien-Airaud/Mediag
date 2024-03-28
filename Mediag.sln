@@ -6,6 +6,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiagnosticDecision", "Diagn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediagConsole", "MediagConsole\MediagConsole.csproj", "{73D36657-C086-4D95-86F3-7C0BA635BE1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediag", "Mediag\Mediag.csproj", "{CE2193D9-BD48-4996-BB40-B5DDCA58044C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{73D36657-C086-4D95-86F3-7C0BA635BE1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73D36657-C086-4D95-86F3-7C0BA635BE1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73D36657-C086-4D95-86F3-7C0BA635BE1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE2193D9-BD48-4996-BB40-B5DDCA58044C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE2193D9-BD48-4996-BB40-B5DDCA58044C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE2193D9-BD48-4996-BB40-B5DDCA58044C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE2193D9-BD48-4996-BB40-B5DDCA58044C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
