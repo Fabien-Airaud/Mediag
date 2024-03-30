@@ -16,17 +16,17 @@ namespace Mediag.Medical
 
         public string Email { get; set; }
 
-        public string Address { get; set; }
+        public string City { get; set; }
 
 
-        public Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string address)
+        public Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city)
         {
             LastName = lastName;
             FirstName = firstName;
             Birthdate = birthdate;
             PhoneNumber = phoneNumber;
             Email = email;
-            Address = address;
+            City = city;
         }
 
 
