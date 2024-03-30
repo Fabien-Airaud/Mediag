@@ -19,8 +19,7 @@
                     <RowDefinition Height="1.5*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2.5*"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Log in" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
@@ -31,17 +30,19 @@
                 <Label Content="Password:" Grid.Row="2" Grid.Column="0"/>
                 <PasswordBox Grid.Row="2" Grid.Column="1" Margin="0,0,10,0"/>
 
-                <Button Content="Log in" Grid.Row="3" Width="150" FontSize="20" Grid.ColumnSpan="2"/>
+                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Log in" Style="{StaticResource PrimaryButton}"/>
 
-                <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Haven't registered yet ?" Grid.Row="4" Grid.ColumnSpan="2" FontSize="16"/>
-                    <Button Content="Register" Grid.Row="4" BorderThickness="0,0,0,0" ClipToBounds="True" Grid.Column="1" Background="{x:Null}" Foreground="Blue" FontSize="16" MinWidth="0"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="Haven't registered yet ?" FontSize="16"/>
+                        <Button Content="Register" FontSize="16" Style="{StaticResource TextButton}"/>
+                    </StackPanel>
                 </StackPanel>
 
             </Grid>
         </TabItem>
         <TabItem Header="Register">
-            <Grid Margin="10" MinWidth="870" MinHeight="440" MaxWidth="1000">
+            <Grid Margin="10" MinWidth="870" MinHeight="440" MaxWidth="1000" MaxHeight="600">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
@@ -58,8 +59,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2.5*"/>
                 </Grid.RowDefinitions>
 
                 <Label Content="Register" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
@@ -91,11 +91,13 @@
                 <Label Content="Re-type password:" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
                 <PasswordBox Grid.Column="4" Grid.Row="7"/>
 
-                <Button Content="Create account" Grid.Row="8" Width="150" FontSize="20" Grid.ColumnSpan="5"/>
-
-                <StackPanel Grid.Row="9" Grid.ColumnSpan="5" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Label Content="Already registered ?" FontSize="16"/>
-                    <Button Content="Log in" BorderThickness="0,0,0,0" ClipToBounds="True" Background="{x:Null}" Foreground="Blue" FontSize="16" MinWidth="0"/>
+                <StackPanel Grid.Row="8" Grid.ColumnSpan="5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Content="Create account" Grid.ColumnSpan="5" Style="{StaticResource PrimaryButton}"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Label Content="Already registered ?" FontSize="16"/>
+                        <Button Content="Log in" FontSize="16" Style="{StaticResource TextButton}"/>
+                    </StackPanel>
                 </StackPanel>
 
             </Grid>
