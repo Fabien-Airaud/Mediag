@@ -23,6 +23,21 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
+
+        <Style TargetType="DatePicker">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="MinWidth" Value="130"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FirstDayOfWeek" Value="Monday"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="MinWidth" Value="130"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
         
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18"/>
