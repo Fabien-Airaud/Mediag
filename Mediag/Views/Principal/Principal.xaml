@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Principal" WindowStartupLocation="CenterScreen"
-        Height="450" Width="900" MinWidth="890">
+        Height="450" Width="900" MinHeight="400" MinWidth="890">
 
     <Grid>
         <TabControl>
