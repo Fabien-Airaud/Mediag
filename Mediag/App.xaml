@@ -62,10 +62,17 @@
 
         <Style x:Key="TextButton" TargetType="Button">
             <Setter Property="MinWidth" Value="0"/>
-            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="ClipToBounds" Value="True"/>
             <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
             <Setter Property="Foreground" Value="Blue"/>
+        </Style>
+
+        <Style x:Key="IconButton" TargetType="Button">
+            <Setter Property="MinWidth" Value="0"/>
+            <Setter Property="ClipToBounds" Value="True"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
         </Style>
 
         <Style TargetType="TabItem">
