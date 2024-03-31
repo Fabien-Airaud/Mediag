@@ -8,8 +8,8 @@
         Height="545" Width="900" MinWidth="900" MinHeight="510"
         ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
-    <TabControl>
-        <TabItem Header="Log In">
+    <TabControl Name="LogInTabs">
+        <TabItem Name="LogInTab" Header="Log In">
             <Grid Margin="10" MinWidth="350" MinHeight="250" MaxWidth="400" MaxHeight="300">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -35,13 +35,13 @@
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="Haven't registered yet ?" FontSize="16"/>
-                        <Button Content="Register" FontSize="16" Style="{StaticResource TextButton}"/>
+                        <Button Content="Register" FontSize="16" Style="{StaticResource TextButton}" Click="GoToRegister_Click"/>
                     </StackPanel>
                 </StackPanel>
 
             </Grid>
         </TabItem>
-        <TabItem Header="Register">
+        <TabItem Name="RegisterTab" Header="Register">
             <Grid Margin="10" MinWidth="870" MinHeight="440" MaxWidth="1000" MaxHeight="600">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="1*"/>
@@ -96,7 +96,7 @@
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="Already registered ?" FontSize="16"/>
-                        <Button Content="Log in" FontSize="16" Style="{StaticResource TextButton}"/>
+                        <Button Content="Log in" FontSize="16" Style="{StaticResource TextButton}" Click="GoToLogIn_Click"/>
                     </StackPanel>
                 </StackPanel>
 
