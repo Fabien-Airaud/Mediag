@@ -13,4 +13,8 @@
     <Folder Include="ViewModels\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Resource Include="Views\Principal\BackgroundHome.jpeg" />
+  </ItemGroup>
+
 </Project>
