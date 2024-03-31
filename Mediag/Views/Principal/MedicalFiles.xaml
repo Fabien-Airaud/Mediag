@@ -28,34 +28,41 @@
         </StackPanel>
         <DataGrid Name="MedicalFilesGrid" Grid.Row="1">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="#" Binding="{Binding Id}" MinWidth="30" />
-                <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" MinWidth="100" />
-                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" MinWidth="100" />
-                <DataGridTextColumn Header="Target illness" Binding="{Binding TargetIllness}" MinWidth="120" />
-                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" MinWidth="90" />
-                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" MinWidth="150" />
-                <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" MinWidth="90" />
-                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" MinWidth="90" />
-                <DataGridTemplateColumn Header="Actions" MinWidth="90">
+                <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="0.3*" MinWidth="30" />
+                <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*" MinWidth="100" />
+                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" Width="*" MinWidth="100" />
+                <DataGridTextColumn Header="Target illness" Binding="{Binding TargetIllness}" Width="*" MinWidth="120" />
+                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" MinWidth="90" />
+                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" Width="1.5*" MinWidth="150" />
+                <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" Width="*" MinWidth="90" />
+                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" Width="*" MinWidth="90" />
+                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="90">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
                                 <Button Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Eye Icon.png" Width="16" Height="16"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Style="{StaticResource IconButton}" Margin="5,0,5,0">
+                                <Button Grid.Column="1" Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Edit Icon.png" Width="16" Height="16"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Style="{StaticResource IconButton}" Margin="5,0,5,0">
+                                <Button Grid.Column="2" Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Delete Icon.png" Width="16" Height="16"/>
                                     </Button.Content>
                                 </Button>
-                            </StackPanel>
+
+                            </Grid>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
