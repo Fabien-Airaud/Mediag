@@ -71,7 +71,7 @@
         <Style TargetType="TabItem">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="MinWidth" Value="100"/>
-            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="MinHeight" Value="25"/>
         </Style>
     </Application.Resources>
 </Application>
