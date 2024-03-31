@@ -10,24 +10,7 @@
     <Grid>
         <TabControl>
             <TabItem Header="Home">
-                <Grid>
-                    <Grid.Background>
-                        <ImageBrush ImageSource="/Views/Principal/BackgroundHome.jpeg" Stretch="UniformToFill"/>
-                    </Grid.Background>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <Label Content="Mediag" Grid.Row="1" FontSize="72" FontFamily="Lucida Calligraphy" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5"/>
-                    <Label Content="Welcome " Grid.Row="2" FontSize="48" HorizontalAlignment="Center"/>
-
-                </Grid>
+                <Frame Source="/Views/Principal/Home.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid>
