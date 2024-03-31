@@ -67,5 +67,11 @@
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="Foreground" Value="Blue"/>
         </Style>
+
+        <Style TargetType="TabItem">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="MinHeight" Value="35"/>
+        </Style>
     </Application.Resources>
 </Application>
