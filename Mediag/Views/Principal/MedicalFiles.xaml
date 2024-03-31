@@ -14,9 +14,9 @@
                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" />
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" />
                 <DataGridTextColumn Header="Target illness" Binding="{Binding TargetIllness}" />
-                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate}" />
-                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate}" />
-                <DataGridTextColumn Header="End date" Binding="{Binding EndDate}" />
+                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}" />
+                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" />
+                <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}" />
                 <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" />
                 <DataGridTemplateColumn Header="Actions">
                     <DataGridTemplateColumn.CellTemplate>
