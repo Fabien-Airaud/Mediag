@@ -10,7 +10,7 @@
     <Grid>
         <TabControl>
             <TabItem Header="Home">
-                <Frame Source="/Views/Principal/Home.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
+                <Frame Source="/Views/Principal/HomePage.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
             <TabItem Header="Medical files">
                 <Frame Source="/Views/Principal/MedicalFiles.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>

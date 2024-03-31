@@ -3,11 +3,11 @@
 namespace Mediag.Views.Principal
 {
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class Home : Page
+    public partial class HomePage : Page
     {
-        public Home()
+        public HomePage()
         {
             InitializeComponent();
         }
