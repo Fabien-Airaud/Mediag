@@ -13,9 +13,7 @@
                 <Frame Source="/Views/Principal/Home.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
             <TabItem Header="Medical files">
-                <Grid>
-                    <Frame Source="/Views/Principal/MedicalFiles.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-                </Grid>
+                <Frame Source="/Views/Principal/MedicalFiles.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
         </TabControl>
 
