@@ -9,12 +9,43 @@
 
     <Grid Margin="10" MinWidth="750">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MaxHeight="115"/>
-            <RowDefinition Height="2.5*" MaxHeight="300"/>
-            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*" MinHeight="35" MaxHeight="90"/>
+            <RowDefinition Height="*" MinHeight="70" MaxHeight="115"/>
+            <RowDefinition Height="2.5*" MinHeight="180" MaxHeight="300"/>
+            <RowDefinition Height="1.5*" MinHeight="110" MaxHeight="200"/>
         </Grid.RowDefinitions>
-        
-        <Grid MinWidth="750" MaxWidth="1000" MinHeight="70" MaxHeight="115">
+
+        <Grid MinWidth="750" MaxWidth="1000" MinHeight="35" MaxHeight="65" VerticalAlignment="Top" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="1.2*" MaxWidth="250"/>
+                <ColumnDefinition Width="1.2*" MaxWidth="250"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Last update:"/>
+            <Label Grid.Column="1"/>
+            <Button Grid.Column="3" Margin="10,0,10,0" HorizontalAlignment="Stretch" MaxWidth="200">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Views/Icons/Edit Icon.png" Width="20" Height="20"/>
+                        <Label Content="Edit" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Grid.Column="4" Margin="10,0,10,0" HorizontalAlignment="Stretch" MaxWidth="200">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Views/Icons/Delete Icon.png" Width="20" Height="20"/>
+                        <Label Content="Delete" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1" MinWidth="750" MaxWidth="1000" MinHeight="70" MaxHeight="115">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="2*"/>
@@ -36,8 +67,8 @@
             <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
 
         </Grid>
-        
-        <Grid Grid.Row="1" MinWidth="750" MaxWidth="1000" MaxHeight="300" MinHeight="180">
+
+        <Grid Grid.Row="2" MinWidth="750" MaxWidth="1000" MinHeight="180" MaxHeight="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="2*"/>
@@ -75,7 +106,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2" MinWidth="750" MaxWidth="1000" MinHeight="110" MaxHeight="200">
+        <Grid Grid.Row="3" MinWidth="750" MaxWidth="1000" MinHeight="110" MaxHeight="200">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="2*"/>
