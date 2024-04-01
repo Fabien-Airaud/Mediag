@@ -9,7 +9,7 @@
 
     <Grid Margin="10" MinWidth="750">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="35" MaxHeight="90"/>
+            <RowDefinition Height="*" MinHeight="50" MaxHeight="90"/>
             <RowDefinition Height="*" MinHeight="70" MaxHeight="115"/>
             <RowDefinition Height="2.5*" MinHeight="180" MaxHeight="300"/>
             <RowDefinition Height="1.5*" MinHeight="110" MaxHeight="200"/>
