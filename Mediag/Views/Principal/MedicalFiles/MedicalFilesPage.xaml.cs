@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Mediag.Views.Principal
+namespace Mediag.Views.Principal.MedicalFiles
 {
     /// <summary>
     /// Interaction logic for MedicalFiles.xaml
