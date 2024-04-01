@@ -6,8 +6,45 @@
         mc:Ignorable="d"
         Title="MedicalFile" WindowStartupLocation="CenterOwner"
         Height="450" Width="800">
-    
+
     <Grid>
-        
+        <Grid VerticalAlignment="Top" Margin="10" MinWidth="750" MaxWidth="1000" MinHeight="175" MaxHeight="300">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Patient" FontSize="22" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+            <Label Content="First name:" Grid.Row="1"/>
+            <Label Grid.Column="1" Grid.Row="1"/>
+            <Label Content="Last name:" Grid.Column="3" Grid.Row="1"/>
+            <Label Grid.Column="4" Grid.Row="1"/>
+
+            <Label Content="Birthdate:" Grid.Row="2"/>
+            <Label Grid.Column="1" Grid.Row="2"/>
+            <Label Content="Home city:" Grid.Column="3" Grid.Row="2"/>
+            <Label Grid.Column="4" Grid.Row="2"/>
+
+            <Label Content="Email:" Grid.Row="3"/>
+            <Label Grid.Column="1" Grid.Row="3"/>
+            <Label Content="Phone number:" Grid.Column="3" Grid.Row="3"/>
+            <Label Grid.Column="4" Grid.Row="3"/>
+
+            <Label Content="Hospital:" Grid.Row="4"/>
+            <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4"/>
+
+        </Grid>
+
     </Grid>
 </Window>
