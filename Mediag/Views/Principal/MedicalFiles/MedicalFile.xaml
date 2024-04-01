@@ -7,8 +7,31 @@
         Title="MedicalFile" WindowStartupLocation="CenterOwner"
         Height="450" Width="800">
 
-    <Grid>
-        <Grid VerticalAlignment="Top" Margin="10" MinWidth="750" MaxWidth="1000" MinHeight="175" MaxHeight="300">
+    <Grid Margin="10">
+        <Grid VerticalAlignment="Top" MinWidth="750" MaxWidth="1000" MinHeight="70" MaxHeight="115">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="0.4*"/>
+                <ColumnDefinition Width="1.2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Label Content="Start date:"/>
+            <Label Grid.Column="1"/>
+            <Label Content="End Date:" Grid.Column="3"/>
+            <Label Grid.Column="4"/>
+
+            <Label Content="Hospital:" Grid.Row="1"/>
+            <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
+
+        </Grid>
+        
+        <Grid VerticalAlignment="Center" MinWidth="750" MaxWidth="1000" MinHeight="180" MaxHeight="300">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="2*"/>
