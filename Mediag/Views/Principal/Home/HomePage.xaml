@@ -1,4 +1,4 @@
-﻿<Page x:Class="Mediag.Views.Principal.HomePage"
+﻿<Page x:Class="Mediag.Views.Principal.Home.HomePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
 
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Views/Principal/BackgroundHome.jpeg" Stretch="UniformToFill" Opacity="0.8"/>
+            <ImageBrush ImageSource="/Views/Principal/Home/BackgroundHome.jpeg" Stretch="UniformToFill" Opacity="0.8"/>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

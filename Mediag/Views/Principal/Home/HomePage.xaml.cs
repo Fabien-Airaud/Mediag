@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Mediag.Views.Principal
+namespace Mediag.Views.Principal.Home
 {
     /// <summary>
     /// Interaction logic for HomePage.xaml
