@@ -18,6 +18,7 @@
     <Resource Include="Views\Icons\Delete Icon.png" />
     <Resource Include="Views\Icons\Edit Icon.png" />
     <Resource Include="Views\Icons\Eye Icon.png" />
+    <Resource Include="Views\Icons\Stethoscope Icon.png" />
     <Resource Include="Views\Principal\Home\BackgroundHome.jpeg" />
   </ItemGroup>
 
