@@ -15,7 +15,7 @@
             <RowDefinition Height="1.5*" MinHeight="110" MaxHeight="200"/>
         </Grid.RowDefinitions>
 
-        <Grid MinWidth="750" MaxWidth="1000" MinHeight="35" MaxHeight="65" VerticalAlignment="Top" Grid.RowSpan="2">
+        <Grid MinWidth="750" MaxWidth="1000" MinHeight="35" MaxHeight="65" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1.2*"/>
                 <ColumnDefinition Width="2*"/>
