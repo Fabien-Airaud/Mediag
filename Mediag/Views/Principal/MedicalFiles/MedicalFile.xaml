@@ -124,6 +124,15 @@
 
             <Label Content="Target illness:" Grid.Row="1"/>
             <Label Grid.Column="1" Grid.Row="1"/>
+            <Label Content="Medical data:" Grid.Column="3" Grid.Row="1"/>
+            <Button Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" MaxWidth="200" Margin="10,0,10,0" VerticalAlignment="Stretch">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Views/Icons/Stethoscope Icon.png" Width="20" Height="20"/>
+                        <Label Content="View Data" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
 
             <Label Content="Date:" Grid.Row="2"/>
             <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"/>
