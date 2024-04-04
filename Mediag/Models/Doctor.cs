@@ -1,4 +1,4 @@
-﻿namespace Mediag.Medical
+﻿namespace Mediag.Models
 {
     class Doctor(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city,
         string username, string password)

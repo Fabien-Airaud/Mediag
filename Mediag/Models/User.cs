@@ -1,4 +1,4 @@
-﻿namespace Mediag.Medical
+﻿namespace Mediag.Models
 {
     abstract class User(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city,
         string username, string password)
