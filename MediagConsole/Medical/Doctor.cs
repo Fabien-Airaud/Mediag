@@ -49,8 +49,8 @@ namespace Mediag.Medical
         }
 
 
-        public Doctor(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string address)
-            : base(lastName, firstName, birthdate, phoneNumber, email, address) { Id = ++lastId; }
+        public Doctor(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city)
+            : base(lastName, firstName, birthdate, phoneNumber, email, city) { Id = ++lastId; }
 
 
         public Diagnosis Diagnose(MedicalFile file)
