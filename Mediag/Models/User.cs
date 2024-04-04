@@ -1,10 +1,8 @@
 ﻿namespace Mediag.Models
 {
-    abstract class User(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city,
-        string username, string password)
-        : Person(lastName, firstName, birthdate, phoneNumber, email, city)
+    abstract class User : Person
     {
-        private string _username = username;
+        private string _username = "";
         public string Username
         {
             get { return _username; }
@@ -18,7 +16,7 @@
             }
         }
 
-        private string _password = password;
+        private string _password = "";
         public string Password
         {
             get { return _password; }

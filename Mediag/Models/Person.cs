@@ -3,12 +3,11 @@ using System.Runtime.CompilerServices;
 
 namespace Mediag.Models
 {
-    abstract class Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city)
-        : INotifyPropertyChanged
+    abstract class Person : INotifyPropertyChanged
     {
         public long Id { get; set; }
 
-        private string _lastName = lastName;
+        private string _lastName = "";
         public string LastName
         {
             get { return _lastName; }
@@ -22,7 +21,7 @@ namespace Mediag.Models
             }
         }
 
-        private string _firstName = firstName;
+        private string _firstName = "";
         public string FirstName
         {
             get { return _firstName; }
@@ -36,7 +35,7 @@ namespace Mediag.Models
             }
         }
 
-        private DateOnly _birthdate = birthdate;
+        private DateOnly _birthdate;
         public DateOnly Birthdate
         {
             get { return _birthdate; }
@@ -50,7 +49,7 @@ namespace Mediag.Models
             }
         }
 
-        private string _phoneNumber = phoneNumber;
+        private string _phoneNumber = "";
         public string PhoneNumber
         {
             get { return _phoneNumber; }
@@ -64,7 +63,7 @@ namespace Mediag.Models
             }
         }
 
-        private string _email = email;
+        private string _email = "";
         public string Email
         {
             get { return _email; }
@@ -78,7 +77,7 @@ namespace Mediag.Models
             }
         }
 
-        private string _city = city;
+        private string _city = "";
         public string City
         {
             get { return _city; }
