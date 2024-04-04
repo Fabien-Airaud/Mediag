@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Mediag.Models
+namespace Mediag
 {
     class MediagDbContext : DbContext
     {
