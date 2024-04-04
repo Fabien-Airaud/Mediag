@@ -2,6 +2,8 @@
 {
     abstract class Person(string lastName, string firstName, DateOnly birthdate, string phoneNumber, string email, string city)
     {
+        public long Id { get; set; }
+
         public string LastName { get; set; } = lastName;
 
         public string FirstName { get; set; } = firstName;

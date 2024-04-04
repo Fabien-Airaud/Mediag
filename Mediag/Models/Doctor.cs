@@ -4,6 +4,5 @@
         string username, string password)
         : User(lastName, firstName, birthdate, phoneNumber, email, city, username, password)
     {
-        public long DoctorId { get; set; }
     }
 }
