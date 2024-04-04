@@ -35,8 +35,8 @@ namespace Mediag.Models
             }
         }
 
-        private DateOnly _birthdate;
-        public DateOnly Birthdate
+        private DateTime _birthdate = DateTime.Today.AddYears(-20);
+        public DateTime Birthdate
         {
             get { return _birthdate; }
             set
