@@ -17,7 +17,7 @@ namespace Mediag.Models
                 {
                     _lastName = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -32,7 +32,7 @@ namespace Mediag.Models
                 {
                     _firstName = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -47,7 +47,7 @@ namespace Mediag.Models
                 {
                     _birthdate = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -62,7 +62,7 @@ namespace Mediag.Models
                 {
                     _phoneNumber = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace Mediag.Models
                 {
                     _email = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace Mediag.Models
                 {
                     _city = value;
                     OnPropertyChanged();
-                    SetIsValidRegister();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -101,10 +101,18 @@ namespace Mediag.Models
         public bool IsValidRegister
         {
             get { return _isValidRegister; }
+            protected set
+            {
+                if (_isValidRegister != value)
+                {
+                    _isValidRegister = value;
+                    OnPropertyChanged();
+                }
+            }
         }
-        protected void SetIsValidRegister()
+        protected virtual bool CheckIsValidRegister()
         {
-            _isValidRegister = !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(FirstName)
+            return !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(FirstName)
                 && Birthdate != DateTime.MinValue && !string.IsNullOrWhiteSpace(PhoneNumber)
                 && !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(City);
         }
