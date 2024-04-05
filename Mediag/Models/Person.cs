@@ -17,6 +17,7 @@ namespace Mediag.Models
                 {
                     _lastName = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
         }
@@ -31,11 +32,12 @@ namespace Mediag.Models
                 {
                     _firstName = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
         }
 
-        private DateTime _birthdate = DateTime.Today.AddYears(-20);
+        private DateTime _birthdate;
         public DateTime Birthdate
         {
             get { return _birthdate; }
@@ -45,6 +47,7 @@ namespace Mediag.Models
                 {
                     _birthdate = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
         }
@@ -59,6 +62,7 @@ namespace Mediag.Models
                 {
                     _phoneNumber = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
         }
@@ -73,6 +77,7 @@ namespace Mediag.Models
                 {
                     _email = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
         }
@@ -87,8 +92,21 @@ namespace Mediag.Models
                 {
                     _city = value;
                     OnPropertyChanged();
+                    SetIsValidRegister();
                 }
             }
+        }
+
+        private bool _isValidRegister;
+        public bool IsValidRegister
+        {
+            get { return _isValidRegister; }
+        }
+        protected void SetIsValidRegister()
+        {
+            _isValidRegister = !string.IsNullOrWhiteSpace(LastName) && !string.IsNullOrWhiteSpace(FirstName)
+                && Birthdate != DateTime.MinValue && !string.IsNullOrWhiteSpace(PhoneNumber)
+                && !string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(City);
         }
 
 
