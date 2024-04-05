@@ -40,7 +40,8 @@ namespace Mediag.ViewModels
         public SignLogInViewModel()
         {
             Doctor = new Models.Doctor();
-            RegisterDoctorCommand = new RelayCommand(o => true, o => DisplayMessage());
+            RegisterDoctorCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword),
+                _ => DisplayMessage());
         }
     }
 }
