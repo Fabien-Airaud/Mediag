@@ -12,6 +12,7 @@
                 {
                     _username = value;
                     OnPropertyChanged();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -26,8 +27,14 @@
                 {
                     _password = value;
                     OnPropertyChanged();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
+        }
+
+        protected override bool CheckIsValidRegister()
+        {
+            return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
         }
     }
 }
