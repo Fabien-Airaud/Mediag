@@ -12,8 +12,14 @@
                 {
                     _specialism = value;
                     OnPropertyChanged();
+                    IsValidRegister = CheckIsValidRegister();
                 }
             }
+        }
+
+        protected override bool CheckIsValidRegister()
+        {
+            return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism);
         }
     }
 }
