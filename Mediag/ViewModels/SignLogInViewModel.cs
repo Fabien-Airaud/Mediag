@@ -23,9 +23,10 @@ namespace Mediag.ViewModels
         }
 
         public ICommand RegisterDoctorCommand { get; private set; }
-        private void DisplayMessage()
+        private void RegisterDoctor()
         {
-            System.Windows.MessageBox.Show($"{Doctor.LastName} {Doctor.FirstName} {Doctor.Birthdate.ToShortDateString()} {Doctor.City} {Doctor.Email} {Doctor.PhoneNumber} {Doctor.Username} {Doctor.Password}|{RegisterConfirmPassword}");
+            Models.Doctor.AddDoctor(Doctor);
+            System.Windows.MessageBox.Show("Doctor registered successfully!, " + Doctor.Id);
         }
 
 
@@ -41,7 +42,7 @@ namespace Mediag.ViewModels
         {
             Doctor = new Models.Doctor();
             RegisterDoctorCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword),
-                _ => DisplayMessage());
+                _ => RegisterDoctor());
         }
     }
 }
