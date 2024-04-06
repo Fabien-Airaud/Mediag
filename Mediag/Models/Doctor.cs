@@ -21,5 +21,13 @@
         {
             return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism);
         }
+
+        public static Doctor AddDoctor(Doctor doctor)
+        {
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.Doctors.Add(doctor);
+            mediagDbContext.SaveChanges();
+            return doctor;
+        }
     }
 }
