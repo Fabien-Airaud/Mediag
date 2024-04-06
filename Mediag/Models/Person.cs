@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 
 namespace Mediag.Models
@@ -38,6 +39,7 @@ namespace Mediag.Models
         }
 
         private DateTime _birthdate;
+        [Column(TypeName = "date")]
         public DateTime Birthdate
         {
             get { return _birthdate; }
@@ -98,6 +100,7 @@ namespace Mediag.Models
         }
 
         private bool _isValidRegister;
+        [NotMapped]
         public bool IsValidRegister
         {
             get { return _isValidRegister; }
