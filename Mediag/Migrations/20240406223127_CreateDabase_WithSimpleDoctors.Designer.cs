@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mediag.Migrations
 {
     [DbContext(typeof(MediagDbContext))]
-    [Migration("20240404221818_CreateDabase_WithSimpleDoctors")]
+    [Migration("20240406223127_CreateDabase_WithSimpleDoctors")]
     partial class CreateDabase_WithSimpleDoctors
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace Mediag.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateOnly>("Birthdate")
+                    b.Property<DateTime>("Birthdate")
                         .HasColumnType("date");
 
                     b.Property<string>("City")
@@ -57,6 +57,10 @@ namespace Mediag.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Specialism")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
