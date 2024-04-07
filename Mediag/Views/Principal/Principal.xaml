@@ -4,18 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Principal" WindowStartupLocation="CenterScreen"
+        Title="Mediag" WindowStartupLocation="CenterScreen"
         Height="450" Width="900" MinHeight="400" MinWidth="890">
 
     <Grid>
-        <TabControl>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<TabControl>
             <TabItem Header="Home">
                 <Frame Source="/Views/Principal/Home/HomePage.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
             <TabItem Header="Medical files">
                 <Frame Source="/Views/Principal/MedicalFiles/MedicalFilesPage.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
             </TabItem>
-        </TabControl>
-
+        </TabControl>-->
+        <Menu FontSize="16">
+            <MenuItem Header="_Home">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/Home Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Profil">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/Doctor Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+        <ContentControl x:Name="PrincipalControl" Grid.Row="1"/>
     </Grid>
 </Window>

@@ -10,6 +10,11 @@ namespace Mediag.Views.Principal
         public Principal()
         {
             InitializeComponent();
+            DataContext = new ViewModels.PrincipalVM();
+
+            PrincipalControl.Content = new Home.HomeUC();
+            PrincipalControl.DataContext = DataContext;
+            Title = "Home";
         }
     }
 }
