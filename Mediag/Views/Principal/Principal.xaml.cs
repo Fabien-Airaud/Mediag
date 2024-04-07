@@ -11,17 +11,6 @@ namespace Mediag.Views.Principal
         {
             InitializeComponent();
             DataContext = new ViewModels.PrincipalVM(doctor);
-            Home_Click(this, new RoutedEventArgs());
-        }
-
-        private void Home_Click(object sender, RoutedEventArgs e)
-        {
-            PrincipalControl.Content = new Home.HomeUC() { DataContext = DataContext };
-        }
-
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            PrincipalControl.Content = new Profile.ProfileUC { DataContext = DataContext };
         }
     }
 }

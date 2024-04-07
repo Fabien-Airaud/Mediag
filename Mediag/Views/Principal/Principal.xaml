@@ -12,26 +12,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!--<TabControl>
-            <TabItem Header="Home">
-                <Frame Source="/Views/Principal/Home/HomePage.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-            </TabItem>
-            <TabItem Header="Medical files">
-                <Frame Source="/Views/Principal/MedicalFiles/MedicalFilesPage.xaml" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" NavigationUIVisibility="Hidden"/>
-            </TabItem>
-        </TabControl>-->
+        
         <Menu FontSize="16">
-            <MenuItem Header="_Home" Click="Home_Click">
+            <MenuItem Header="_Home" Command="{Binding HomeCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Home Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Profile" Click="Profile_Click">
+            <MenuItem Header="_Profile" Command="{Binding ProfileCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Doctor Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
-        <ContentControl x:Name="PrincipalControl" Grid.Row="1"/>
+        
+        <ContentControl Content="{Binding PrincipalContent, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
     </Grid>
 </Window>
