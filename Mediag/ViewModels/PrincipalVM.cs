@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Mediag.ViewModels
 {
-    public class PrincipalVM(Models.Doctor doctor) : INotifyPropertyChanged
+    public class PrincipalVM : INotifyPropertyChanged
     {
-        public Models.Doctor Doctor { get; set; } = doctor;
+        public Models.Doctor Doctor { get; set; }
 
         private UserControl _principalContent = new Views.Principal.Home.HomeUC();
         public UserControl PrincipalContent
@@ -22,12 +23,32 @@ namespace Mediag.ViewModels
             }
         }
 
+        public ICommand HomeCommand { get; private set; }
+        private void DisplayHome()
+        {
+            PrincipalContent = new Views.Principal.Home.HomeUC();
+        }
+
+        public ICommand ProfileCommand { get; private set; }
+        private void DisplayProfile()
+        {
+            PrincipalContent = new Views.Principal.Profile.ProfileUC(Doctor);
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+        public PrincipalVM(Models.Doctor doctor)
+        {
+            Doctor = doctor;
+            HomeCommand = new RelayCommand(_ => true, _ => DisplayHome());
+            ProfileCommand = new RelayCommand(_ => true, _ => DisplayProfile());
         }
     }
 }
