@@ -94,7 +94,7 @@
                 <!--<PasswordBox Grid.Column="4" Grid.Row="7"/>-->
 
                 <StackPanel Grid.Row="8" Grid.ColumnSpan="5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Create account" Grid.ColumnSpan="5" Style="{StaticResource PrimaryButton}" Command="{Binding RegisterDoctorCommand}"/>
+                    <Button Content="Create account" Grid.ColumnSpan="5" Style="{StaticResource PrimaryButton}" Command="{Binding RegisterCommand}"/>
                     
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="Already registered ?" FontSize="16"/>
