@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Mediag" WindowStartupLocation="CenterScreen"
-        Height="450" Width="900" MinHeight="400" MinWidth="890">
+        Height="480" Width="900" MinHeight="400" MinWidth="890">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -21,12 +21,12 @@
             </TabItem>
         </TabControl>-->
         <Menu FontSize="16">
-            <MenuItem Header="_Home">
+            <MenuItem Header="_Home" Click="Home_Click">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Home Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Profil">
+            <MenuItem Header="_Profile" Click="Profile_Click">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Doctor Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
