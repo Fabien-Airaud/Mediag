@@ -25,13 +25,14 @@
                 <Label Content="Log in" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
 
                 <Label Content="Username:" Grid.Row="1" Grid.Column="0"/>
-                <TextBox Text="" Grid.Row="1" Grid.Column="1" Margin="0,0,10,0"/>
+                <TextBox Text="{Binding Doctor.Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" Margin="0,0,10,0"/>
 
                 <Label Content="Password:" Grid.Row="2" Grid.Column="0"/>
-                <PasswordBox Grid.Row="2" Grid.Column="1" Margin="0,0,10,0"/>
+                <TextBox Text="{Binding Doctor.Password, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2"/>
+                <!--<PasswordBox Grid.Row="2" Grid.Column="1" Margin="0,0,10,0"/>-->
 
                 <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Button Content="Log in" Style="{StaticResource PrimaryButton}"/>
+                    <Button Content="Log in" Style="{StaticResource PrimaryButton}" Command="{Binding LogInCommand}"/>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                         <Label Content="Haven't registered yet ?" FontSize="16"/>

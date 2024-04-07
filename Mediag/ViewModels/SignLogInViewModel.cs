@@ -29,6 +29,18 @@ namespace Mediag.ViewModels
             System.Windows.MessageBox.Show("Registered successfully!\nYou can now log in.", "Register");
         }
 
+        public ICommand LogInCommand { get; private set; }
+        private void LogIn()
+        {
+            Models.Doctor? doctor = Models.Doctor.GetDoctor(Doctor.Username, Doctor.Password);
+            if (doctor is null)
+            {
+                System.Windows.MessageBox.Show("Invalid username or password!", "Log in");
+                return;
+            }
+            System.Windows.MessageBox.Show("Logged in successfully!", "Log in");
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -41,8 +53,8 @@ namespace Mediag.ViewModels
         public SignLogInViewModel()
         {
             Doctor = new Models.Doctor();
-            RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword),
-                _ => Register());
+            RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword), _ => Register());
+            LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
         }
     }
 }

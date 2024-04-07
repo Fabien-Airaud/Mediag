@@ -29,5 +29,11 @@
             mediagDbContext.SaveChanges();
             return doctor;
         }
+
+        public static Doctor? GetDoctor(string username, string password)
+        {
+            MediagDbContext mediagDbContext = new();
+            return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+        }
     }
 }
