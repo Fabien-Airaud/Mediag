@@ -1,13 +1,17 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Mediag.ViewModels
 {
     public class SignLogInVM
     {
-        //private readonly Views.LogIn.SignLogIn _logInView;
-
         public Models.Doctor Doctor { get; set; }
+
+        public Action GoToLogIn { get; set; } = () => { };
+
+        public Action CloseSignLogIn { get; set; } = () => { };
 
         public ICommand RegisterCommand { get; private set; }
         private void Register()
@@ -20,7 +24,7 @@ namespace Mediag.ViewModels
 
             Models.Doctor.AddDoctor(Doctor);
             MessageBox.Show("Registered successfully!\nYou can now log in.", "Register");
-            //_logInView.LogInTabs.SelectedItem = _logInView.LogInTab;
+            GoToLogIn();
             Doctor.ResetToLogIn();
         }
 
@@ -33,10 +37,11 @@ namespace Mediag.ViewModels
                 MessageBox.Show("Invalid username or password!", "Log in");
                 return;
             }
+
             MessageBox.Show("Logged in successfully!", "Log in");
             Views.Principal.Principal principalWindow = new(doctor);
             principalWindow.Show();
-            //_logInView.Close();
+            CloseSignLogIn();
         }
 
 
@@ -46,13 +51,5 @@ namespace Mediag.ViewModels
             RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => Register());
             LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
         }
-
-        //public SignLogInViewModel(Views.LogIn.SignLogIn logInView)
-        //{
-        //    Doctor = new Models.Doctor();
-        //    RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => Register());
-        //    LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
-        //    _logInView = logInView;
-        //}
     }
 }
