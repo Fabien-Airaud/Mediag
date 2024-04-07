@@ -1,4 +1,6 @@
-﻿namespace Mediag.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Mediag.Models
 {
     abstract class User : Person
     {
@@ -12,6 +14,7 @@
                 {
                     _username = value;
                     OnPropertyChanged();
+                    IsValidLogIn = CheckIsValidLogIn();
                     IsValidRegister = CheckIsValidRegister();
                 }
             }
@@ -27,14 +30,34 @@
                 {
                     _password = value;
                     OnPropertyChanged();
+                    IsValidLogIn = CheckIsValidLogIn();
                     IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
 
+        private bool _isValidLogIn;
+        [NotMapped]
+        public bool IsValidLogIn
+        {
+            get { return _isValidLogIn; }
+            protected set
+            {
+                if (_isValidLogIn != value)
+                {
+                    _isValidLogIn = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        protected virtual bool CheckIsValidLogIn()
+        {
+            return !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+        }
+
         protected override bool CheckIsValidRegister()
         {
-            return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password);
+            return base.CheckIsValidRegister() && IsValidLogIn;
         }
     }
 }
