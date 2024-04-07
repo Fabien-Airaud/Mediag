@@ -42,9 +42,11 @@
             return doctor;
         }
 
-        public static Doctor? GetDoctor(string username, string password)
+        public static Doctor? GetDoctor(string username, string? password = null)
         {
             MediagDbContext mediagDbContext = new();
+            if (password is null)
+                return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
             return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
         }
     }

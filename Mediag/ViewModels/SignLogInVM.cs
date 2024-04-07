@@ -14,6 +14,12 @@ namespace Mediag.ViewModels
         public ICommand RegisterCommand { get; private set; }
         private void Register()
         {
+            if (Models.Doctor.GetDoctor(Doctor.Username) is not null)
+            {
+                MessageBox.Show("Register failed, Username already exists!", "Register");
+                return;
+            }
+
             Models.Doctor.AddDoctor(Doctor);
             MessageBox.Show("Registered successfully!\nYou can now log in.", "Register");
             //_logInView.LogInTabs.SelectedItem = _logInView.LogInTab;
