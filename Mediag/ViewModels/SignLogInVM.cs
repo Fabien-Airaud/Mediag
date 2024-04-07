@@ -40,14 +40,6 @@ namespace Mediag.ViewModels
         }
 
 
-        //public event PropertyChangedEventHandler? PropertyChanged;
-
-        //protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        //}
-
-
         public SignLogInVM()
         {
             Doctor = new Models.Doctor();
