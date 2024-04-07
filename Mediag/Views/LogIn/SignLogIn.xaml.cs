@@ -11,6 +11,7 @@ namespace Mediag.Views.LogIn
         {
             InitializeComponent();
             DataContext = new ViewModels.SignLogInViewModel();
+            //DataContext = new ViewModels.SignLogInViewModel(this);
         }
 
         private void GoToRegister_Click(object sender, RoutedEventArgs e)
