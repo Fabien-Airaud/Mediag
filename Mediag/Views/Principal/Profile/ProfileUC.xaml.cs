@@ -7,9 +7,10 @@ namespace Mediag.Views.Principal.Profile
     /// </summary>
     public partial class ProfileUC : UserControl
     {
-        public ProfileUC()
+        public ProfileUC(Models.Doctor doctor)
         {
             InitializeComponent();
+            DataContext = new ViewModels.ProfileVM(doctor);
         }
     }
 }
