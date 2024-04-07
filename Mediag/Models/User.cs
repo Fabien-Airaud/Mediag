@@ -2,7 +2,7 @@
 
 namespace Mediag.Models
 {
-    abstract class User : Person
+    public abstract class User : Person
     {
         private string _username = "";
         public string Username

@@ -1,6 +1,6 @@
 ﻿namespace Mediag.Models
 {
-    class Doctor : User
+    public class Doctor : User
     {
         private string _specialism = "";
         public string Specialism

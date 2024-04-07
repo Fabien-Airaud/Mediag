@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace Mediag.Models
 {
-    abstract class Person : INotifyPropertyChanged
+    public abstract class Person : INotifyPropertyChanged
     {
         public long Id { get; set; }
 
