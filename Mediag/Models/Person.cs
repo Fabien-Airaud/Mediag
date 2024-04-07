@@ -127,5 +127,15 @@ namespace Mediag.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public virtual void Reset()
+        {
+            LastName = "";
+            FirstName = "";
+            Birthdate = DateTime.MinValue;
+            PhoneNumber = "";
+            Email = "";
+            City = "";
+        }
     }
 }

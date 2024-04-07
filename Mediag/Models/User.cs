@@ -59,5 +59,17 @@ namespace Mediag.Models
         {
             return base.CheckIsValidRegister() && IsValidLogIn;
         }
+
+        public override void Reset()
+        {
+            base.Reset();
+            Username = "";
+            Password = "";
+        }
+
+        public virtual void ResetToLogIn()
+        {
+            base.Reset();
+        }
     }
 }

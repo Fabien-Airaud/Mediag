@@ -22,6 +22,18 @@
             return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism);
         }
 
+        public override void Reset()
+        {
+            base.Reset();
+            Specialism = "";
+        }
+
+        public override void ResetToLogIn()
+        {
+            base.ResetToLogIn();
+            Specialism = "";
+        }
+
         public static Doctor AddDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();
