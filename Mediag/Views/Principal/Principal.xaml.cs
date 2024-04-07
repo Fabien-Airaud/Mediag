@@ -7,13 +7,16 @@ namespace Mediag.Views.Principal
     /// </summary>
     public partial class Principal : Window
     {
-        public Principal()
+        public Principal(Models.Doctor doctor)
         {
             InitializeComponent();
-            DataContext = new ViewModels.PrincipalVM();
+            DataContext = new ViewModels.PrincipalVM(doctor);
+            Home_Click(this, new RoutedEventArgs());
+        }
 
-            PrincipalControl.Content = new Home.HomeUC();
-            PrincipalControl.DataContext = DataContext;
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            PrincipalControl.Content = new Home.HomeUC() { DataContext = DataContext };
             Title = "Home";
         }
     }

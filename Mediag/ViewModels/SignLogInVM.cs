@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Mediag.ViewModels
 {
-    class SignLogInVM : INotifyPropertyChanged
+    public class SignLogInVM : INotifyPropertyChanged
     {
         //private readonly Views.LogIn.SignLogIn _logInView;
 
@@ -44,7 +44,7 @@ namespace Mediag.ViewModels
                 return;
             }
             MessageBox.Show("Logged in successfully!", "Log in");
-            Views.Principal.Principal principalWindow = new();
+            Views.Principal.Principal principalWindow = new(doctor);
             principalWindow.Show();
             //_logInView.Close();
         }
