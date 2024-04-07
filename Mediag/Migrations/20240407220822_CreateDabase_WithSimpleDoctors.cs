@@ -24,13 +24,19 @@ namespace Mediag.Migrations
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Doctors", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Doctors_Username",
+                table: "Doctors",
+                column: "Username",
+                unique: true);
         }
 
         /// <inheritdoc />

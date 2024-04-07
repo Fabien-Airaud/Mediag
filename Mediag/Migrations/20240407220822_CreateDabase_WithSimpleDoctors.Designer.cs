@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mediag.Migrations
 {
     [DbContext(typeof(MediagDbContext))]
-    [Migration("20240406223127_CreateDabase_WithSimpleDoctors")]
+    [Migration("20240407220822_CreateDabase_WithSimpleDoctors")]
     partial class CreateDabase_WithSimpleDoctors
     {
         /// <inheritdoc />
@@ -66,9 +66,12 @@ namespace Mediag.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Doctors");
                 });
