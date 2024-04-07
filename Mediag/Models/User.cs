@@ -1,7 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mediag.Models
 {
+    [Index(nameof(Username), IsUnique = true)]
     public abstract class User : Person
     {
         private string _username = "";
