@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Mediag.Views.Principal.Profile.ProfileUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Mediag.Views.Principal.Profile"
+             mc:Ignorable="d" Background="White">
+
+    <Grid Margin="10" MinWidth="870" MinHeight="440" MaxWidth="1000" MaxHeight="600">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Profile" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
+
+        <Label Content="First name:" Grid.Row="1"/>
+        <TextBox Text="{Binding Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1"/>
+        <Label Content="Last name:" Grid.Column="3" Grid.Row="1"/>
+        <TextBox Text="{Binding Doctor.LastName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1"/>
+
+        <Label Content="Birthdate:" Grid.Row="2"/>
+        <DatePicker SelectedDate="{Binding Doctor.Birthdate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2"/>
+        <Label Content="Home city:" Grid.Column="3" Grid.Row="2"/>
+        <TextBox Text="{Binding Doctor.City, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2"/>
+
+        <Label Content="Email:" Grid.Row="3"/>
+        <TextBox Text="{Binding Doctor.Email, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3"/>
+        <Label Content="Phone number:" Grid.Column="3" Grid.Row="3"/>
+        <TextBox Text="{Binding Doctor.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3"/>
+
+        <Label Content="Hospital:" Grid.Row="4"/>
+        <ComboBox Grid.Column="1" Grid.Row="4"/>
+        <Label Content="Specialism:" Grid.Column="3" Grid.Row="4"/>
+        <TextBox Text="{Binding Doctor.Specialism, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="4"/>
+
+        <Label Content="Username:" Grid.Row="6"/>
+        <TextBox Text="{Binding Doctor.Username, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="6"/>
+        <Label Content="Password:" Grid.Row="7"/>
+        <TextBox Text="{Binding Doctor.Password, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="7"/>
+        <Label Content="Confirm password:" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <TextBox Text="{Binding RegisterConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="7"/>
+
+        <Grid Grid.Row="8" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Save profile" Style="{StaticResource GreenButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Cancel edit" Grid.Column="1" Style="{StaticResource RedButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

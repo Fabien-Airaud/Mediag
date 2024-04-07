@@ -61,6 +61,26 @@
             <Setter Property="Foreground" Value="White"/>
         </Style>
 
+        <Style x:Key="GreenButton" TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="Green"/>
+            <Setter Property="BorderBrush" Value="Green"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="RedButton" TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="MinWidth" Value="200"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background" Value="#FFDC0000"/>
+            <Setter Property="BorderBrush" Value="#FFDC0000"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
         <Style x:Key="TextButton" TargetType="Button">
             <Setter Property="MinWidth" Value="0"/>
             <Setter Property="ClipToBounds" Value="True"/>
