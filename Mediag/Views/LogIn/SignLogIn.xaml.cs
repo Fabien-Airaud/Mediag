@@ -10,8 +10,8 @@ namespace Mediag.Views.LogIn
         public SignLogIn()
         {
             InitializeComponent();
-            DataContext = new ViewModels.SignLogInViewModel();
-            //DataContext = new ViewModels.SignLogInViewModel(this);
+            DataContext = new ViewModels.SignLogInVM();
+            //DataContext = new ViewModels.SignLogInVM(this);
         }
 
         private void GoToRegister_Click(object sender, RoutedEventArgs e)

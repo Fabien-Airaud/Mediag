@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Mediag.ViewModels
 {
-    class SignLogInViewModel : INotifyPropertyChanged
+    class SignLogInVM : INotifyPropertyChanged
     {
         //private readonly Views.LogIn.SignLogIn _logInView;
 
@@ -58,7 +58,7 @@ namespace Mediag.ViewModels
         }
 
 
-        public SignLogInViewModel()
+        public SignLogInVM()
         {
             Doctor = new Models.Doctor();
             RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword), _ => Register());
