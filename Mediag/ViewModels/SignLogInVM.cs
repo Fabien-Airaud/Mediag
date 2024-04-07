@@ -11,20 +11,6 @@ namespace Mediag.ViewModels
 
         public Models.Doctor Doctor { get; set; }
 
-        private string _registerConfirmPassword = "";
-        public string RegisterConfirmPassword
-        {
-            get { return _registerConfirmPassword; }
-            set
-            {
-                if (_registerConfirmPassword != value)
-                {
-                    _registerConfirmPassword = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
         public ICommand RegisterCommand { get; private set; }
         private void Register()
         {
@@ -61,14 +47,14 @@ namespace Mediag.ViewModels
         public SignLogInVM()
         {
             Doctor = new Models.Doctor();
-            RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword), _ => Register());
+            RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => Register());
             LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
         }
 
         //public SignLogInViewModel(Views.LogIn.SignLogIn logInView)
         //{
         //    Doctor = new Models.Doctor();
-        //    RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister && Doctor.Password.Equals(RegisterConfirmPassword), _ => Register());
+        //    RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => Register());
         //    LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
         //    _logInView = logInView;
         //}

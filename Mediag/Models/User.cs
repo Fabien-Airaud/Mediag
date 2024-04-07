@@ -36,6 +36,22 @@ namespace Mediag.Models
             }
         }
 
+        private string _confirmPassword = "";
+        [NotMapped]
+        public string ConfirmPassword
+        {
+            get { return _confirmPassword; }
+            set
+            {
+                if (_confirmPassword != value)
+                {
+                    _confirmPassword = value;
+                    OnPropertyChanged();
+                    IsValidRegister = CheckIsValidRegister();
+                }
+            }
+        }
+
         private bool _isValidLogIn;
         [NotMapped]
         public bool IsValidLogIn
@@ -57,7 +73,7 @@ namespace Mediag.Models
 
         protected override bool CheckIsValidRegister()
         {
-            return base.CheckIsValidRegister() && IsValidLogIn;
+            return base.CheckIsValidRegister() && IsValidLogIn && Password.Equals(ConfirmPassword);
         }
 
         public override void Reset()
@@ -65,11 +81,13 @@ namespace Mediag.Models
             base.Reset();
             Username = "";
             Password = "";
+            ConfirmPassword = "";
         }
 
         public virtual void ResetToLogIn()
         {
             base.Reset();
+            ConfirmPassword = "";
         }
     }
 }

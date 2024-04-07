@@ -91,7 +91,7 @@
                 <TextBox Text="{Binding Doctor.Password, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="7"/>
                 <!--<PasswordBox Grid.Column="1" Grid.Row="7"/>-->
                 <Label Content="Confirm password:" Grid.Column="2" Grid.Row="7" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-                <TextBox Text="{Binding RegisterConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="7"/>
+                <TextBox Text="{Binding Doctor.ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="7"/>
                 <!--<PasswordBox Grid.Column="4" Grid.Row="7"/>-->
 
                 <StackPanel Grid.Row="8" Grid.ColumnSpan="5" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
