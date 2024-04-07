@@ -31,6 +31,7 @@ namespace Mediag.ViewModels
             Models.Doctor.AddDoctor(Doctor);
             MessageBox.Show("Registered successfully!\nYou can now log in.", "Register");
             //_logInView.LogInTabs.SelectedItem = _logInView.LogInTab;
+            Doctor = new Models.Doctor();
         }
 
         public ICommand LogInCommand { get; private set; }
