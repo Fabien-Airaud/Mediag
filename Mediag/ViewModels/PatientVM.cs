@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Mediag.ViewModels
@@ -55,11 +56,12 @@ namespace Mediag.ViewModels
         public ICommand SaveCommand { get; private set; }
         private void SaveProfile()
         {
-            //ViewVisibility = "Visible";
-            //if (Patient.Equals(OldPatient)) return; // No changes
+            ViewVisibility = "Visible";
+            if (Patient.Equals(OldPatient)) return; // No changes to save
 
-            //Patient = Models.Patient.UpdatePatient(Patient);
-            //MessageBox.Show("Profile saved.");
+            if (!OldPatient.IsValidRegister) Patient = Models.Patient.AddPatient(Patient);
+            else Patient = Models.Patient.UpdatePatient(Patient);
+            MessageBox.Show("Profile saved.");
         }
 
         public ICommand CancelCommand { get; private set; }
