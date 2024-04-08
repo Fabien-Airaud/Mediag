@@ -78,7 +78,10 @@ namespace Mediag.Models
             MediagDbContext mediagDbContext = new();
             if (password is null)
                 return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
-            return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+            
+            Doctor? doctor = mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+            if (doctor is not null) doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
+            return doctor;
         }
 
         public static Doctor AddDoctor(Doctor doctor)
@@ -105,7 +108,7 @@ namespace Mediag.Models
             return obj is Doctor doctor &&
                    base.Equals(obj) &&
                    Specialism == doctor.Specialism &&
-                   HospitalId == HospitalId;
+                   HospitalId == doctor.HospitalId;
         }
 
         public override int GetHashCode()
