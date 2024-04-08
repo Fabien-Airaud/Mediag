@@ -12,7 +12,7 @@
         <TabItem Name="LogInTab" Header="Log In">
             <Grid Margin="10" MinWidth="350" MinHeight="250" MaxWidth="400" MaxHeight="300">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -45,10 +45,10 @@
         <TabItem Name="RegisterTab" Header="Register">
             <Grid Margin="10" MinWidth="870" MinHeight="440" MaxWidth="1000" MaxHeight="600">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="0.5*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
