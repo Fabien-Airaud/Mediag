@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace Mediag.Models
 {
     public class Doctor : User
@@ -18,21 +20,40 @@ namespace Mediag.Models
             }
         }
 
+        public long HospitalId { get; set; }
+        private Hospital? _hospital;
+        [Required]
+        public Hospital? Hospital
+        {
+            get { return _hospital; }
+            set
+            {
+                if (_hospital != value)
+                {
+                    _hospital = value;
+                    OnPropertyChanged();
+                    IsValidRegister = CheckIsValidRegister();
+                }
+            }
+        }
+
         protected override bool CheckIsValidRegister()
         {
-            return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism);
+            return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism) && Hospital is not null;
         }
 
         public override void Reset()
         {
             base.Reset();
             Specialism = "";
+            Hospital = null;
         }
 
         public override void ResetToLogIn()
         {
             base.ResetToLogIn();
             Specialism = "";
+            Hospital = null;
         }
 
         public void CopyTo(Doctor target)
@@ -48,6 +69,7 @@ namespace Mediag.Models
             target.Password = Password;
             target.ConfirmPassword = Password;
             target.Specialism = Specialism;
+            target.Hospital = Hospital;
         }
 
         public static Doctor? GetDoctor(string username, string? password = null)
