@@ -160,7 +160,7 @@ namespace Mediag.Migrations
 
                     b.HasIndex("HospitalId");
 
-                    b.ToTable("Patient");
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("Mediag.Models.Doctor", b =>

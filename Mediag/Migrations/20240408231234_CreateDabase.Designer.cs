@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mediag.Migrations
 {
     [DbContext(typeof(MediagDbContext))]
-    [Migration("20240408044744_CreateDabase")]
+    [Migration("20240408231234_CreateDabase")]
     partial class CreateDabase
     {
         /// <inheritdoc />
@@ -125,10 +125,62 @@ namespace Mediag.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Mediag.Models.Patient", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<DateTime>("Birthdate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("HospitalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HospitalId");
+
+                    b.ToTable("Patients");
+                });
+
             modelBuilder.Entity("Mediag.Models.Doctor", b =>
                 {
                     b.HasOne("Mediag.Models.Hospital", "Hospital")
                         .WithMany("Doctors")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("Mediag.Models.Patient", b =>
+                {
+                    b.HasOne("Mediag.Models.Hospital", "Hospital")
+                        .WithMany()
                         .HasForeignKey("HospitalId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
