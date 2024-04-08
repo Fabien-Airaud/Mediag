@@ -31,6 +31,7 @@ namespace Mediag.Models
                 if (_hospital != value)
                 {
                     _hospital = value;
+                    HospitalId = value?.Id ?? 0;
                     OnPropertyChanged();
                     IsValidRegister = CheckIsValidRegister();
                 }
@@ -83,6 +84,7 @@ namespace Mediag.Models
         public static Doctor AddDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();
+            doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
             mediagDbContext.Doctors.Add(doctor);
             mediagDbContext.SaveChanges();
             return doctor;
@@ -102,12 +104,13 @@ namespace Mediag.Models
         {
             return obj is Doctor doctor &&
                    base.Equals(obj) &&
-                   Specialism == doctor.Specialism;
+                   Specialism == doctor.Specialism &&
+                   HospitalId == HospitalId;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), Specialism);
+            return HashCode.Combine(base.GetHashCode(), Specialism, HospitalId);
         }
     }
 }
