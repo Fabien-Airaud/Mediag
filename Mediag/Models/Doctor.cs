@@ -35,6 +35,20 @@ namespace Mediag.Models
             Specialism = "";
         }
 
+        public void CopyTo(Doctor target)
+        {
+            target.Id = Id;
+            target.LastName = LastName;
+            target.FirstName = FirstName;
+            target.Birthdate = Birthdate;
+            target.PhoneNumber = PhoneNumber;
+            target.Email = Email;
+            target.City = City;
+            target.Username = Username;
+            target.Password = Password;
+            target.Specialism = Specialism;
+        }
+
         public static Doctor AddDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();

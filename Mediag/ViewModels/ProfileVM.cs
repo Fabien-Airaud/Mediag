@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Mediag.ViewModels
@@ -7,6 +8,7 @@ namespace Mediag.ViewModels
     public class ProfileVM : INotifyPropertyChanged
     {
         public Models.Doctor Doctor { get; set; }
+        private Models.Doctor OldDoctor { get; set; }
 
         private string _editVisibility = "Hidden";
         public string EditVisibility
@@ -42,18 +44,27 @@ namespace Mediag.ViewModels
         private void ActiveEdit()
         {
             EditVisibility = "Visible";
+            if (!Doctor.Equals(OldDoctor)) Doctor.CopyTo(OldDoctor);
         }
 
         public ICommand SaveCommand { get; private set; }
         private void SaveProfile()
         {
             ViewVisibility = "Visible";
+            if (Doctor.Equals(OldDoctor))
+            {
+                MessageBox.Show("No changes were made.");
+                return;
+            }
+
+            MessageBox.Show("Profile saved.");
         }
 
         public ICommand CancelCommand { get; private set; }
         private void CancelEdit()
         {
             ViewVisibility = "Visible";
+            if (!OldDoctor.Equals(Doctor)) OldDoctor.CopyTo(Doctor);
         }
 
 
@@ -68,6 +79,7 @@ namespace Mediag.ViewModels
         public ProfileVM(Models.Doctor doctor)
         {
             Doctor = doctor;
+            OldDoctor = new Models.Doctor();
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
             SaveCommand = new RelayCommand(_ => true, _ => SaveProfile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
