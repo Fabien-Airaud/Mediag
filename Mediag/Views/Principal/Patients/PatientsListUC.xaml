@@ -24,7 +24,7 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid Name="MedicalFilesGrid" ItemsSource="{Binding Patients}" Grid.Row="1">
+        <DataGrid Name="MedicalFilesGrid" ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="0.3*" MinWidth="30"/>
                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*" MinWidth="100"/>
@@ -34,7 +34,7 @@
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*" MinWidth="150"/>
                 <DataGridTextColumn Header="Home city" Binding="{Binding City}" Width="*" MinWidth="150"/>
                 <DataGridTextColumn Header="Hospital" Binding="{Binding Hospital}" Width="*" MinWidth="150"/>
-                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="90">
+                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="90" MaxWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Grid>
