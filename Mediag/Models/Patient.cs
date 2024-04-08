@@ -33,7 +33,7 @@ namespace Mediag.Models
             Hospital = null;
         }
 
-        public void CopyTo(Doctor target)
+        public void CopyTo(Patient target)
         {
             target.Id = Id;
             target.LastName = LastName;
