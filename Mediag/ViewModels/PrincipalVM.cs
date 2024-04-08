@@ -32,7 +32,7 @@ namespace Mediag.ViewModels
         public ICommand PatientListCommand { get; private set; }
         private void DisplayPatientList()
         {
-            PrincipalContent = new Views.Principal.Patients.PatientsListUC(Doctor);
+            PrincipalContent = new Views.Principal.Patients.PatientsListUC();
         }
 
         public ICommand ProfileCommand { get; private set; }

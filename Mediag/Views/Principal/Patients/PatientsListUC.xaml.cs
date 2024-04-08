@@ -7,10 +7,10 @@ namespace Mediag.Views.Principal.Patients
     /// </summary>
     public partial class PatientsListUC : UserControl
     {
-        public PatientsListUC(Models.Doctor doctor)
+        public PatientsListUC()
         {
             InitializeComponent();
-            DataContext = new ViewModels.PatientListVM(doctor);
+            DataContext = new ViewModels.PatientListVM();
         }
     }
 }
