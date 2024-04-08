@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -9,6 +10,8 @@ namespace Mediag.ViewModels
     {
         public Models.Doctor Doctor { get; set; }
         private Models.Doctor OldDoctor { get; set; }
+
+        public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
         private string _editVisibility = "Hidden";
         public string EditVisibility
@@ -45,7 +48,7 @@ namespace Mediag.ViewModels
         {
             EditVisibility = "Visible";
             if (!Doctor.Equals(OldDoctor)) Doctor.CopyTo(OldDoctor);
-            if (!Doctor.Password.Equals(Doctor.ConfirmPassword)) Doctor.ConfirmPassword = Doctor.Password;
+            Doctor.Hospital = Hospitals.First(h => h.Id == Doctor.HospitalId);
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -87,6 +90,7 @@ namespace Mediag.ViewModels
             Doctor = new Models.Doctor();
             doctor.CopyTo(Doctor);
             OldDoctor = new Models.Doctor();
+            Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
             SaveCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => SaveProfile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
