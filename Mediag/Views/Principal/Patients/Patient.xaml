@@ -1,0 +1,66 @@
+﻿<Window x:Class="Mediag.Views.Principal.Patients.Patient"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Patient" WindowStartupLocation="CenterScreen"
+        MinHeight="350" MinWidth="800" SizeToContent="WidthAndHeight">
+
+    <Grid Margin="10" MinWidth="780" MaxWidth="1000" MaxHeight="500" MinHeight="300">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Patient" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
+
+        <Label Content="First name:" Grid.Row="1"/>
+        <Label Content="{Binding Patient.FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding Patient.FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Last name:" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="{Binding Patient.LastName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding Patient.LastName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Birthdate:" Grid.Row="2"/>
+        <Label Content="{Binding Patient.Birthdate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="yyyy-MM-dd"/>
+        <DatePicker SelectedDate="{Binding Patient.Birthdate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Home city:" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="{Binding Patient.City, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding Patient.City, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Email:" Grid.Row="3"/>
+        <Label Content="{Binding Patient.Email, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding Patient.Email, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Phone number:" Grid.Column="3" Grid.Row="3"/>
+        <Label Content="{Binding Patient.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding Patient.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Hospital:" Grid.Row="4"/>
+        <Label Content="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="4" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <Button Content="Edit patient" Grid.Row="5" Grid.ColumnSpan="5" Command="{Binding EditCommand}" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="5" Grid.ColumnSpan="5" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content="Save patient" Command="{Binding SaveCommand}" Style="{StaticResource GreenButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Cancel edit" Command="{Binding CancelCommand}" Grid.Column="1" Style="{StaticResource RedButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+
+    </Grid>
+</Window>
