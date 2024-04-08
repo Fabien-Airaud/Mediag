@@ -45,6 +45,24 @@ namespace Mediag.Models
             target.Hospital = Hospital;
         }
 
+        public static Patient AddPatient(Patient patient)
+        {
+            MediagDbContext mediagDbContext = new();
+            patient.Hospital = mediagDbContext.Hospitals.Find(patient.HospitalId);
+            mediagDbContext.Patients.Add(patient);
+            mediagDbContext.SaveChanges();
+            return patient;
+        }
+
+        public static Patient UpdatePatient(Patient patient)
+        {
+            MediagDbContext mediagDbContext = new();
+            Patient oldPatient = mediagDbContext.Patients.Find(patient.Id)!; // Patient is not null
+            patient.CopyTo(oldPatient);
+            mediagDbContext.SaveChanges();
+            return patient;
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Patient patient &&
