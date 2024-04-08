@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Mediag.ViewModels
@@ -6,6 +7,8 @@ namespace Mediag.ViewModels
     public class SignLogInVM
     {
         public Models.Doctor Doctor { get; set; }
+
+        public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
         public Action GoToLogIn { get; set; } = () => { };
 
@@ -46,6 +49,7 @@ namespace Mediag.ViewModels
         public SignLogInVM()
         {
             Doctor = new Models.Doctor();
+            Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
             RegisterCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => Register());
             LogInCommand = new RelayCommand(_ => Doctor.IsValidLogIn, _ => LogIn());
         }

@@ -81,7 +81,7 @@
                 <TextBox Text="{Binding Doctor.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3"/>
 
                 <Label Content="Hospital:" Grid.Row="4"/>
-                <ComboBox Grid.Column="1" Grid.Row="4"/>
+                <ComboBox SelectedItem="{Binding Doctor.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="4"/>
                 <Label Content="Specialism:" Grid.Column="3" Grid.Row="4"/>
                 <TextBox Text="{Binding Doctor.Specialism, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="4"/>
                 
