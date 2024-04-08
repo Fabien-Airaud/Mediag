@@ -46,6 +46,7 @@ namespace Mediag.Models
             target.City = City;
             target.Username = Username;
             target.Password = Password;
+            target.ConfirmPassword = Password;
             target.Specialism = Specialism;
         }
 
