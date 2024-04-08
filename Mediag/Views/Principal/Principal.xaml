@@ -19,6 +19,16 @@
                     <Image Source="/Views/Icons/Home Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem Header="_Entities">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/Entities Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+                <MenuItem Header="_Manage Patients" Command="{Binding PatientsListCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/UserList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
             <MenuItem Header="_Profile" Command="{Binding ProfileCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Doctor Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
