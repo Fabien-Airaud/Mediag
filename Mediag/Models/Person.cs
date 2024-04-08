@@ -39,7 +39,7 @@ namespace Mediag.Models
             }
         }
 
-        private DateTime _birthdate;
+        private DateTime _birthdate = DateTime.Today.AddYears(-25);
         [Column(TypeName = "date")]
         public DateTime Birthdate
         {
