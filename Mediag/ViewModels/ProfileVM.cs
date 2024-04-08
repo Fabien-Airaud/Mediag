@@ -45,6 +45,7 @@ namespace Mediag.ViewModels
         {
             EditVisibility = "Visible";
             if (!Doctor.Equals(OldDoctor)) Doctor.CopyTo(OldDoctor);
+            if (!Doctor.Password.Equals(Doctor.ConfirmPassword)) Doctor.ConfirmPassword = Doctor.Password;
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -83,10 +84,11 @@ namespace Mediag.ViewModels
 
         public ProfileVM(Models.Doctor doctor)
         {
-            Doctor = doctor;
+            Doctor = new Models.Doctor();
+            doctor.CopyTo(Doctor);
             OldDoctor = new Models.Doctor();
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
-            SaveCommand = new RelayCommand(_ => true, _ => SaveProfile());
+            SaveCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => SaveProfile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
         }
     }
