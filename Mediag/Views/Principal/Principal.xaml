@@ -23,7 +23,7 @@
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Entities Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
-                <MenuItem Header="_Manage Patients" Command="{Binding PatientsListCommand}">
+                <MenuItem Header="_Manage Patients" Command="{Binding PatientListCommand}">
                     <MenuItem.Icon>
                         <Image Source="/Views/Icons/UserList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </MenuItem.Icon>
