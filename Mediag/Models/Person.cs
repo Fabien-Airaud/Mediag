@@ -140,5 +140,22 @@ namespace Mediag.Models
             Email = "";
             City = "";
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Person person &&
+                   Id == person.Id &&
+                   LastName == person.LastName &&
+                   FirstName == person.FirstName &&
+                   Birthdate == person.Birthdate &&
+                   PhoneNumber == person.PhoneNumber &&
+                   Email == person.Email &&
+                   City == person.City;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, LastName, FirstName, Birthdate, PhoneNumber, Email, City);
+        }
     }
 }

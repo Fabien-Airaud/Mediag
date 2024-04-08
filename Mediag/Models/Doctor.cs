@@ -1,4 +1,5 @@
-﻿namespace Mediag.Models
+﻿
+namespace Mediag.Models
 {
     public class Doctor : User
     {
@@ -48,6 +49,18 @@
             if (password is null)
                 return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
             return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Doctor doctor &&
+                   base.Equals(obj) &&
+                   Specialism == doctor.Specialism;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Specialism);
         }
     }
 }

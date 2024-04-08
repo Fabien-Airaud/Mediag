@@ -91,5 +91,18 @@ namespace Mediag.Models
             base.Reset();
             ConfirmPassword = "";
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is User user &&
+                   base.Equals(obj) &&
+                   Username == user.Username &&
+                   Password == user.Password;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), Username, Password);
+        }
     }
 }
