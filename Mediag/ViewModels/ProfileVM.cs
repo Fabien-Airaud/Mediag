@@ -51,12 +51,17 @@ namespace Mediag.ViewModels
         private void SaveProfile()
         {
             ViewVisibility = "Visible";
-            if (Doctor.Equals(OldDoctor))
+            if (Doctor.Equals(OldDoctor)) return; // No changes
+
+            // Check if username already exists when edited
+            if (!Doctor.Username.Equals(OldDoctor.Username) && Models.Doctor.GetDoctor(Doctor.Username) is not null)
             {
-                MessageBox.Show("No changes were made.");
+                MessageBox.Show("Edit failed, Username already exists!", "Edit profile");
+                OldDoctor.CopyTo(Doctor);
                 return;
             }
 
+            Doctor = Models.Doctor.UpdateDoctor(Doctor);
             MessageBox.Show("Profile saved.");
         }
 
