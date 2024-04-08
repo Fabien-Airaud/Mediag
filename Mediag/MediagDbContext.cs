@@ -7,7 +7,7 @@ namespace Mediag
     {
         public DbSet<Models.Hospital> Hospitals { get; set; }
         public DbSet<Models.Doctor> Doctors { get; set; }
-        public DbSet<Models.Patient> Patient { get; set; }
+        public DbSet<Models.Patient> Patients { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
