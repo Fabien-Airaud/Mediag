@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mediag.Migrations
 {
     [DbContext(typeof(MediagDbContext))]
-    [Migration("20240407220822_CreateDabase_WithSimpleDoctors")]
-    partial class CreateDabase_WithSimpleDoctors
+    [Migration("20240408044744_CreateDabase")]
+    partial class CreateDabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +48,9 @@ namespace Mediag.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long>("HospitalId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,10 +73,72 @@ namespace Mediag.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("HospitalId");
+
                     b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Doctors");
+                });
+
+            modelBuilder.Entity("Mediag.Models.Hospital", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name", "City")
+                        .IsUnique();
+
+                    b.ToTable("Hospitals");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            City = "Montréal",
+                            Name = "Hôpital général de Montréal"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            City = "Greenfield Park",
+                            Name = "Hôpital Charles-Le Moyne"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            City = "Victoriaville",
+                            Name = "Hôtel-Dieu d'Arthabaska"
+                        });
+                });
+
+            modelBuilder.Entity("Mediag.Models.Doctor", b =>
+                {
+                    b.HasOne("Mediag.Models.Hospital", "Hospital")
+                        .WithMany("Doctors")
+                        .HasForeignKey("HospitalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("Mediag.Models.Hospital", b =>
+                {
+                    b.Navigation("Doctors");
                 });
 #pragma warning restore 612, 618
         }
