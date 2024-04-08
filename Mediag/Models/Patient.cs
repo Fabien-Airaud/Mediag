@@ -44,5 +44,17 @@ namespace Mediag.Models
             target.City = City;
             target.Hospital = Hospital;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Patient patient &&
+                   base.Equals(obj) &&
+                   HospitalId == patient.HospitalId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(base.GetHashCode(), HospitalId);
+        }
     }
 }
