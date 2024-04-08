@@ -49,6 +49,14 @@ namespace Mediag.Models
             target.Specialism = Specialism;
         }
 
+        public static Doctor? GetDoctor(string username, string? password = null)
+        {
+            MediagDbContext mediagDbContext = new();
+            if (password is null)
+                return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
+            return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+        }
+
         public static Doctor AddDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();
@@ -57,13 +65,15 @@ namespace Mediag.Models
             return doctor;
         }
 
-        public static Doctor? GetDoctor(string username, string? password = null)
+        public static Doctor UpdateDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();
-            if (password is null)
-                return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
-            return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
+            Doctor oldDoctor = mediagDbContext.Doctors.Find(doctor.Id)!; // Doctor is not null
+            doctor.CopyTo(oldDoctor);
+            mediagDbContext.SaveChanges();
+            return doctor;
         }
+
 
         public override bool Equals(object? obj)
         {
