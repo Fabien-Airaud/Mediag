@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
-            <Button Margin="10">
+            <Button Margin="10" Command="{Binding NewCommand}">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <Image Source="/Views/Icons/Add Icon.png" Width="20" Height="20"/>
