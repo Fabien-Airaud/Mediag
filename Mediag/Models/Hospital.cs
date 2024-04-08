@@ -69,8 +69,15 @@ namespace Mediag.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public static ICollection<Hospital> GetHospitals()
+        {
+            MediagDbContext mediagDbContext = new();
+            return [.. mediagDbContext.Hospitals]; // Copy the collection
+        }
+
         public override string? ToString()
         {
+            IsValid = CheckIsValid();
             return IsValid ? $"{Name} in {City}" : base.ToString();
         }
     }
