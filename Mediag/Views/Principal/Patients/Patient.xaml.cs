@@ -10,7 +10,10 @@ namespace Mediag.Views.Principal.Patients
         public Patient(Models.Patient? patient = null, bool isEditMode = true)
         {
             InitializeComponent();
-            DataContext = new ViewModels.PatientVM(patient, isEditMode);
+            DataContext = new ViewModels.PatientVM(patient, isEditMode)
+            {
+                ClosePatient = () => Close()
+            };
         }
     }
 }

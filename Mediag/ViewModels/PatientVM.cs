@@ -12,6 +12,8 @@ namespace Mediag.ViewModels
 
         public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
+        public Action ClosePatient { get; set; } = () => { };
+
         private string _editVisibility;
         public string EditVisibility
         {
@@ -63,8 +65,10 @@ namespace Mediag.ViewModels
         public ICommand CancelCommand { get; private set; }
         private void CancelEdit()
         {
-            //ViewVisibility = "Visible";
-            //if (!OldPatient.Equals(Patient)) OldPatient.CopyTo(Patient);
+            if (!OldPatient.IsValidRegister) ClosePatient(); // Close window if was in create mode
+
+            ViewVisibility = "Visible";
+            if (!OldPatient.Equals(Patient)) OldPatient.CopyTo(Patient);
         }
 
 
