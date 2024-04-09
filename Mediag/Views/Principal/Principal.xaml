@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="Mediag" WindowStartupLocation="CenterScreen"
-        Height="480" Width="900" MinHeight="400" MinWidth="890">
+        Height="480" Width="1000" MinHeight="400" MinWidth="890">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -23,9 +23,15 @@
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Entities Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
+                
                 <MenuItem Header="_Manage Patients" Command="{Binding PatientListCommand}">
                     <MenuItem.Icon>
                         <Image Source="/Views/Icons/UserList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Manage Medical Files" Command="{Binding MedicalFileListCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/MedicalFileList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
