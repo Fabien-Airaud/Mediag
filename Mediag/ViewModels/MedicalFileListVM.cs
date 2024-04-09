@@ -11,12 +11,12 @@ namespace Mediag.ViewModels
         public ICommand NewCommand { get; private set; }
 
         public ICommand ViewCommand { get; private set; }
-        private void ViewPatient(object? patient)
+        private void ViewMedicalFile(object? medicalFile)
         {
-            MessageBox.Show("View Medical File");
-            //Views.Principal.Patients.Patient patientWindow = patient is null ? new() : new((Models.Patient)patient, false);
-            //patientWindow.Show();
-            //patientWindow.Closed += (_, _) => RefreshPatients();
+            //MessageBox.Show("View Medical File");
+            Views.Principal.MedicalFiles.MedicalFile medicalFileWindow = medicalFile is null ? new() : new((Models.MedicalFile)medicalFile, false);
+            medicalFileWindow.Show();
+            medicalFileWindow.Closed += (_, _) => RefreshMedicalFiles();
         }
 
         public ICommand EditCommand { get; private set; }
@@ -25,37 +25,45 @@ namespace Mediag.ViewModels
             // Open a new window to edit the medical file, or create a new medical file if medical file is null
             Views.Principal.MedicalFiles.MedicalFile medicalFileWindow = medicalFile is null ? new() : new((Models.MedicalFile)medicalFile);
             medicalFileWindow.Show();
-            //medicalFileWindow.Closed += (_, _) => RefreshPatients();
+            medicalFileWindow.Closed += (_, _) => RefreshMedicalFiles();
         }
 
         public ICommand DeleteCommand { get; private set; }
         private void DeleteMedicalFile(object? medicalFile = null)
         {
-            MessageBox.Show("Delete Medical File");
-            //if (patient is null) return;
+            //MessageBox.Show("Delete Medical File");
+            if (medicalFile is null) return;
 
-            //Models.Patient patientToDelete = (Models.Patient)patient;
-            //MessageBoxResult result = MessageBox.Show(
-            //    "Are you sure you want to delete this patient?\n" +
-            //    $"Patient ({patientToDelete.Id}): {patientToDelete.FirstName} {patientToDelete.LastName}",
-            //    "Delete Patient",
-            //    MessageBoxButton.YesNo,
-            //    MessageBoxImage.Warning);
-            //if (result.Equals(MessageBoxResult.Yes))
-            //{
-            //    Models.Patient.DeletePatient(patientToDelete);
-            //    Patients.Remove(patientToDelete);
-            //}
+            Models.MedicalFile medicalFileToDelete = (Models.MedicalFile)medicalFile;
+            MessageBoxResult result = MessageBox.Show(
+                "Are you sure you want to delete this medical file?\n" +
+                $"Medical file ({medicalFileToDelete.Id}): {medicalFileToDelete.Patient}",
+                "Delete Medical file",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+            if (result.Equals(MessageBoxResult.Yes))
+            {
+                Models.MedicalFile.DeleteMedicalFile(medicalFileToDelete);
+                MedicalFiles.Remove(medicalFileToDelete);
+            }
         }
 
         public MedicalFileListVM()
         {
-            MedicalFiles = new ObservableCollection<Models.MedicalFile>();
+            MedicalFiles = new ObservableCollection<Models.MedicalFile>(Models.MedicalFile.GetMedicalFiles());
             NewCommand = new RelayCommand(_ => true, _ => EditMedicalFile());
-            ViewCommand = new RelayCommand(_ => true, medicalFile => ViewPatient(medicalFile));
+            ViewCommand = new RelayCommand(_ => true, medicalFile => ViewMedicalFile(medicalFile));
             EditCommand = new RelayCommand(_ => true, medicalFile => EditMedicalFile(medicalFile));
             DeleteCommand = new RelayCommand(_ => true, medicalFile => DeleteMedicalFile(medicalFile));
+        }
 
+        private void RefreshMedicalFiles()
+        {
+            MedicalFiles.Clear();
+            foreach (Models.MedicalFile medicalFile in Models.MedicalFile.GetMedicalFiles())
+            {
+                MedicalFiles.Add(medicalFile);
+            }
         }
     }
 }

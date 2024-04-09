@@ -62,8 +62,8 @@ namespace Mediag.ViewModels
             ViewVisibility = "Visible";
             if (MedicalFile.Equals(OldMedicalFile)) return; // No changes to save
 
-            //if (!OldMedicalFile.IsValid) MedicalFile = Models.MedicalFile.AddPatient(MedicalFile);
-            //else MedicalFile = Models.MedicalFile.UpdatePatient(MedicalFile);
+            if (!OldMedicalFile.IsValid) MedicalFile = Models.MedicalFile.AddMedicalFile(MedicalFile);
+            else MedicalFile = Models.MedicalFile.UpdateMedicalFile(MedicalFile);
             MessageBox.Show("Medical file saved.");
         }
 
