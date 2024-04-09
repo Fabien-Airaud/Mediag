@@ -48,7 +48,6 @@ namespace Mediag.ViewModels
         {
             EditVisibility = "Visible";
             if (!Doctor.Equals(OldDoctor)) Doctor.CopyTo(OldDoctor);
-            Doctor.Hospital = Hospitals.First(h => h.Id == Doctor.HospitalId);
         }
 
         public ICommand SaveCommand { get; private set; }
@@ -90,7 +89,12 @@ namespace Mediag.ViewModels
             Doctor = new Models.Doctor();
             doctor.CopyTo(Doctor);
             OldDoctor = new Models.Doctor();
+            doctor.CopyTo(OldDoctor);
+
             Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
+
+            Doctor.Hospital = Hospitals.First(h => h.Id == Doctor.HospitalId);
+
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
             SaveCommand = new RelayCommand(_ => Doctor.IsValidRegister, _ => SaveProfile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
