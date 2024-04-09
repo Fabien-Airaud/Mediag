@@ -20,7 +20,6 @@ namespace Mediag.Models
                 {
                     _name = value;
                     OnPropertyChanged();
-                    IsValid = CheckIsValid();
                 }
             }
         }
@@ -35,7 +34,6 @@ namespace Mediag.Models
                 {
                     _city = value;
                     OnPropertyChanged();
-                    IsValid = CheckIsValid();
                 }
             }
         }
@@ -71,6 +69,10 @@ namespace Mediag.Models
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName != nameof(IsValid))
+            {
+                IsValid = CheckIsValid();
+            }
         }
 
         public static ICollection<Hospital> GetHospitals()
