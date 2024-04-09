@@ -88,11 +88,14 @@ namespace Mediag.ViewModels
             patient?.CopyTo(Patient);
             OldPatient = new Models.Patient();
             Patient.CopyTo(OldPatient);
+
             Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
+
             if (Patient.IsValidRegister) Patient.Hospital = Hospitals.First(h => h.Id == Patient.HospitalId);
 
             _editVisibility = isEditMode || patient is null ? "Visible" : "Hidden"; // Edit mode is default when patient is null
             _viewVisibility = isEditMode || patient is null ? "Hidden" : "Visible"; // View mode is default when patient is not null
+
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
             SaveCommand = new RelayCommand(_ => Patient.IsValidRegister, _ => SaveProfile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
