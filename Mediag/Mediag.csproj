@@ -28,6 +28,7 @@
     <Resource Include="Views\Icons\Entities Icon.png" />
     <Resource Include="Views\Icons\Eye Icon.png" />
     <Resource Include="Views\Icons\Home Icon.png" />
+    <Resource Include="Views\Icons\MedicalFileList Icon.png" />
     <Resource Include="Views\Icons\Stethoscope Icon.png" />
     <Resource Include="Views\Icons\UserList Icon.png" />
     <Resource Include="Views\Principal\Home\BackgroundHome.jpeg" />
