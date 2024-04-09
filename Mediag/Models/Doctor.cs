@@ -72,6 +72,17 @@ namespace Mediag.Models
             target.Hospital = Hospital;
         }
 
+        public static ICollection<Doctor> GetDoctors()
+        {
+            MediagDbContext mediagDbContext = new();
+            ICollection<Doctor> doctors = [.. mediagDbContext.Doctors];
+            foreach (Doctor doctor in doctors)
+            {
+                doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
+            }
+            return doctors;
+        }
+
         public static Doctor? GetDoctor(string username, string? password = null)
         {
             MediagDbContext mediagDbContext = new();
