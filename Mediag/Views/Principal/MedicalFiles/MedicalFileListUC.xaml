@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" Background="White">
 
-    <Grid MinWidth="800" MinHeight="300" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+    <Grid MinHeight="300" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -24,16 +24,16 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid Name="MedicalFilesGrid" Grid.Row="1">
+        <DataGrid ItemsSource="{Binding MedicalFiles}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="0.3*" MinWidth="30"/>
-                <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*" MinWidth="100"/>
-                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" Width="*" MinWidth="100"/>
+                <DataGridTextColumn Header="Patient" Binding="{Binding Patient}" Width="1.5*" MinWidth="150"/>
+                <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor}" Width="1.5*" MinWidth="150"/>
                 <DataGridTextColumn Header="Target illness" Binding="{Binding TargetIllness}" Width="*" MinWidth="120"/>
-                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90"/>
-                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:yyyy/MM/dd HH:mm:ss}}" Width="1.5*" MinWidth="150"/>
-                <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90"/>
                 <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis}" Width="*" MinWidth="90"/>
+                <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
+                <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:yyyy/MM/dd HH:mm:ss}}" Width="1.5*" MinWidth="150" MaxWidth="160"/>
+                <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
                 <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="90" MaxWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
