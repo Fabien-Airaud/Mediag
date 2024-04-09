@@ -35,14 +35,14 @@
         <Label Content="{Binding MedicalFile.Patient, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox SelectedItem="{Binding MedicalFile.Patient, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Patients}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="Start date:" Grid.Column="3" Grid.Row="1"/>
-        <Label Content="{Binding MedicalFile.StartDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="{Binding MedicalFile.StartDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="yyyy-MM-dd"/>
         <DatePicker SelectedDate="{Binding MedicalFile.StartDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Doctor:" Grid.Row="2"/>
         <Label Content="{Binding MedicalFile.Doctor, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox SelectedItem="{Binding MedicalFile.Doctor, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Doctors}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <Label Content="End Date:" Grid.Column="3" Grid.Row="2"/>
-        <Label Content="{Binding MedicalFile.EndDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="{Binding MedicalFile.EndDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="yyyy-MM-dd"/>
         <DatePicker SelectedDate="{Binding MedicalFile.EndDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Hospital:" Grid.Row="3"/>
