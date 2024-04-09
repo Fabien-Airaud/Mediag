@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Mediag.Models
 {
@@ -73,6 +72,13 @@ namespace Mediag.Models
             patient.CopyTo(oldPatient);
             mediagDbContext.SaveChanges();
             return patient;
+        }
+
+        public static void DeletePatient(Patient patient)
+        {
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.Patients.Remove(patient);
+            mediagDbContext.SaveChanges();
         }
 
         public override bool Equals(object? obj)
