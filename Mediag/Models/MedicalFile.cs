@@ -147,6 +147,47 @@ namespace Mediag.Models
             target.Hospital = Hospital;
         }
 
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, MedicalFile medicalFile)
+        {
+            medicalFile.Patient = mediagDbContext.Patients.Find(medicalFile.PatientId);
+            medicalFile.Doctor = mediagDbContext.Doctors.Find(medicalFile.DoctorId);
+            medicalFile.Hospital = mediagDbContext.Hospitals.Find(medicalFile.HospitalId);
+        }
+
+        public static ICollection<MedicalFile> GetMedicalFiles()
+        {
+            MediagDbContext mediagDbContext = new();
+            ICollection<MedicalFile> medicalFiles = [.. mediagDbContext.MedicalFiles];
+            foreach (MedicalFile medicalFile in medicalFiles) CorrectInObjects(mediagDbContext, medicalFile);
+            return medicalFiles;
+        }
+
+        public static MedicalFile AddMedicalFile(MedicalFile medicalFile)
+        {
+            MediagDbContext mediagDbContext = new();
+            CorrectInObjects(mediagDbContext, medicalFile);
+            mediagDbContext.MedicalFiles.Add(medicalFile);
+            mediagDbContext.SaveChanges();
+            return medicalFile;
+        }
+
+        public static MedicalFile UpdateMedicalFile(MedicalFile medicalFile)
+        {
+            MediagDbContext mediagDbContext = new();
+            MedicalFile oldMedicalFile = mediagDbContext.MedicalFiles.Find(medicalFile.Id)!; // Medical file is not null
+            medicalFile.CopyTo(oldMedicalFile);
+            CorrectInObjects(mediagDbContext, oldMedicalFile);
+            mediagDbContext.SaveChanges();
+            return medicalFile;
+        }
+
+        public static void DeleteMedicalFile(MedicalFile medicalFile)
+        {
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.MedicalFiles.Remove(medicalFile);
+            mediagDbContext.SaveChanges();
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is MedicalFile file &&
