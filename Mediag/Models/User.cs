@@ -17,7 +17,6 @@ namespace Mediag.Models
                     _username = value;
                     OnPropertyChanged();
                     IsValidLogIn = CheckIsValidLogIn();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -33,7 +32,6 @@ namespace Mediag.Models
                     _password = value;
                     OnPropertyChanged();
                     IsValidLogIn = CheckIsValidLogIn();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -49,7 +47,6 @@ namespace Mediag.Models
                 {
                     _confirmPassword = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }

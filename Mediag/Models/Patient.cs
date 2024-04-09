@@ -17,7 +17,6 @@ namespace Mediag.Models
                     _hospital = value;
                     HospitalId = value?.Id ?? 0;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }

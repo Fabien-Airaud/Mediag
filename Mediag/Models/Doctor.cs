@@ -14,7 +14,6 @@ namespace Mediag.Models
                 {
                     _specialism = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -32,7 +31,6 @@ namespace Mediag.Models
                     _hospital = value;
                     HospitalId = value?.Id ?? 0;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -101,6 +99,11 @@ namespace Mediag.Models
             return doctor;
         }
 
+
+        public override string? ToString()
+        {
+            return "Dr." + base.ToString();
+        }
 
         public override bool Equals(object? obj)
         {

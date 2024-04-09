@@ -19,7 +19,6 @@ namespace Mediag.Models
                 {
                     _lastName = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -34,7 +33,6 @@ namespace Mediag.Models
                 {
                     _firstName = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -50,7 +48,6 @@ namespace Mediag.Models
                 {
                     _birthdate = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -66,7 +63,6 @@ namespace Mediag.Models
                 {
                     _phoneNumber = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -82,7 +78,6 @@ namespace Mediag.Models
                 {
                     _email = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -97,7 +92,6 @@ namespace Mediag.Models
                 {
                     _city = value;
                     OnPropertyChanged();
-                    IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -129,16 +123,26 @@ namespace Mediag.Models
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName != nameof(IsValidRegister))
+            {
+                IsValidRegister = CheckIsValidRegister();
+            }
         }
 
         public virtual void Reset()
         {
             LastName = "";
             FirstName = "";
-            Birthdate = DateTime.MinValue;
+            Birthdate = DateTime.Today.AddYears(-25);
             PhoneNumber = "";
             Email = "";
             City = "";
+        }
+
+        public override string? ToString()
+        {
+            IsValidRegister = CheckIsValidRegister();
+            return IsValidRegister ? $"{FirstName} {LastName}, birthdate: {Birthdate}" : base.ToString();
         }
 
         public override bool Equals(object? obj)
