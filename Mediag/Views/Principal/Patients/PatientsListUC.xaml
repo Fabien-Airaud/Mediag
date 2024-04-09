@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" Background="White">
     
-    <Grid MinWidth="800" MinHeight="300" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+    <Grid MinHeight="300" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
@@ -24,12 +24,12 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid Name="MedicalFilesGrid" ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False">
+        <DataGrid ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="0.3*" MinWidth="30"/>
                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*" MinWidth="100"/>
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" Width="*" MinWidth="100"/>
-                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90"/>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
                 <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}" Width="*" MinWidth="130"/>
                 <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" MinWidth="150"/>
                 <DataGridTextColumn Header="Home city" Binding="{Binding City}" Width="*" MinWidth="150"/>
