@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" Background="White">
     
-    <Grid MinWidth="890" MinHeight="300">
+    <Grid MinWidth="800" MinHeight="300" ScrollViewer.HorizontalScrollBarVisibility="Auto">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
