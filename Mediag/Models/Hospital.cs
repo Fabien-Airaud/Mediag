@@ -44,6 +44,8 @@ namespace Mediag.Models
 
         public ICollection<Patient> Patients { get; set; } = [];
 
+        public ICollection<MedicalFile> MedicalFiles { get; set; } = [];
+
         private bool _isValid;
         [NotMapped]
         public bool IsValid

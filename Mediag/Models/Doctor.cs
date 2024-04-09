@@ -35,6 +35,8 @@ namespace Mediag.Models
             }
         }
 
+        public ICollection<MedicalFile> MedicalFiles { get; set; } = [];
+
         protected override bool CheckIsValidRegister()
         {
             return base.CheckIsValidRegister() && !string.IsNullOrWhiteSpace(Specialism) && Hospital is not null;
