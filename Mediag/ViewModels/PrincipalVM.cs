@@ -35,6 +35,12 @@ namespace Mediag.ViewModels
             PrincipalContent = new Views.Principal.Patients.PatientsListUC();
         }
 
+        public ICommand MedicalFileListCommand { get; private set; }
+        private void DisplayMedicalFileList()
+        {
+            PrincipalContent = new Views.Principal.MedicalFiles.MedicalFileListUC();
+        }
+
         public ICommand ProfileCommand { get; private set; }
         private void DisplayProfile()
         {
@@ -55,6 +61,7 @@ namespace Mediag.ViewModels
             Doctor = doctor;
             HomeCommand = new RelayCommand(_ => true, _ => DisplayHome());
             PatientListCommand = new RelayCommand(_ => true, _ => DisplayPatientList());
+            MedicalFileListCommand = new RelayCommand(_ => true, _ => DisplayMedicalFileList());
             ProfileCommand = new RelayCommand(_ => true, _ => DisplayProfile());
         }
     }
