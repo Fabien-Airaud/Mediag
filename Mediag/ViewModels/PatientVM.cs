@@ -54,14 +54,14 @@ namespace Mediag.ViewModels
         }
 
         public ICommand SaveCommand { get; private set; }
-        private void SaveProfile()
+        private void SavePatient()
         {
             ViewVisibility = "Visible";
             if (Patient.Equals(OldPatient)) return; // No changes to save
 
             if (!OldPatient.IsValidRegister) Patient = Models.Patient.AddPatient(Patient);
             else Patient = Models.Patient.UpdatePatient(Patient);
-            MessageBox.Show("Profile saved.");
+            MessageBox.Show("Patient saved.");
         }
 
         public ICommand CancelCommand { get; private set; }
@@ -97,7 +97,7 @@ namespace Mediag.ViewModels
             _viewVisibility = isEditMode || patient is null ? "Hidden" : "Visible"; // View mode is default when patient is not null
 
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
-            SaveCommand = new RelayCommand(_ => Patient.IsValidRegister, _ => SaveProfile());
+            SaveCommand = new RelayCommand(_ => Patient.IsValidRegister, _ => SavePatient());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
         }
     }
