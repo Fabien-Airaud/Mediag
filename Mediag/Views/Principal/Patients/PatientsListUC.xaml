@@ -24,16 +24,16 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <DataGrid Name="MedicalFilesGrid" ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Grid.Row="1">
+        <DataGrid Name="MedicalFilesGrid" ItemsSource="{Binding Patients}" AutoGenerateColumns="False" Grid.Row="1" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="0.3*" MinWidth="30"/>
                 <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" Width="*" MinWidth="100"/>
                 <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" Width="*" MinWidth="100"/>
                 <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90"/>
                 <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}" Width="*" MinWidth="130"/>
-                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="1.5*" MinWidth="150"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" MinWidth="150"/>
                 <DataGridTextColumn Header="Home city" Binding="{Binding City}" Width="*" MinWidth="150"/>
-                <DataGridTextColumn Header="Hospital" Binding="{Binding Hospital}" Width="*" MinWidth="150"/>
+                <DataGridTextColumn Header="Hospital" Binding="{Binding Hospital}" Width="2*" MinWidth="150"/>
                 <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="90" MaxWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -44,17 +44,17 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Button Style="{StaticResource IconButton}" Margin="5,0,5,0">
+                                <Button Command="{Binding DataContext.ViewCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Eye Icon.png" Width="16" Height="16"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Grid.Column="1" Style="{StaticResource IconButton}" Margin="5,0,5,0">
+                                <Button Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Grid.Column="1" Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Edit Icon.png" Width="16" Height="16"/>
                                     </Button.Content>
                                 </Button>
-                                <Button Grid.Column="2" Style="{StaticResource IconButton}" Margin="5,0,5,0">
+                                <Button Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Grid.Column="2" Style="{StaticResource IconButton}" Margin="5,0,5,0">
                                     <Button.Content>
                                         <Image Source="/Views/Icons/Delete Icon.png" Width="16" Height="16"/>
                                     </Button.Content>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mediag.Models
 {
@@ -43,6 +44,17 @@ namespace Mediag.Models
             target.Email = Email;
             target.City = City;
             target.Hospital = Hospital;
+        }
+
+        public static ICollection<Patient> GetPatients()
+        {
+            MediagDbContext mediagDbContext = new();
+            ICollection<Patient> patients = [.. mediagDbContext.Patients];
+            foreach (Patient patient in patients)
+            {
+                patient.Hospital = mediagDbContext.Hospitals.Find(patient.HospitalId);
+            }
+            return patients;
         }
 
         public static Patient AddPatient(Patient patient)
