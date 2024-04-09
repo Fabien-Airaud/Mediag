@@ -79,8 +79,7 @@ namespace Mediag.Models
 
         public override string? ToString()
         {
-            IsValid = CheckIsValid();
-            return IsValid ? $"{Name} in {City}" : base.ToString();
+            return $"{Name} in {City}";
         }
     }
 }

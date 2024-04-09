@@ -102,7 +102,7 @@ namespace Mediag.Models
 
         public override string? ToString()
         {
-            return "Dr." + base.ToString();
+            return "Dr. " + base.ToString();
         }
 
         public override bool Equals(object? obj)

@@ -141,8 +141,7 @@ namespace Mediag.Models
 
         public override string? ToString()
         {
-            IsValidRegister = CheckIsValidRegister();
-            return IsValidRegister ? $"{FirstName} {LastName}, birthdate: {Birthdate}" : base.ToString();
+            return $"{FirstName} {LastName}";
         }
 
         public override bool Equals(object? obj)
