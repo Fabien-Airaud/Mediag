@@ -18,9 +18,8 @@ namespace Mediag.Models
             }
         }
 
-        public long HospitalId { get; set; }
+        public long? HospitalId { get; set; }
         private Hospital? _hospital;
-        [Required]
         public Hospital? Hospital
         {
             get { return _hospital; }

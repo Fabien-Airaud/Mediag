@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Mediag.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDabase : Migration
+    public partial class CreateDatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,7 +34,7 @@ namespace Mediag.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Specialism = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HospitalId = table.Column<long>(type: "bigint", nullable: false),
+                    HospitalId = table.Column<long>(type: "bigint", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthdate = table.Column<DateTime>(type: "date", nullable: false),
@@ -51,8 +51,7 @@ namespace Mediag.Migrations
                         name: "FK_Doctors_Hospitals_HospitalId",
                         column: x => x.HospitalId,
                         principalTable: "Hospitals",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -61,7 +60,7 @@ namespace Mediag.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HospitalId = table.Column<long>(type: "bigint", nullable: false),
+                    HospitalId = table.Column<long>(type: "bigint", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Birthdate = table.Column<DateTime>(type: "date", nullable: false),
@@ -76,6 +75,40 @@ namespace Mediag.Migrations
                         name: "FK_Patients_Hospitals_HospitalId",
                         column: x => x.HospitalId,
                         principalTable: "Hospitals",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MedicalFiles",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PatientId = table.Column<long>(type: "bigint", nullable: false),
+                    DoctorId = table.Column<long>(type: "bigint", nullable: false),
+                    HospitalId = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MedicalFiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MedicalFiles_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MedicalFiles_Hospitals_HospitalId",
+                        column: x => x.HospitalId,
+                        principalTable: "Hospitals",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MedicalFiles_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -108,6 +141,21 @@ namespace Mediag.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicalFiles_DoctorId",
+                table: "MedicalFiles",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicalFiles_HospitalId",
+                table: "MedicalFiles",
+                column: "HospitalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MedicalFiles_PatientId",
+                table: "MedicalFiles",
+                column: "PatientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patients_HospitalId",
                 table: "Patients",
                 column: "HospitalId");
@@ -116,6 +164,9 @@ namespace Mediag.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "MedicalFiles");
+
             migrationBuilder.DropTable(
                 name: "Doctors");
 

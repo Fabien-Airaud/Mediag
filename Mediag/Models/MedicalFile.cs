@@ -10,6 +10,7 @@ namespace Mediag.Models
         public long Id { get; set; }
 
         private DateTime _startDate = DateTime.Today;
+        [Column(TypeName = "date")]
         public DateTime StartDate
         {
             get { return _startDate; }
@@ -38,6 +39,7 @@ namespace Mediag.Models
         }
 
         private DateTime? _endDate;
+        [Column(TypeName = "date")]
         public DateTime? EndDate
         {
             get { return _endDate; }
@@ -85,9 +87,8 @@ namespace Mediag.Models
             }
         }
 
-        public long HospitalId { get; set; }
+        public long? HospitalId { get; set; }
         private Hospital? _hospital;
-        [Required]
         public Hospital? Hospital
         {
             get { return _hospital; }
@@ -154,13 +155,13 @@ namespace Mediag.Models
                    LastUpdate == file.LastUpdate &&
                    EndDate == file.EndDate &&
                    PatientId == file.PatientId &&
-                   HospitalId == file.HospitalId &&
-                   DoctorId == file.DoctorId;
+                   DoctorId == file.DoctorId &&
+                   HospitalId == file.HospitalId;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, StartDate, LastUpdate, EndDate, PatientId, HospitalId, DoctorId);
+            return HashCode.Combine(Id, StartDate, LastUpdate, EndDate, PatientId, DoctorId, HospitalId);
         }
     }
 }

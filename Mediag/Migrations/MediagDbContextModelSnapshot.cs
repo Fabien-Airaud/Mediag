@@ -45,7 +45,7 @@ namespace Mediag.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("HospitalId")
+                    b.Property<long?>("HospitalId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("LastName")
@@ -122,6 +122,43 @@ namespace Mediag.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Mediag.Models.MedicalFile", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("DoctorId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("HospitalId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("LastUpdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PatientId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("HospitalId");
+
+                    b.HasIndex("PatientId");
+
+                    b.ToTable("MedicalFiles");
+                });
+
             modelBuilder.Entity("Mediag.Models.Patient", b =>
                 {
                     b.Property<long>("Id")
@@ -145,7 +182,7 @@ namespace Mediag.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("HospitalId")
+                    b.Property<long?>("HospitalId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("LastName")
@@ -167,27 +204,62 @@ namespace Mediag.Migrations
                 {
                     b.HasOne("Mediag.Models.Hospital", "Hospital")
                         .WithMany("Doctors")
-                        .HasForeignKey("HospitalId")
+                        .HasForeignKey("HospitalId");
+
+                    b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("Mediag.Models.MedicalFile", b =>
+                {
+                    b.HasOne("Mediag.Models.Doctor", "Doctor")
+                        .WithMany("MedicalFiles")
+                        .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mediag.Models.Hospital", "Hospital")
+                        .WithMany("MedicalFiles")
+                        .HasForeignKey("HospitalId");
+
+                    b.HasOne("Mediag.Models.Patient", "Patient")
+                        .WithMany("MedicalFiles")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
                     b.Navigation("Hospital");
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("Mediag.Models.Patient", b =>
                 {
                     b.HasOne("Mediag.Models.Hospital", "Hospital")
-                        .WithMany()
-                        .HasForeignKey("HospitalId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Patients")
+                        .HasForeignKey("HospitalId");
 
                     b.Navigation("Hospital");
+                });
+
+            modelBuilder.Entity("Mediag.Models.Doctor", b =>
+                {
+                    b.Navigation("MedicalFiles");
                 });
 
             modelBuilder.Entity("Mediag.Models.Hospital", b =>
                 {
                     b.Navigation("Doctors");
+
+                    b.Navigation("MedicalFiles");
+
+                    b.Navigation("Patients");
+                });
+
+            modelBuilder.Entity("Mediag.Models.Patient", b =>
+                {
+                    b.Navigation("MedicalFiles");
                 });
 #pragma warning restore 612, 618
         }
