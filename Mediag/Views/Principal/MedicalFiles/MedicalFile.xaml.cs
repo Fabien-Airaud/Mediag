@@ -7,9 +7,13 @@ namespace Mediag.Views.Principal.MedicalFiles
     /// </summary>
     public partial class MedicalFile : Window
     {
-        public MedicalFile()
+        public MedicalFile(Models.MedicalFile? medicalFile = null, bool isEditMode = true)
         {
             InitializeComponent();
+            DataContext = new ViewModels.MedicalFileVM(medicalFile, isEditMode)
+            {
+                //CloseMedicalFile = () => Close()
+            };
         }
     }
 }

@@ -4,141 +4,80 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MedicalFile" WindowStartupLocation="CenterOwner"
-        Height="450" Width="800">
+        Title="MedicalFile" WindowStartupLocation="CenterScreen"
+        MinHeight="300" MinWidth="800" SizeToContent="WidthAndHeight">
 
-    <Grid Margin="10" MinWidth="750">
+    <Grid Margin="10" MinWidth="780" MaxWidth="1000" MinHeight="300" MaxHeight="500">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" MinHeight="50" MaxHeight="90"/>
-            <RowDefinition Height="*" MinHeight="70" MaxHeight="115"/>
-            <RowDefinition Height="2.5*" MinHeight="180" MaxHeight="300"/>
-            <RowDefinition Height="1.5*" MinHeight="110" MaxHeight="200"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <!--<RowDefinition Height="*"/>-->
+            <!--<RowDefinition Height="1.2*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>-->
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Grid MinWidth="750" MaxWidth="1000" MinHeight="35" MaxHeight="65" VerticalAlignment="Top">
+        <Label Content="Medical file" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
+        <Label Content="Last update:" Grid.Column="3"/>
+        <Label Content="{Binding MedicalFile.LastUpdate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="0" ContentStringFormat="yyyy-MM-dd HH:mm:ss"/>
+
+        <Label Content="Patient:" Grid.Row="1"/>
+        <Label Content="{Binding MedicalFile.Patient, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding MedicalFile.Patient, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Patients}" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Start date:" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="{Binding MedicalFile.StartDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker SelectedDate="{Binding MedicalFile.StartDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Doctor:" Grid.Row="2"/>
+        <Label Content="{Binding MedicalFile.Doctor, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding MedicalFile.Doctor, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Doctors}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="End Date:" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="{Binding MedicalFile.EndDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <DatePicker SelectedDate="{Binding MedicalFile.EndDate, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Hospital:" Grid.Row="3"/>
+        <Label Content="{Binding MedicalFile.Hospital, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding MedicalFile.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <!--<Label Content="Diagnosis" FontSize="24" FontWeight="Bold" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+
+        <Label Content="Target illness:" Grid.Row="6"/>
+        <Label Content="{Binding MedicalFile.Diagnosis.Illness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="6" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding MedicalFile.Diagnosis.Illness, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IllnessList}" Grid.Column="1" Grid.Row="6" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Medical data:" Grid.Column="3" Grid.Row="6"/>
+        <Button Grid.Column="4" Grid.Row="6" HorizontalAlignment="Stretch" MaxWidth="200" Margin="10,0,10,0" VerticalAlignment="Stretch">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Views/Icons/Stethoscope Icon.png" Width="20" Height="20"/>
+                    <Label Content="View Data" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+
+        <Label Content="Date:" Grid.Row="7"/>
+        <Label Content="{Binding MedicalFile.Diagnosis.Date, UpdateSourceTrigger=PropertyChanged, TargetNullValue=}" Grid.Column="1" Grid.Row="7"/>
+        <Label Content="Result:" Grid.Row="7" Grid.Column="3"/>
+        <Label Content="{Binding MedicalFile.Diagnosis.Result, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="7"/>-->
+
+        <Button Content="Edit file" Grid.Row="8" Grid.ColumnSpan="5" Command="{Binding EditCommand}" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="8" Grid.ColumnSpan="5" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="1.2*" MaxWidth="250"/>
-                <ColumnDefinition Width="1.2*" MaxWidth="250"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Label Content="Last update:"/>
-            <Label Grid.Column="1"/>
-            <Button Grid.Column="3" Margin="10,0,10,0" HorizontalAlignment="Stretch" MaxWidth="200">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Views/Icons/Edit Icon.png" Width="20" Height="20"/>
-                        <Label Content="Edit" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Grid.Column="4" Margin="10,0,10,0" HorizontalAlignment="Stretch" MaxWidth="200">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Views/Icons/Delete Icon.png" Width="20" Height="20"/>
-                        <Label Content="Delete" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-
-        </Grid>
-
-        <Grid Grid.Row="1" MinWidth="750" MaxWidth="1000" MinHeight="70" MaxHeight="115">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0.4*"/>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Label Content="Start date:"/>
-            <Label Grid.Column="1"/>
-            <Label Content="End Date:" Grid.Column="3"/>
-            <Label Grid.Column="4"/>
-
-            <Label Content="Hospital:" Grid.Row="1"/>
-            <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4"/>
-
-        </Grid>
-
-        <Grid Grid.Row="2" MinWidth="750" MaxWidth="1000" MinHeight="180" MaxHeight="300">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0.4*"/>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Label Content="Patient" FontSize="22" FontWeight="Bold" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-
-            <Label Content="First name:" Grid.Row="1"/>
-            <Label Grid.Column="1" Grid.Row="1"/>
-            <Label Content="Last name:" Grid.Column="3" Grid.Row="1"/>
-            <Label Grid.Column="4" Grid.Row="1"/>
-
-            <Label Content="Birthdate:" Grid.Row="2"/>
-            <Label Grid.Column="1" Grid.Row="2"/>
-            <Label Content="Home city:" Grid.Column="3" Grid.Row="2"/>
-            <Label Grid.Column="4" Grid.Row="2"/>
-
-            <Label Content="Email:" Grid.Row="3"/>
-            <Label Grid.Column="1" Grid.Row="3"/>
-            <Label Content="Phone number:" Grid.Column="3" Grid.Row="3"/>
-            <Label Grid.Column="4" Grid.Row="3"/>
-
-            <Label Content="Hospital:" Grid.Row="4"/>
-            <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4"/>
-
-        </Grid>
-
-        <Grid Grid.Row="3" MinWidth="750" MaxWidth="1000" MinHeight="110" MaxHeight="200">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="0.4*"/>
-                <ColumnDefinition Width="1.2*"/>
-                <ColumnDefinition Width="2*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.2*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <Label Content="Diagnosis" FontSize="22" FontWeight="Bold" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
-
-            <Label Content="Target illness:" Grid.Row="1"/>
-            <Label Grid.Column="1" Grid.Row="1"/>
-            <Label Content="Medical data:" Grid.Column="3" Grid.Row="1"/>
-            <Button Grid.Column="4" Grid.Row="1" HorizontalAlignment="Stretch" MaxWidth="200" Margin="10,0,10,0" VerticalAlignment="Stretch">
-                <Button.Content>
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="/Views/Icons/Stethoscope Icon.png" Width="20" Height="20"/>
-                        <Label Content="View Data" />
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-
-            <Label Content="Date:" Grid.Row="2"/>
-            <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4"/>
-            <Label Content="Result:" Grid.Row="2" Grid.Column="3"/>
-            <Label Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="4"/>
-
+            <Button Content="Save file" Command="{Binding SaveCommand}" Style="{StaticResource GreenButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Content="Cancel edit" Command="{Binding CancelCommand}" Grid.Column="1" Style="{StaticResource RedButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
 
     </Grid>
