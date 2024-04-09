@@ -50,7 +50,6 @@ namespace Mediag.ViewModels
         {
             EditVisibility = "Visible";
             if (!Patient.Equals(OldPatient)) Patient.CopyTo(OldPatient);
-            Patient.Hospital = Hospitals.First(h => h.Id == Patient.HospitalId);
         }
 
         public ICommand SaveCommand { get; private set; }
