@@ -24,7 +24,7 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Patient" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
+        <Label Content="Patient" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
 
         <Label Content="First name:" Grid.Row="1"/>
         <Label Content="{Binding Patient.FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
@@ -48,8 +48,8 @@
         <TextBox Text="{Binding Patient.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Content="Hospital:" Grid.Row="4"/>
-        <Label Content="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
-        <ComboBox SelectedItem="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="4" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding Patient.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         
         <Button Content="Edit patient" Grid.Row="5" Grid.ColumnSpan="5" Command="{Binding EditCommand}" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid Grid.Row="5" Grid.ColumnSpan="5" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
