@@ -71,14 +71,16 @@ namespace Mediag.Models
             target.Hospital = Hospital;
         }
 
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, Doctor doctor)
+        {
+            doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
+        }
+
         public static ICollection<Doctor> GetDoctors()
         {
             MediagDbContext mediagDbContext = new();
             ICollection<Doctor> doctors = [.. mediagDbContext.Doctors];
-            foreach (Doctor doctor in doctors)
-            {
-                doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
-            }
+            foreach (Doctor doctor in doctors) CorrectInObjects(mediagDbContext, doctor);
             return doctors;
         }
 
@@ -89,14 +91,14 @@ namespace Mediag.Models
                 return mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username));
             
             Doctor? doctor = mediagDbContext.Doctors.FirstOrDefault(doctor => doctor.Username.Equals(username) && doctor.Password.Equals(password));
-            if (doctor is not null) doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
+            if (doctor is not null) CorrectInObjects(mediagDbContext, doctor);
             return doctor;
         }
 
         public static Doctor AddDoctor(Doctor doctor)
         {
             MediagDbContext mediagDbContext = new();
-            doctor.Hospital = mediagDbContext.Hospitals.Find(doctor.HospitalId);
+            CorrectInObjects(mediagDbContext, doctor);
             mediagDbContext.Doctors.Add(doctor);
             mediagDbContext.SaveChanges();
             return doctor;
@@ -107,6 +109,7 @@ namespace Mediag.Models
             MediagDbContext mediagDbContext = new();
             Doctor oldDoctor = mediagDbContext.Doctors.Find(doctor.Id)!; // Doctor is not null
             doctor.CopyTo(oldDoctor);
+            CorrectInObjects(mediagDbContext, oldDoctor);
             mediagDbContext.SaveChanges();
             return doctor;
         }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Mediag.Views.Principal.Patients;
+using System.ComponentModel.DataAnnotations;
 
 namespace Mediag.Models
 {
@@ -45,21 +46,23 @@ namespace Mediag.Models
             target.Hospital = Hospital;
         }
 
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, Patient patient)
+        {
+            patient.Hospital = mediagDbContext.Hospitals.Find(patient.HospitalId);
+        }
+
         public static ICollection<Patient> GetPatients()
         {
             MediagDbContext mediagDbContext = new();
             ICollection<Patient> patients = [.. mediagDbContext.Patients];
-            foreach (Patient patient in patients)
-            {
-                patient.Hospital = mediagDbContext.Hospitals.Find(patient.HospitalId);
-            }
+            foreach (Patient patient in patients) CorrectInObjects(mediagDbContext, patient);
             return patients;
         }
 
         public static Patient AddPatient(Patient patient)
         {
             MediagDbContext mediagDbContext = new();
-            patient.Hospital = mediagDbContext.Hospitals.Find(patient.HospitalId);
+            CorrectInObjects(mediagDbContext, patient);
             mediagDbContext.Patients.Add(patient);
             mediagDbContext.SaveChanges();
             return patient;
@@ -70,6 +73,7 @@ namespace Mediag.Models
             MediagDbContext mediagDbContext = new();
             Patient oldPatient = mediagDbContext.Patients.Find(patient.Id)!; // Patient is not null
             patient.CopyTo(oldPatient);
+            CorrectInObjects(mediagDbContext, oldPatient);
             mediagDbContext.SaveChanges();
             return patient;
         }
