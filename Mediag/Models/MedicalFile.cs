@@ -64,25 +64,6 @@ namespace Mediag.Models
                     _patient = value;
                     PatientId = value?.Id ?? 0;
                     OnPropertyChanged();
-                    //IsValidRegister = CheckIsValidRegister();
-                }
-            }
-        }
-
-        public long HospitalId { get; set; }
-        private Hospital? _hospital;
-        [Required]
-        public Hospital? Hospital
-        {
-            get { return _hospital; }
-            set
-            {
-                if (_hospital != value)
-                {
-                    _hospital = value;
-                    HospitalId = value?.Id ?? 0;
-                    OnPropertyChanged();
-                    //IsValidRegister = CheckIsValidRegister();
                 }
             }
         }
@@ -100,7 +81,23 @@ namespace Mediag.Models
                     _doctor = value;
                     DoctorId = value?.Id ?? 0;
                     OnPropertyChanged();
-                    //IsValidRegister = CheckIsValidRegister();
+                }
+            }
+        }
+
+        public long HospitalId { get; set; }
+        private Hospital? _hospital;
+        [Required]
+        public Hospital? Hospital
+        {
+            get { return _hospital; }
+            set
+            {
+                if (_hospital != value)
+                {
+                    _hospital = value;
+                    HospitalId = value?.Id ?? 0;
+                    OnPropertyChanged();
                 }
             }
         }
@@ -122,7 +119,7 @@ namespace Mediag.Models
         protected virtual bool CheckIsValid()
         {
             return StartDate <= DateTime.Today && (EndDate is null || EndDate <= DateTime.Today)
-                && Patient is not null && Hospital is not null && Doctor is not null;
+                && Patient is not null && Doctor is not null && Hospital is not null;
         }
 
 
@@ -131,10 +128,10 @@ namespace Mediag.Models
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            if (propertyName != nameof(IsValid))
+            if (propertyName != nameof(IsValid) && propertyName != nameof(LastUpdate))
             {
                 IsValid = CheckIsValid();
-                if (propertyName != nameof(LastUpdate)) LastUpdate = DateTime.Now;
+                LastUpdate = DateTime.Now;
             }
         }
 
@@ -145,8 +142,8 @@ namespace Mediag.Models
             target.LastUpdate = LastUpdate;
             target.EndDate = EndDate;
             target.Patient = Patient;
-            target.Hospital = Hospital;
             target.Doctor = Doctor;
+            target.Hospital = Hospital;
         }
 
         public override bool Equals(object? obj)
