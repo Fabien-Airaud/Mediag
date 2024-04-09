@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Mediag.ViewModels
 {
@@ -15,7 +17,7 @@ namespace Mediag.ViewModels
 
         public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
-        public Action ClosePatient { get; set; } = () => { };
+        public Action CloseMedicalFile { get; set; } = () => { };
 
         private string _editVisibility;
         public string EditVisibility
@@ -47,6 +49,33 @@ namespace Mediag.ViewModels
             }
         }
 
+        public ICommand EditCommand { get; private set; }
+        private void ActiveEdit()
+        {
+            EditVisibility = "Visible";
+            if (!MedicalFile.Equals(OldMedicalFile)) MedicalFile.CopyTo(OldMedicalFile);
+        }
+
+        public ICommand SaveCommand { get; private set; }
+        private void SaveMedicalFile()
+        {
+            ViewVisibility = "Visible";
+            if (MedicalFile.Equals(OldMedicalFile)) return; // No changes to save
+
+            //if (!OldMedicalFile.IsValid) MedicalFile = Models.MedicalFile.AddPatient(MedicalFile);
+            //else MedicalFile = Models.MedicalFile.UpdatePatient(MedicalFile);
+            MessageBox.Show("Medical file saved.");
+        }
+
+        public ICommand CancelCommand { get; private set; }
+        private void CancelEdit()
+        {
+            if (!OldMedicalFile.IsValid) CloseMedicalFile(); // Close window if was in create mode
+
+            ViewVisibility = "Visible";
+            if (!OldMedicalFile.Equals(MedicalFile)) OldMedicalFile.CopyTo(MedicalFile);
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -76,6 +105,10 @@ namespace Mediag.ViewModels
 
             _editVisibility = isEditMode || medicalFile is null ? "Visible" : "Hidden"; // Edit mode is default when medical file is null
             _viewVisibility = isEditMode || medicalFile is null ? "Hidden" : "Visible"; // View mode is default when medical file is not null
+
+            EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
+            SaveCommand = new RelayCommand(_ => MedicalFile.IsValid, _ => SaveMedicalFile());
+            CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
         }
     }
 }

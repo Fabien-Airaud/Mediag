@@ -12,7 +12,7 @@ namespace Mediag.Views.Principal.MedicalFiles
             InitializeComponent();
             DataContext = new ViewModels.MedicalFileVM(medicalFile, isEditMode)
             {
-                //CloseMedicalFile = () => Close()
+                CloseMedicalFile = () => Close()
             };
         }
     }
