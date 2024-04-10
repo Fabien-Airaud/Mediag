@@ -152,7 +152,7 @@ namespace Mediag.Models
         protected virtual bool CheckIsValid()
         {
             return StartDate <= DateTime.Today && (EndDate is null || EndDate <= DateTime.Today)
-                && Patient is not null && Doctor is not null && Hospital is not null && MedicalData is not null;
+                && TargetIllness is not null && Patient is not null && Doctor is not null && Hospital is not null;
         }
 
 
@@ -174,6 +174,7 @@ namespace Mediag.Models
             target.StartDate = StartDate;
             target.LastUpdate = LastUpdate;
             target.EndDate = EndDate;
+            target.TargetIllness = TargetIllness;
             target.Patient = Patient;
             target.Doctor = Doctor;
             target.Hospital = Hospital;
@@ -182,6 +183,7 @@ namespace Mediag.Models
 
         private static void CorrectInObjects(MediagDbContext mediagDbContext, MedicalFile medicalFile)
         {
+            medicalFile.TargetIllness = mediagDbContext.IllnessTypes.Find(medicalFile.TargetIllnessId);
             medicalFile.Patient = mediagDbContext.Patients.Find(medicalFile.PatientId);
             medicalFile.Doctor = mediagDbContext.Doctors.Find(medicalFile.DoctorId);
             medicalFile.Hospital = mediagDbContext.Hospitals.Find(medicalFile.HospitalId);
@@ -228,6 +230,7 @@ namespace Mediag.Models
                    StartDate == file.StartDate &&
                    LastUpdate == file.LastUpdate &&
                    EndDate == file.EndDate &&
+                   TargetIllness == file.TargetIllness &&
                    PatientId == file.PatientId &&
                    DoctorId == file.DoctorId &&
                    HospitalId == file.HospitalId;
@@ -235,7 +238,7 @@ namespace Mediag.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, StartDate, LastUpdate, EndDate, PatientId, DoctorId, HospitalId);
+            return HashCode.Combine(Id, StartDate, LastUpdate, EndDate, TargetIllness, PatientId, DoctorId, HospitalId);
         }
     }
 }
