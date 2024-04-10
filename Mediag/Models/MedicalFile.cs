@@ -53,6 +53,23 @@ namespace Mediag.Models
             }
         }
 
+        public long TargetIllnessId { get; set; }
+        private IllnessTypes? _targetIllness;
+        [Required]
+        public IllnessTypes? TargetIllness
+        {
+            get { return _targetIllness; }
+            set
+            {
+                if (_targetIllness != value)
+                {
+                    _targetIllness = value;
+                    TargetIllnessId = value?.Id ?? 0;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public long PatientId { get; set; }
         private Patient? _patient;
         [Required]
@@ -103,6 +120,21 @@ namespace Mediag.Models
             }
         }
 
+        private IMedicalData? _medicalData;
+        [NotMapped]
+        public IMedicalData? MedicalData
+        {
+            get { return _medicalData; }
+            set
+            {
+                if (_medicalData != value)
+                {
+                    _medicalData = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool _isValid;
         [NotMapped]
         public bool IsValid
@@ -120,7 +152,7 @@ namespace Mediag.Models
         protected virtual bool CheckIsValid()
         {
             return StartDate <= DateTime.Today && (EndDate is null || EndDate <= DateTime.Today)
-                && Patient is not null && Doctor is not null && Hospital is not null;
+                && Patient is not null && Doctor is not null && Hospital is not null && MedicalData is not null;
         }
 
 
@@ -145,6 +177,7 @@ namespace Mediag.Models
             target.Patient = Patient;
             target.Doctor = Doctor;
             target.Hospital = Hospital;
+            target.MedicalData = MedicalData;
         }
 
         private static void CorrectInObjects(MediagDbContext mediagDbContext, MedicalFile medicalFile)
