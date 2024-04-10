@@ -22,6 +22,46 @@ namespace Mediag.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("Mediag.Models.BreastCancerData", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<double>("AreaWorst")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ConcavePointsMean")
+                        .HasColumnType("float");
+
+                    b.Property<double>("ConcavePointsWorst")
+                        .HasColumnType("float");
+
+                    b.Property<long?>("MedicalFileId")
+                        .IsRequired()
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("PerimeterMean")
+                        .HasColumnType("float");
+
+                    b.Property<double>("PerimeterWorst")
+                        .HasColumnType("float");
+
+                    b.Property<double>("RadiusWorst")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Result")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MedicalFileId");
+
+                    b.ToTable("BreastCancerDatas");
+                });
+
             modelBuilder.Entity("Mediag.Models.Doctor", b =>
                 {
                     b.Property<long>("Id")
@@ -122,6 +162,35 @@ namespace Mediag.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Mediag.Models.IllnessTypes", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IllnessTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Name = "Breast cancer"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            Name = "Heart disease"
+                        });
+                });
+
             modelBuilder.Entity("Mediag.Models.MedicalFile", b =>
                 {
                     b.Property<long>("Id")
@@ -134,7 +203,7 @@ namespace Mediag.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime?>("EndDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<long?>("HospitalId")
                         .HasColumnType("bigint");
@@ -146,7 +215,10 @@ namespace Mediag.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
+
+                    b.Property<long>("TargetIllnessId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -155,6 +227,8 @@ namespace Mediag.Migrations
                     b.HasIndex("HospitalId");
 
                     b.HasIndex("PatientId");
+
+                    b.HasIndex("TargetIllnessId");
 
                     b.ToTable("MedicalFiles");
                 });
@@ -200,6 +274,17 @@ namespace Mediag.Migrations
                     b.ToTable("Patients");
                 });
 
+            modelBuilder.Entity("Mediag.Models.BreastCancerData", b =>
+                {
+                    b.HasOne("Mediag.Models.MedicalFile", "MedicalFile")
+                        .WithMany()
+                        .HasForeignKey("MedicalFileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MedicalFile");
+                });
+
             modelBuilder.Entity("Mediag.Models.Doctor", b =>
                 {
                     b.HasOne("Mediag.Models.Hospital", "Hospital")
@@ -227,11 +312,19 @@ namespace Mediag.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mediag.Models.IllnessTypes", "TargetIllness")
+                        .WithMany()
+                        .HasForeignKey("TargetIllnessId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Doctor");
 
                     b.Navigation("Hospital");
 
                     b.Navigation("Patient");
+
+                    b.Navigation("TargetIllness");
                 });
 
             modelBuilder.Entity("Mediag.Models.Patient", b =>

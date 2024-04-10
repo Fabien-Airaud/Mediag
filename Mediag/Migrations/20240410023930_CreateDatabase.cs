@@ -28,6 +28,19 @@ namespace Mediag.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "IllnessTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IllnessTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Doctors",
                 columns: table => new
                 {
@@ -84,9 +97,10 @@ namespace Mediag.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "date", nullable: false),
                     LastUpdate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    EndDate = table.Column<DateTime>(type: "date", nullable: true),
+                    TargetIllnessId = table.Column<long>(type: "bigint", nullable: false),
                     PatientId = table.Column<long>(type: "bigint", nullable: false),
                     DoctorId = table.Column<long>(type: "bigint", nullable: false),
                     HospitalId = table.Column<long>(type: "bigint", nullable: true)
@@ -106,9 +120,41 @@ namespace Mediag.Migrations
                         principalTable: "Hospitals",
                         principalColumn: "Id");
                     table.ForeignKey(
+                        name: "FK_MedicalFiles_IllnessTypes_TargetIllnessId",
+                        column: x => x.TargetIllnessId,
+                        principalTable: "IllnessTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_MedicalFiles_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BreastCancerDatas",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RadiusWorst = table.Column<double>(type: "float", nullable: false),
+                    AreaWorst = table.Column<double>(type: "float", nullable: false),
+                    PerimeterWorst = table.Column<double>(type: "float", nullable: false),
+                    ConcavePointsWorst = table.Column<double>(type: "float", nullable: false),
+                    ConcavePointsMean = table.Column<double>(type: "float", nullable: false),
+                    PerimeterMean = table.Column<double>(type: "float", nullable: false),
+                    Result = table.Column<bool>(type: "bit", nullable: false),
+                    MedicalFileId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BreastCancerDatas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BreastCancerDatas_MedicalFiles_MedicalFileId",
+                        column: x => x.MedicalFileId,
+                        principalTable: "MedicalFiles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -122,6 +168,20 @@ namespace Mediag.Migrations
                     { 2L, "Greenfield Park", "Hôpital Charles-Le Moyne" },
                     { 3L, "Victoriaville", "Hôtel-Dieu d'Arthabaska" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "IllnessTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "Breast cancer" },
+                    { 2L, "Heart disease" }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BreastCancerDatas_MedicalFileId",
+                table: "BreastCancerDatas",
+                column: "MedicalFileId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Doctors_HospitalId",
@@ -156,6 +216,11 @@ namespace Mediag.Migrations
                 column: "PatientId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MedicalFiles_TargetIllnessId",
+                table: "MedicalFiles",
+                column: "TargetIllnessId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patients_HospitalId",
                 table: "Patients",
                 column: "HospitalId");
@@ -165,10 +230,16 @@ namespace Mediag.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BreastCancerDatas");
+
+            migrationBuilder.DropTable(
                 name: "MedicalFiles");
 
             migrationBuilder.DropTable(
                 name: "Doctors");
+
+            migrationBuilder.DropTable(
+                name: "IllnessTypes");
 
             migrationBuilder.DropTable(
                 name: "Patients");
