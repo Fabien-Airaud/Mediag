@@ -9,19 +9,103 @@ namespace Mediag.Models
     {
         public long Id { get; set; }
 
-        public double RadiusWorst { get; set; }
+        private double _radiusWorst;
+        public double RadiusWorst
+        {
+            get { return _radiusWorst; }
+            set
+            {
+                if (_radiusWorst != value)
+                {
+                    _radiusWorst = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public double AreaWorst { get; set; }
+        private double _areaWorst;
+        public double AreaWorst
+        {
+            get { return _areaWorst; }
+            set
+            {
+                if (_areaWorst != value)
+                {
+                    _areaWorst = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public double PerimeterWorst { get; set; }
+        private double _perimeterWorst;
+        public double PerimeterWorst
+        {
+            get { return _perimeterWorst; }
+            set
+            {
+                if (_perimeterWorst != value)
+                {
+                    _perimeterWorst = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public double ConcavePointsWorst { get; set; }
+        private double _concavePointsWorst;
+        public double ConcavePointsWorst
+        {
+            get { return _concavePointsWorst; }
+            set
+            {
+                if (_concavePointsWorst != value)
+                {
+                    _concavePointsWorst = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public double ConcavePointsMean { get; set; }
+        private double _concavePointsMean;
+        public double ConcavePointsMean
+        {
+            get { return _concavePointsMean; }
+            set
+            {
+                if (_concavePointsMean != value)
+                {
+                    _concavePointsMean = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public double PerimeterMean { get; set; }
+        private double _perimeterMean;
+        public double PerimeterMean
+        {
+            get { return _perimeterMean; }
+            set
+            {
+                if (_perimeterMean != value)
+                {
+                    _perimeterMean = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-        public bool Result { get; set; }
+        private bool _result;
+        public bool Result
+        {
+            get { return _result; }
+            set
+            {
+                if (_result != value)
+                {
+                    _result = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public long? MedicalFileId { get; set; }
         private MedicalFile? _medicalFile;
