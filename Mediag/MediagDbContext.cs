@@ -9,6 +9,8 @@ namespace Mediag
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<MedicalFile> MedicalFiles { get; set; }
+        public DbSet<IllnessTypes> IllnessTypes { get; set; }
+        public DbSet<BreastCancerData> BreastCancerDatas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,6 +25,10 @@ namespace Mediag
                 new Hospital { Id = 1, Name = "Hôpital général de Montréal", City = "Montréal" },
                 new Hospital { Id = 2, Name = "Hôpital Charles-Le Moyne", City = "Greenfield Park" },
                 new Hospital { Id = 3, Name = "Hôtel-Dieu d'Arthabaska", City = "Victoriaville" }
+            );
+            modelBuilder.Entity<IllnessTypes>().HasData(
+                new IllnessTypes { Id = 1, Name = "Breast cancer" },
+                new IllnessTypes { Id = 2, Name = "Heart disease" }
             );
         }
     }
