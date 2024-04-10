@@ -17,6 +17,8 @@ namespace Mediag.ViewModels
 
         public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
+        public ObservableCollection<Models.IllnessTypes> IllnessTypes { get; set; }
+
         public Action CloseMedicalFile { get; set; } = () => { };
 
         private string _editVisibility;
@@ -95,9 +97,11 @@ namespace Mediag.ViewModels
             Patients = new ObservableCollection<Models.Patient>(Models.Patient.GetPatients());
             Doctors = new ObservableCollection<Models.Doctor>(Models.Doctor.GetDoctors());
             Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
+            IllnessTypes = new ObservableCollection<Models.IllnessTypes>(Models.IllnessTypes.GetIllnessTypes());
 
             if (MedicalFile.IsValid)
             {
+                MedicalFile.TargetIllness = IllnessTypes.First(it => it.Id == MedicalFile.TargetIllnessId);
                 MedicalFile.Patient = Patients.First(p => p.Id == MedicalFile.PatientId);
                 MedicalFile.Doctor = Doctors.First(d => d.Id == MedicalFile.DoctorId);
                 MedicalFile.Hospital = Hospitals.First(h => h.Id == MedicalFile.HospitalId);

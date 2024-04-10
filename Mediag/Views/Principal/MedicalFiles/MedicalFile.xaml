@@ -48,6 +48,9 @@
         <Label Content="Hospital:" Grid.Row="3"/>
         <Label Content="{Binding MedicalFile.Hospital, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox SelectedItem="{Binding MedicalFile.Hospital, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Hospitals}" Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Target illness:" Grid.Column="3" Grid.Row="3"/>
+        <Label Content="{Binding MedicalFile.TargetIllness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <ComboBox SelectedItem="{Binding MedicalFile.TargetIllness, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IllnessTypes}" Grid.Column="4" Grid.Row="3" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         
         <!--<Label Content="Diagnosis" FontSize="24" FontWeight="Bold" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
 
