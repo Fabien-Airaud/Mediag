@@ -104,6 +104,11 @@ namespace Mediag.Models
                     _result = value;
                     OnPropertyChanged();
                 }
+                if (IsMalignant != _result && IsBenign == _result)
+                {
+                    IsMalignant = _result;
+                    IsBenign = !_result;
+                }
             }
         }
 
@@ -203,11 +208,9 @@ namespace Mediag.Models
             {
                 IsValid = CheckIsValid();
             }
-            if (propertyName == nameof(Result))
+            if (propertyName == nameof(Result) || propertyName == nameof(IsMalignant) || propertyName == nameof(IsBenign))
             {
                 ResultString = Result ? "Malignant" : "Benign";
-                IsMalignant = Result;
-                IsBenign = !Result;
             }
         }
 
@@ -221,8 +224,10 @@ namespace Mediag.Models
             return [RadiusWorst.ToString(), AreaWorst.ToString(), PerimeterWorst.ToString(), ConcavePointsWorst.ToString(), ConcavePointsMean.ToString(), PerimeterMean.ToString(), Result.ToString()];
         }
 
-        public void CopyTo(BreastCancerData target)
+        public void CopyTo(IMedicalData medicalData)
         {
+            if (medicalData is not BreastCancerData target) throw new ArgumentException("Invalid medical data type.");
+
             target.Id = Id;
             target.RadiusWorst = RadiusWorst;
             target.AreaWorst = AreaWorst;
