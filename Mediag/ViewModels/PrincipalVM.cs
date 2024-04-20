@@ -18,8 +18,8 @@ namespace Mediag.ViewModels
                 if (_principalContent != value)
                 {
                     _principalContent = value;
+                    OnPropertyChanged();
                 }
-                OnPropertyChanged();
             }
         }
 
