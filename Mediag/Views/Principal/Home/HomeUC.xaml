@@ -24,9 +24,6 @@
         <StackPanel Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
             <Label Content="Welcome " FontSize="48"/>
             <Label Content="{Binding Doctor}" FontSize="48"/>
-            <!--<Label Content="Welcome Dr." FontSize="48"/>
-            <Label Content="{Binding Doctor.FirstName}" FontSize="48"/>
-            <Label Content="{Binding Doctor.LastName}" FontSize="48"/>-->
         </StackPanel>
 
     </Grid>
