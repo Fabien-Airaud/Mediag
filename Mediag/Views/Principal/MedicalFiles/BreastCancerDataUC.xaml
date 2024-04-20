@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Mediag.Views.Principal.MedicalFiles.BreastCancerDataUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" Background="White">
+
+    <Grid MinWidth="760" MaxWidth="1000" MinHeight="200" MaxHeight="350">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.2*"/>
+            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="1.6*"/>
+            <ColumnDefinition Width="1.6*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Radius worst:"/>
+        <Label Content="{Binding MedicalFile.MedicalData.RadiusWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.RadiusWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="0" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Area worst:" Grid.Column="3" Grid.Row="0"/>
+        <Label Content="{Binding MedicalFile.MedicalData.AreaWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="0" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.AreaWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="0" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Perimeter worst:" Grid.Row="1"/>
+        <Label Content="{Binding MedicalFile.MedicalData.PerimeterWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.PerimeterWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Concave points worst:" Grid.Column="3" Grid.Row="1"/>
+        <Label Content="{Binding MedicalFile.MedicalData.ConcavePointsWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.ConcavePointsWorst, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="1" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Perimeter mean:" Grid.Row="2"/>
+        <Label Content="{Binding MedicalFile.MedicalData.PerimeterMean, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.PerimeterMean, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Content="Concave points mean:" Grid.Column="3" Grid.Row="2"/>
+        <Label Content="{Binding MedicalFile.MedicalData.ConcavePointsMean, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Text="{Binding MedicalFile.MedicalData.ConcavePointsMean, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="2" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Result:" Grid.Row="3"/>
+        <Label Content="{Binding MedicalFile.MedicalData.ResultString, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="3" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
+            <RadioButton Content="Malignant" GroupName="Result" IsChecked="{Binding MedicalFile.MedicalData.IsMalignant, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" VerticalContentAlignment="Center" FontSize="14"/>
+            <RadioButton Content="Benign" GroupName="Result" IsChecked="{Binding MedicalFile.MedicalData.IsBenign, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0" VerticalContentAlignment="Center" FontSize="14"/>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
