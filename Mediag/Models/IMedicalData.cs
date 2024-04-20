@@ -14,5 +14,7 @@ namespace Mediag.Models
         public string[] Labels();
 
         public string[] Values();
+
+        public void CopyTo(IMedicalData medicalData);
     }
 }
