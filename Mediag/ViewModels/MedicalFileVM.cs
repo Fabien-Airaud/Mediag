@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Mediag.ViewModels
@@ -18,6 +19,20 @@ namespace Mediag.ViewModels
         public ObservableCollection<Models.Hospital> Hospitals { get; set; }
 
         public ObservableCollection<Models.IllnessTypes> IllnessTypes { get; set; }
+
+        private UserControl _medicalDataContent;
+        public UserControl MedicalDataContent
+        {
+            get { return _medicalDataContent; }
+            set
+            {
+                if (_medicalDataContent != value)
+                {
+                    _medicalDataContent = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public Action CloseMedicalFile { get; set; } = () => { };
 
@@ -93,12 +108,16 @@ namespace Mediag.ViewModels
             medicalFile?.CopyTo(MedicalFile);
             OldMedicalFile = new Models.MedicalFile();
             MedicalFile.CopyTo(OldMedicalFile);
+            MedicalFile.PropertyChanged += (_, e) => ChangeMedicalDataContent(e);
+            _medicalDataContent = EmptyUserControl();
 
             Patients = new ObservableCollection<Models.Patient>(Models.Patient.GetPatients());
             Doctors = new ObservableCollection<Models.Doctor>(Models.Doctor.GetDoctors());
             Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
             IllnessTypes = new ObservableCollection<Models.IllnessTypes>(Models.IllnessTypes.GetIllnessTypes());
 
+            // Display hospital and target illness in dialog box
+            MessageBox.Show($"Hospital: {MedicalFile.Hospital?.Name}\nIllness: {MedicalFile.TargetIllness?.Name}\nIsValid: {MedicalFile.IsValid}");
             if (MedicalFile.IsValid)
             {
                 MedicalFile.TargetIllness = IllnessTypes.First(it => it.Id == MedicalFile.TargetIllnessId);
@@ -111,8 +130,41 @@ namespace Mediag.ViewModels
             _viewVisibility = isEditMode || medicalFile is null ? "Hidden" : "Visible"; // View mode is default when medical file is not null
 
             EditCommand = new RelayCommand(_ => true, _ => ActiveEdit());
-            SaveCommand = new RelayCommand(_ => MedicalFile.IsValid, _ => SaveMedicalFile());
+            SaveCommand = new RelayCommand(
+                _ => MedicalFile.IsValid && (MedicalFile.MedicalData is not null && MedicalFile.MedicalData.IsValid),
+                _ => SaveMedicalFile());
             CancelCommand = new RelayCommand(_ => true, _ => CancelEdit());
+        }
+
+        public void ChangeMedicalDataContent(PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(MedicalFile.TargetIllness))
+            {
+                if (MedicalFile.TargetIllness is null) MedicalDataContent = EmptyUserControl();
+                else
+                {
+                    MedicalFile.TargetIllness = IllnessTypes.First(it => it.Id == MedicalFile.TargetIllnessId);
+                    MedicalDataContent = MedicalFile.TargetIllness.Name switch
+                    {
+                        "Breast cancer" => new Views.Principal.MedicalFiles.BreastCancerDataUC(),
+                        //"Heart disease" => new Views.Principal.MedicalFiles.HeartDiseaseDataUC(),
+                        _ => EmptyUserControl()
+                    };
+                }
+            }
+        }
+
+        private static UserControl EmptyUserControl()
+        {
+            return new UserControl
+            {
+                Content = new Label
+                {
+                    Content = "No data available for this illness type."
+                },
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
         }
     }
 }
