@@ -77,7 +77,11 @@ namespace Mediag.ViewModels
         private void SaveMedicalFile()
         {
             ViewVisibility = "Visible";
-            if (MedicalFile.Equals(OldMedicalFile)) return; // No changes to save
+            if (MedicalFile.Equals(OldMedicalFile))
+            {
+                if (MedicalFile.MedicalData is not null
+                    && MedicalFile.MedicalData.Equals(OldMedicalFile.MedicalData)) return; // No changes to save
+            }
 
             if (!OldMedicalFile.IsValid) MedicalFile = Models.MedicalFile.AddMedicalFile(MedicalFile);
             else MedicalFile = Models.MedicalFile.UpdateMedicalFile(MedicalFile);
@@ -90,7 +94,11 @@ namespace Mediag.ViewModels
             if (!OldMedicalFile.IsValid) CloseMedicalFile(); // Close window if was in create mode
 
             ViewVisibility = "Visible";
-            if (!OldMedicalFile.Equals(MedicalFile)) OldMedicalFile.CopyTo(MedicalFile);
+            if (!OldMedicalFile.Equals(MedicalFile))
+            {
+                if (MedicalFile.MedicalData is not null
+                    && !MedicalFile.MedicalData.Equals(OldMedicalFile.MedicalData)) OldMedicalFile.CopyTo(MedicalFile);
+            }
         }
 
 
@@ -144,7 +152,7 @@ namespace Mediag.ViewModels
                     //"Heart disease" => new Views.Principal.MedicalFiles.HeartDiseaseDataUC(),
                     _ => EmptyUserControl()
                 };
-                MedicalFile.MedicalData = ChangeMedicalData();
+                ChangeMedicalData();
             }
         }
 
@@ -161,12 +169,40 @@ namespace Mediag.ViewModels
             };
         }
 
-        public Models.IMedicalData? ChangeMedicalData()
+        public void ChangeMedicalData()
         {
             if (MedicalFile.TargetIllnessId == OldMedicalFile.TargetIllnessId && OldMedicalFile.MedicalData is not null)
-                return OldMedicalFile.MedicalData;
+            {
+                MedicalFile.MedicalData = OldMedicalFile.MedicalData;
+                OldMedicalFile.MedicalData.CopyTo(MedicalFile.MedicalData); // Force setters to be called
+                return;
+            }
 
-            return MedicalFile.TargetIllness?.Name switch
+            switch (MedicalFile.TargetIllness?.Name)
+            {
+                case "Breast cancer":
+                    if (MedicalFile.MedicalData is not Models.BreastCancerData)
+                    {
+                        MedicalFile.MedicalData = new Models.BreastCancerData()
+                        {
+                            MedicalFileId = MedicalFile.Id,
+                            MedicalFile = MedicalFile
+                        };
+                    }
+                    break;
+                //case "Heart disease":
+                //MedicalFile.MedicalData = new Models.HeartDiseaseData()
+                //{
+                //    MedicalFileId = MedicalFile.Id,
+                //    MedicalFile = MedicalFile
+                //};
+                //break;
+                default:
+                    MedicalFile.MedicalData = null;
+                    break;
+            }
+
+            /*Models.IMedicalData? medicalData = MedicalFile.TargetIllness?.Name switch
             {
                 "Breast cancer" => new Models.BreastCancerData()
                 {
@@ -180,6 +216,8 @@ namespace Mediag.ViewModels
                 //},
                 _ => null
             };
+            MedicalFile.MedicalData = medicalData;
+            //if (MedicalFile.MedicalData is not null) medicalData!.CopyTo(MedicalFile.MedicalData);*/
         }
     }
 }
