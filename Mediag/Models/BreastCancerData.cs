@@ -239,6 +239,50 @@ namespace Mediag.Models
             target.MedicalFile = MedicalFile;
         }
 
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, BreastCancerData breastCancerData)
+        {
+            breastCancerData.MedicalFile = mediagDbContext.MedicalFiles.Find(breastCancerData.MedicalFileId);
+            breastCancerData.Result = breastCancerData.Result; // To set IsMalignant and IsBenign
+        }
+
+        public static IMedicalData? GetMedicalData(long medicalFileId)
+        {
+            MediagDbContext mediagDbContext = new();
+            BreastCancerData? breastCancerData = mediagDbContext.BreastCancerDatas.FirstOrDefault(breastCancerData => breastCancerData.MedicalFileId == medicalFileId);
+            if (breastCancerData is not null) CorrectInObjects(mediagDbContext, breastCancerData);
+            return breastCancerData;
+        }
+
+        public static IMedicalData AddMedicalData(IMedicalData medicalData)
+        {
+            if (medicalData is not BreastCancerData breastCancerData) throw new ArgumentException("Invalid medical data type.");
+
+            MediagDbContext mediagDbContext = new();
+            CorrectInObjects(mediagDbContext, breastCancerData);
+            mediagDbContext.BreastCancerDatas.Add(breastCancerData);
+            mediagDbContext.SaveChanges();
+            return breastCancerData;
+        }
+
+        public static IMedicalData UpdateMedicalData(IMedicalData medicalData)
+        {
+            MediagDbContext mediagDbContext = new();
+            BreastCancerData oldData = mediagDbContext.BreastCancerDatas.Find(medicalData.Id)!;
+            medicalData.CopyTo(oldData);
+            CorrectInObjects(mediagDbContext, oldData);
+            mediagDbContext.SaveChanges();
+            return medicalData;
+        }
+
+        public static void DeleteMedicalData(IMedicalData medicalData)
+        {
+            if (medicalData is not BreastCancerData breastCancerData) throw new ArgumentException("Invalid medical data type.");
+
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.BreastCancerDatas.Remove(breastCancerData);
+            mediagDbContext.SaveChanges();
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is BreastCancerData data &&

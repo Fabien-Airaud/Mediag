@@ -16,5 +16,13 @@ namespace Mediag.Models
         public string[] Values();
 
         public void CopyTo(IMedicalData medicalData);
+
+        public static abstract IMedicalData? GetMedicalData(long medicalFileId);
+
+        public static abstract IMedicalData AddMedicalData(IMedicalData medicalData);
+
+        public static abstract IMedicalData UpdateMedicalData(IMedicalData medicalData);
+
+        public static abstract void DeleteMedicalData(IMedicalData medicalData);
     }
 }
