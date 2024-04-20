@@ -178,7 +178,16 @@ namespace Mediag.Models
             target.Patient = Patient;
             target.Doctor = Doctor;
             target.Hospital = Hospital;
-            target.MedicalData = MedicalData;
+            target.MedicalData = TargetIllness?.Name switch
+            {
+                "Breast cancer" => new BreastCancerData()
+                {
+                    MedicalFileId = Id,
+                    MedicalFile = target
+                },
+                _ => null
+            };
+            if (target.MedicalData is not null) MedicalData!.CopyTo(target.MedicalData);
         }
 
         private static void CorrectInObjects(MediagDbContext mediagDbContext, MedicalFile medicalFile)
@@ -187,6 +196,14 @@ namespace Mediag.Models
             medicalFile.Patient = mediagDbContext.Patients.Find(medicalFile.PatientId);
             medicalFile.Doctor = mediagDbContext.Doctors.Find(medicalFile.DoctorId);
             medicalFile.Hospital = mediagDbContext.Hospitals.Find(medicalFile.HospitalId);
+            if (medicalFile.Id != 0)
+            {
+                medicalFile.MedicalData = medicalFile.TargetIllness?.Name switch
+                {
+                    "Breast cancer" => BreastCancerData.GetMedicalData(medicalFile.Id),
+                    _ => throw new ArgumentException("Invalid medical data type.")
+                };
+            }
         }
 
         public static ICollection<MedicalFile> GetMedicalFiles()
@@ -203,6 +220,14 @@ namespace Mediag.Models
             CorrectInObjects(mediagDbContext, medicalFile);
             mediagDbContext.MedicalFiles.Add(medicalFile);
             mediagDbContext.SaveChanges();
+
+            // Add medical data
+            medicalFile.MedicalData!.MedicalFileId = medicalFile.Id;
+            medicalFile.MedicalData = medicalFile.MedicalData switch
+            {
+                BreastCancerData breastCancerData => BreastCancerData.AddMedicalData(breastCancerData),
+                _ => throw new ArgumentException("Invalid medical data type.")
+            };
             return medicalFile;
         }
 
@@ -213,11 +238,28 @@ namespace Mediag.Models
             medicalFile.CopyTo(oldMedicalFile);
             CorrectInObjects(mediagDbContext, oldMedicalFile);
             mediagDbContext.SaveChanges();
+
+            // Update medical data
+            medicalFile.MedicalData = medicalFile.MedicalData switch
+            {
+                BreastCancerData breastCancerData => BreastCancerData.UpdateMedicalData(breastCancerData),
+                _ => throw new ArgumentException("Invalid medical data type.")
+            };
             return medicalFile;
         }
 
         public static void DeleteMedicalFile(MedicalFile medicalFile)
         {
+            // Delete medical data
+            switch (medicalFile.MedicalData)
+            {
+                case BreastCancerData breastCancerData:
+                    BreastCancerData.DeleteMedicalData(breastCancerData);
+                    break;
+                default:
+                    throw new ArgumentException("Invalid medical data type.");
+            }
+
             MediagDbContext mediagDbContext = new();
             mediagDbContext.MedicalFiles.Remove(medicalFile);
             mediagDbContext.SaveChanges();
