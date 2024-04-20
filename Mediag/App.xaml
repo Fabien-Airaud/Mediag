@@ -43,7 +43,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        
+
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="MinWidth" Value="90"/>
@@ -94,6 +94,12 @@
             <Setter Property="ClipToBounds" Value="True"/>
             <Setter Property="Background" Value="{x:Null}"/>
             <Setter Property="BorderBrush" Value="{x:Null}"/>
+        </Style>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="TabItem">
