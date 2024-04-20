@@ -93,7 +93,7 @@ namespace Mediag.Models
             }
         }
 
-        private bool _result;
+        private bool _result = true;
         public bool Result
         {
             get { return _result; }
@@ -107,7 +107,7 @@ namespace Mediag.Models
             }
         }
 
-        private string _resultString = "";
+        private string _resultString = "Malignant";
         [NotMapped]
         public string ResultString
         {
@@ -122,7 +122,7 @@ namespace Mediag.Models
             }
         }
 
-        private bool _isMalignant;
+        private bool _isMalignant = true;
         [NotMapped]
         public bool IsMalignant
         {
@@ -138,7 +138,7 @@ namespace Mediag.Models
             }
         }
 
-        private bool _isBenign;
+        private bool _isBenign = false;
         [NotMapped]
         public bool IsBenign
         {
