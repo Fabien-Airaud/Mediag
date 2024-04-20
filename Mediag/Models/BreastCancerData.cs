@@ -107,6 +107,53 @@ namespace Mediag.Models
             }
         }
 
+        private string _resultString = "";
+        [NotMapped]
+        public string ResultString
+        {
+            get { return _resultString; }
+            set
+            {
+                if (_resultString != value)
+                {
+                    _resultString = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isMalignant;
+        [NotMapped]
+        public bool IsMalignant
+        {
+            get { return _isMalignant; }
+            set
+            {
+                if (_isMalignant != value)
+                {
+                    _isMalignant = value;
+                    Result = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private bool _isBenign;
+        [NotMapped]
+        public bool IsBenign
+        {
+            get { return _isBenign; }
+            set
+            {
+                if (_isBenign != value)
+                {
+                    _isBenign = value;
+                    Result = !value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public long? MedicalFileId { get; set; }
         private MedicalFile? _medicalFile;
         [Required]
@@ -155,6 +202,12 @@ namespace Mediag.Models
             if (propertyName != nameof(IsValid))
             {
                 IsValid = CheckIsValid();
+            }
+            if (propertyName == nameof(Result))
+            {
+                ResultString = Result ? "Malignant" : "Benign";
+                IsMalignant = Result;
+                IsBenign = !Result;
             }
         }
 
