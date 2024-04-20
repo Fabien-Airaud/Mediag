@@ -116,8 +116,6 @@ namespace Mediag.ViewModels
             Hospitals = new ObservableCollection<Models.Hospital>(Models.Hospital.GetHospitals());
             IllnessTypes = new ObservableCollection<Models.IllnessTypes>(Models.IllnessTypes.GetIllnessTypes());
 
-            // Display hospital and target illness in dialog box
-            MessageBox.Show($"Hospital: {MedicalFile.Hospital?.Name}\nIllness: {MedicalFile.TargetIllness?.Name}\nIsValid: {MedicalFile.IsValid}");
             if (MedicalFile.IsValid)
             {
                 MedicalFile.TargetIllness = IllnessTypes.First(it => it.Id == MedicalFile.TargetIllnessId);
@@ -140,17 +138,13 @@ namespace Mediag.ViewModels
         {
             if (e.PropertyName == nameof(MedicalFile.TargetIllness))
             {
-                if (MedicalFile.TargetIllness is null) MedicalDataContent = EmptyUserControl();
-                else
+                MedicalDataContent = MedicalFile.TargetIllness?.Name switch
                 {
-                    MedicalFile.TargetIllness = IllnessTypes.First(it => it.Id == MedicalFile.TargetIllnessId);
-                    MedicalDataContent = MedicalFile.TargetIllness.Name switch
-                    {
-                        "Breast cancer" => new Views.Principal.MedicalFiles.BreastCancerDataUC(),
-                        //"Heart disease" => new Views.Principal.MedicalFiles.HeartDiseaseDataUC(),
-                        _ => EmptyUserControl()
-                    };
-                }
+                    "Breast cancer" => new Views.Principal.MedicalFiles.BreastCancerDataUC(),
+                    //"Heart disease" => new Views.Principal.MedicalFiles.HeartDiseaseDataUC(),
+                    _ => EmptyUserControl()
+                };
+                MedicalFile.MedicalData = ChangeMedicalData();
             }
         }
 
@@ -164,6 +158,27 @@ namespace Mediag.ViewModels
                 },
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center
+            };
+        }
+
+        public Models.IMedicalData? ChangeMedicalData()
+        {
+            if (MedicalFile.TargetIllnessId == OldMedicalFile.TargetIllnessId && OldMedicalFile.MedicalData is not null)
+                return OldMedicalFile.MedicalData;
+
+            return MedicalFile.TargetIllness?.Name switch
+            {
+                "Breast cancer" => new Models.BreastCancerData()
+                {
+                    MedicalFileId = MedicalFile.Id,
+                    MedicalFile = MedicalFile
+                },
+                //"Heart disease" => new Models.HeartDiseaseData()
+                //{
+                //    MedicalFileId = MedicalFile.Id,
+                //    MedicalFile = MedicalFile
+                //},
+                _ => null
             };
         }
     }
