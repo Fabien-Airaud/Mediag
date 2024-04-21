@@ -10,6 +10,7 @@ namespace Mediag.Views.Principal.Diagnostic
         public DiagnosticUC()
         {
             InitializeComponent();
+            DataContext = new ViewModels.DiagnosticVM();
         }
     }
 }

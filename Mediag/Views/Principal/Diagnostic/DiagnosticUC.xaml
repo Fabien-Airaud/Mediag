@@ -41,11 +41,11 @@
                 <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
                 <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:yyyy/MM/dd HH:mm:ss}}" Width="1.5*" MinWidth="150" MaxWidth="160"/>
                 <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
-                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="120" MaxWidth="150">
+                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="130" MaxWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Command="{Binding DataContext.DiagnosticCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}">
+                                <Button Command="{Binding DataContext.DiagnosticCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5">
                                     <Button.Content>
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="/Views/Icons/Diagnostic Icon.png" Width="20" Height="20"/>
