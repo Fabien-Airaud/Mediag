@@ -11,6 +11,7 @@ namespace Mediag
         public DbSet<MedicalFile> MedicalFiles { get; set; }
         public DbSet<IllnessTypes> IllnessTypes { get; set; }
         public DbSet<ChestPainTypes> ChestPainTypes { get; set; }
+        public DbSet<ThalassemiaTypes> ThalassemiaTypes { get; set; }
         public DbSet<BreastCancerData> BreastCancerDatas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,6 +37,12 @@ namespace Mediag
                 new ChestPainTypes { Id = 2, Name = "Atypical angina" },
                 new ChestPainTypes { Id = 3, Name = "Non anginal pain" },
                 new ChestPainTypes { Id = 4, Name = "Asymptomatic" }
+            );
+            modelBuilder.Entity<ThalassemiaTypes>().HasData(
+                new ThalassemiaTypes { Id = 1, Name = "Strange" },
+                new ThalassemiaTypes { Id = 2, Name = "Normal" },
+                new ThalassemiaTypes { Id = 3, Name = "Fixed" },
+                new ThalassemiaTypes { Id = 4, Name = "Reversable" }
             );
         }
     }
