@@ -23,7 +23,7 @@
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Entities Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
-                
+
                 <MenuItem Header="_Manage Patients" Command="{Binding PatientListCommand}">
                     <MenuItem.Icon>
                         <Image Source="/Views/Icons/UserList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -35,9 +35,24 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="_Decision Tree">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/DecisionTree Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Diagnostic">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/Diagnostic Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
             <MenuItem Header="_Profile" Command="{Binding ProfileCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Doctor Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="_Tools">
+                <MenuItem.Icon>
+                    <Image Source="/Views/Icons/Tools Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
         </Menu>
