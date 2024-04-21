@@ -41,6 +41,12 @@ namespace Mediag.ViewModels
             PrincipalContent = new Views.Principal.MedicalFiles.MedicalFileListUC();
         }
 
+        public ICommand DecisionTreeCommand { get; private set; }
+        private void DisplayDecisionTree()
+        {
+            PrincipalContent = new Views.Principal.DecisionTree.DecisionTreeUC();
+        }
+
         public ICommand ProfileCommand { get; private set; }
         private void DisplayProfile()
         {
@@ -62,6 +68,7 @@ namespace Mediag.ViewModels
             HomeCommand = new RelayCommand(_ => true, _ => DisplayHome());
             PatientListCommand = new RelayCommand(_ => true, _ => DisplayPatientList());
             MedicalFileListCommand = new RelayCommand(_ => true, _ => DisplayMedicalFileList());
+            DecisionTreeCommand = new RelayCommand(_ => true, _ => DisplayDecisionTree());
             ProfileCommand = new RelayCommand(_ => true, _ => DisplayProfile());
         }
     }

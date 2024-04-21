@@ -35,7 +35,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="_Decision Tree">
+            <MenuItem Header="_Decision Tree" Command="{Binding DecisionTreeCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/DecisionTree Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
