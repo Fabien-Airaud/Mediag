@@ -21,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DiagnosticDecision\DiagnosticDecision.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Views\Icons\Add Icon.png" />
     <Resource Include="Views\Icons\DecisionTree Icon.png" />
     <Resource Include="Views\Icons\Delete Icon.png" />
