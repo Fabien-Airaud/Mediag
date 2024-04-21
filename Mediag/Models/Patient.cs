@@ -1,7 +1,4 @@
-﻿using Mediag.Views.Principal.Patients;
-using System.ComponentModel.DataAnnotations;
-
-namespace Mediag.Models
+﻿namespace Mediag.Models
 {
     public class Patient : Person
     {
