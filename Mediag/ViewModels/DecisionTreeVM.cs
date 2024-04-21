@@ -3,6 +3,7 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -26,6 +27,22 @@ namespace Mediag.ViewModels
 
         public ObservableCollection<Models.IllnessTypes> IllnessTypes { get; set; }
 
+        public Dictionary<Models.IllnessTypes, EvaluationResult> EvaluationResults { get; set; } = [];
+
+        private EvaluationResult? _currentResult;
+        public EvaluationResult? CurrentResult
+        {
+            get { return _currentResult; }
+            set
+            {
+                if (_currentResult != value)
+                {
+                    _currentResult = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private string _evaluateVisibility = "Hidden";
         public string EvaluateVisibility
         {
@@ -35,6 +52,20 @@ namespace Mediag.ViewModels
                 if (_evaluateVisibility != value)
                 {
                     _evaluateVisibility = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private string _resultVisibility = "Hidden";
+        public string ResultVisibility
+        {
+            get { return _resultVisibility; }
+            set
+            {
+                if (_resultVisibility != value)
+                {
+                    _resultVisibility = value;
                     OnPropertyChanged();
                 }
             }
@@ -68,7 +99,7 @@ namespace Mediag.ViewModels
                     MessageBox.Show("Error training decision tree", "Training", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                MessageBoxResult result = MessageBox.Show("Training successful\n\n\n" + resultTree.ToString(), "Training", MessageBoxButton.OK);
+                MessageBoxResult result = MessageBox.Show("Training successful", "Training", MessageBoxButton.OK);
                 if (result == MessageBoxResult.OK) EvaluateVisibility = "Visible";
             }
         }
@@ -95,13 +126,14 @@ namespace Mediag.ViewModels
                 }
 
                 // Evaluate the decision tree
-                string? resultTest = EvaluateDecisionTree(filename);
-                if (resultTest == null)
+                CurrentResult = EvaluateDecisionTree(filename);
+                if (CurrentResult == null)
                 {
                     MessageBox.Show("Error evaluating decision tree", "Evaluation", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-                MessageBox.Show("Evaluation successful\n\n\n" + resultTest, "Evaluation", MessageBoxButton.OK);
+                ResultVisibility = "Visible";
+                MessageBox.Show("Evaluation successful !", "Evaluation", MessageBoxButton.OK);
             }
         }
 
@@ -116,6 +148,13 @@ namespace Mediag.ViewModels
                 if (Models.Hospital.DecisionTrees.ContainsKey(TargetIllness))
                 {
                     EvaluateVisibility = "Visible";
+
+                    if (EvaluationResults.TryGetValue(TargetIllness, out EvaluationResult? result))
+                    {
+                        CurrentResult = result;
+                        ResultVisibility = "Visible";
+                    }
+                    else ResultVisibility = "Hidden";
                 }
                 else
                 {
@@ -178,7 +217,7 @@ namespace Mediag.ViewModels
             return tree.BuildTree(values, labels);
         }
 
-        private string? EvaluateDecisionTree(string filename)
+        private EvaluationResult? EvaluateDecisionTree(string filename)
         {
             // Get the decision tree
             IDecisionTree tree;
@@ -214,7 +253,10 @@ namespace Mediag.ViewModels
                 default:
                     return null;
             }
-            return tree.Evaluate(values, out _, out _, out _);
+
+            EvaluationResult result = tree.Evaluate(values);
+            EvaluationResults[TargetIllness] = result;
+            return result;
         }
     }
 }
