@@ -2,7 +2,7 @@
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 
-namespace Mediag.Models.DatasetCSV
+namespace Mediag.Models
 {
     internal class ChestPainConverter : TypeConverter<ChestPainTypes>
     {

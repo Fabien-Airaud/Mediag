@@ -4,7 +4,7 @@ using System.Collections;
 using System.Globalization;
 using System.IO;
 
-namespace Mediag.Models.DatasetCSV
+namespace Mediag.Models
 {
     public class DataManager<T, K> where T : IMedicalData where K : ClassMap<T>
     {
