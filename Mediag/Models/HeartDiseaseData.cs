@@ -226,6 +226,50 @@ namespace Mediag.Models
             target.MedicalFile = MedicalFile;
         }
 
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, HeartDiseaseData heartDiseaseData)
+        {
+            heartDiseaseData.MedicalFile = mediagDbContext.MedicalFiles.Find(heartDiseaseData.MedicalFileId);
+            heartDiseaseData.Result = heartDiseaseData.Result; // To set IsMalignant and IsBenign
+        }
+
+        public static IMedicalData? GetMedicalData(long medicalFileId)
+        {
+            MediagDbContext mediagDbContext = new();
+            HeartDiseaseData? heartDiseaseData = mediagDbContext.HeartDiseaseDatas.FirstOrDefault(heartDiseaseData => heartDiseaseData.MedicalFileId == medicalFileId);
+            if (heartDiseaseData is not null) CorrectInObjects(mediagDbContext, heartDiseaseData);
+            return heartDiseaseData;
+        }
+
+        public static IMedicalData AddMedicalData(IMedicalData medicalData)
+        {
+            if (medicalData is not HeartDiseaseData heartDiseaseData) throw new ArgumentException("Invalid medical data type.");
+
+            MediagDbContext mediagDbContext = new();
+            CorrectInObjects(mediagDbContext, heartDiseaseData);
+            mediagDbContext.HeartDiseaseDatas.Add(heartDiseaseData);
+            mediagDbContext.SaveChanges();
+            return heartDiseaseData;
+        }
+
+        public static IMedicalData UpdateMedicalData(IMedicalData medicalData)
+        {
+            MediagDbContext mediagDbContext = new();
+            HeartDiseaseData oldData = mediagDbContext.HeartDiseaseDatas.Find(medicalData.Id)!;
+            medicalData.CopyTo(oldData);
+            CorrectInObjects(mediagDbContext, oldData);
+            mediagDbContext.SaveChanges();
+            return medicalData;
+        }
+
+        public static void DeleteMedicalData(IMedicalData medicalData)
+        {
+            if (medicalData is not HeartDiseaseData heartDiseaseData) throw new ArgumentException("Invalid medical data type.");
+
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.HeartDiseaseDatas.Remove(heartDiseaseData);
+            mediagDbContext.SaveChanges();
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is HeartDiseaseData data &&
