@@ -7,7 +7,7 @@
         Title="MedicalFile" WindowStartupLocation="CenterScreen"
         MinHeight="300" MinWidth="800" SizeToContent="WidthAndHeight">
 
-    <Grid Margin="10" MinWidth="780" MaxWidth="1000" MinHeight="500" MaxHeight="700">
+    <Grid Margin="10" MinWidth="780" MaxWidth="1000" MinHeight="525" MaxHeight="750">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
@@ -17,6 +17,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -49,13 +50,15 @@
         <Label Content="Target illness:" Grid.Column="3" Grid.Row="3"/>
         <Label Content="{Binding MedicalFile.TargetIllness, UpdateSourceTrigger=PropertyChanged}" Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="2" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox SelectedItem="{Binding MedicalFile.TargetIllness, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IllnessTypes}" Grid.Column="4" Grid.Row="3" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="{Binding MedicalFile.Diagnosis, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.ColumnSpan="5"/>
         
-        <Label Content="Medical data" FontSize="24" FontWeight="Bold" Grid.Row="4" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
+        <Label Content="Medical data" FontSize="24" FontWeight="Bold" Grid.Row="5" Grid.ColumnSpan="2" VerticalAlignment="Bottom"/>
 
-        <ContentControl Content="{Binding MedicalDataContent, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="5" Grid.Row="5"/>
+        <ContentControl Content="{Binding MedicalDataContent, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="5" Grid.Row="6"/>
 
-        <Button Content="Edit file" Grid.Row="8" Grid.ColumnSpan="5" Command="{Binding EditCommand}" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Grid Grid.Row="8" Grid.ColumnSpan="5" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
+        <Button Content="Edit file" Grid.Row="7" Grid.ColumnSpan="5" Command="{Binding EditCommand}" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource PrimaryButton}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Grid Grid.Row="7" Grid.ColumnSpan="5" Visibility="{Binding EditVisibility, UpdateSourceTrigger=PropertyChanged}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
