@@ -125,6 +125,11 @@ namespace Mediag.Models
             mediagDbContext.SaveChanges();
         }
 
+        public override string? ToString()
+        {
+            return $"Diagnosis:\t{ResultString} on {Date}";
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Diagnosis diagnosis &&
