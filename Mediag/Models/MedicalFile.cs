@@ -185,6 +185,11 @@ namespace Mediag.Models
                     MedicalFileId = Id,
                     MedicalFile = target
                 },
+                "Heart disease" => new HeartDiseaseData()
+                {
+                    MedicalFileId = Id,
+                    MedicalFile = target
+                },
                 _ => null
             };
             if (target.MedicalData is not null) MedicalData!.CopyTo(target.MedicalData);
@@ -201,6 +206,7 @@ namespace Mediag.Models
                 medicalFile.MedicalData = medicalFile.TargetIllness?.Name switch
                 {
                     "Breast cancer" => BreastCancerData.GetMedicalData(medicalFile.Id),
+                    "Heart disease" => HeartDiseaseData.GetMedicalData(medicalFile.Id),
                     _ => throw new ArgumentException("Invalid medical data type.")
                 };
             }
@@ -226,6 +232,7 @@ namespace Mediag.Models
             medicalFile.MedicalData = medicalFile.MedicalData switch
             {
                 BreastCancerData breastCancerData => BreastCancerData.AddMedicalData(breastCancerData),
+                HeartDiseaseData heartDiseaseData => HeartDiseaseData.AddMedicalData(heartDiseaseData),
                 _ => throw new ArgumentException("Invalid medical data type.")
             };
             return medicalFile;
@@ -243,6 +250,7 @@ namespace Mediag.Models
             medicalFile.MedicalData = medicalFile.MedicalData switch
             {
                 BreastCancerData breastCancerData => BreastCancerData.UpdateMedicalData(breastCancerData),
+                HeartDiseaseData heartDiseaseData => HeartDiseaseData.UpdateMedicalData(heartDiseaseData),
                 _ => throw new ArgumentException("Invalid medical data type.")
             };
             return medicalFile;
@@ -255,6 +263,9 @@ namespace Mediag.Models
             {
                 case BreastCancerData breastCancerData:
                     BreastCancerData.DeleteMedicalData(breastCancerData);
+                    break;
+                case HeartDiseaseData heartDiseaseData:
+                    HeartDiseaseData.DeleteMedicalData(heartDiseaseData);
                     break;
                 default:
                     throw new ArgumentException("Invalid medical data type.");
