@@ -5,13 +5,14 @@ namespace Mediag
 {
     class MediagDbContext : DbContext
     {
+        public DbSet<IllnessTypes> IllnessTypes { get; set; }
+        public DbSet<ChestPainTypes> ChestPainTypes { get; set; }
+        public DbSet<ThalassemiaTypes> ThalassemiaTypes { get; set; }
+        public DbSet<MajorVesselsTypes> MajorVesselsTypes { get; set; }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<MedicalFile> MedicalFiles { get; set; }
-        public DbSet<IllnessTypes> IllnessTypes { get; set; }
-        public DbSet<ChestPainTypes> ChestPainTypes { get; set; }
-        public DbSet<ThalassemiaTypes> ThalassemiaTypes { get; set; }
         public DbSet<BreastCancerData> BreastCancerDatas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,6 +44,13 @@ namespace Mediag
                 new ThalassemiaTypes { Id = 2, Name = "Normal" },
                 new ThalassemiaTypes { Id = 3, Name = "Fixed" },
                 new ThalassemiaTypes { Id = 4, Name = "Reversable" }
+            );
+            modelBuilder.Entity<MajorVesselsTypes>().HasData(
+                new MajorVesselsTypes { Id = 1, Name = "Zero" },
+                new MajorVesselsTypes { Id = 2, Name = "One" },
+                new MajorVesselsTypes { Id = 3, Name = "Two" },
+                new MajorVesselsTypes { Id = 4, Name = "Three" },
+                new MajorVesselsTypes { Id = 5, Name = "Four" }
             );
         }
     }
