@@ -19,6 +19,7 @@ namespace Mediag.Models
                 if (_chestPain != value)
                 {
                     _chestPain = value;
+                    ChestPainId = value?.Id ?? 0;
                     OnPropertyChanged();
                 }
             }
@@ -34,6 +35,7 @@ namespace Mediag.Models
                 if (_thalassemia != value)
                 {
                     _thalassemia = value;
+                    ThalassemiaId = value?.Id ?? 0;
                     OnPropertyChanged();
                 }
             }
@@ -49,6 +51,7 @@ namespace Mediag.Models
                 if (_majorVessels != value)
                 {
                     _majorVessels = value;
+                    MajorVesselsId = value?.Id ?? 0;
                     OnPropertyChanged();
                 }
             }
@@ -228,6 +231,9 @@ namespace Mediag.Models
 
         private static void CorrectInObjects(MediagDbContext mediagDbContext, HeartDiseaseData heartDiseaseData)
         {
+            heartDiseaseData.ChestPain = mediagDbContext.ChestPainTypes.Find(heartDiseaseData.ChestPainId);
+            heartDiseaseData.Thalassemia = mediagDbContext.ThalassemiaTypes.Find(heartDiseaseData.ThalassemiaId);
+            heartDiseaseData.MajorVessels = mediagDbContext.MajorVesselsTypes.Find(heartDiseaseData.MajorVesselsId);
             heartDiseaseData.MedicalFile = mediagDbContext.MedicalFiles.Find(heartDiseaseData.MedicalFileId);
             heartDiseaseData.Result = heartDiseaseData.Result; // To set IsMalignant and IsBenign
         }
