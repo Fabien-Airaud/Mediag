@@ -16,6 +16,7 @@ namespace Mediag
         public DbSet<MedicalFile> MedicalFiles { get; set; }
         public DbSet<BreastCancerData> BreastCancerDatas { get; set; }
         public DbSet<HeartDiseaseData> HeartDiseaseDatas { get; set; }
+        public DbSet<Diagnosis> Diagnosis { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
