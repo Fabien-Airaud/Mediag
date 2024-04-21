@@ -62,9 +62,13 @@ namespace Mediag.ViewModels
                 }
 
                 // Train the decision tree
-                TrainDecisionTree(filename);
-
-                MessageBoxResult result = MessageBox.Show("Training successful", "Training", MessageBoxButton.OK);
+                Node? resultTree = TrainDecisionTree(filename);
+                if (resultTree == null)
+                {
+                    MessageBox.Show("Error training decision tree", "Training", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                MessageBoxResult result = MessageBox.Show("Training successful\n\n\n" + resultTree.ToString(), "Training", MessageBoxButton.OK);
                 if (result == MessageBoxResult.OK) EvaluateVisibility = "Visible";
             }
         }
@@ -91,9 +95,13 @@ namespace Mediag.ViewModels
                 }
 
                 // Evaluate the decision tree
-                EvaluateDecisionTree(filename);
-
-                MessageBox.Show("Evaluation successful", "Evaluation", MessageBoxButton.OK);
+                string? resultTest = EvaluateDecisionTree(filename);
+                if (resultTest == null)
+                {
+                    MessageBox.Show("Error evaluating decision tree", "Evaluation", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                MessageBox.Show("Evaluation successful\n\n\n" + resultTest, "Evaluation", MessageBoxButton.OK);
             }
         }
 
@@ -127,7 +135,7 @@ namespace Mediag.ViewModels
             EvaluateCommand = new RelayCommand(_ => true, _ => Evaluate());
         }
 
-        private void TrainDecisionTree(string filename)
+        private Node? TrainDecisionTree(string filename)
         {
             // Get the decision tree
             IDecisionTree tree;
@@ -142,10 +150,35 @@ namespace Mediag.ViewModels
             }
 
             // Train the decision tree
-            //tree.BuildTree([], []); // TODO: Implement this
+            List<string> labels;
+            List<string[]> values;
+            switch (TargetIllness.Name)
+            {
+                case "Breast cancer":
+                    List<Models.BreastCancerData> bcRows =
+                        Models.DataManager<Models.BreastCancerData, Models.BreastCancerMap>.GetCSVData(filename);
+                    
+                    labels = new List<string>(bcRows[0].Labels());
+                    values = [];
+                    foreach (Models.BreastCancerData row in bcRows) values.Add(row.Values());
+
+                    break;
+                case "Heart disease":
+                    List<Models.HeartDiseaseData> hdRows =
+                        Models.DataManager<Models.HeartDiseaseData, Models.HeartDiseaseMap>.GetCSVData(filename);
+                    
+                    labels = new(hdRows[0].Labels());
+                    values = [];
+                    foreach (Models.HeartDiseaseData row in hdRows) values.Add(row.Values());
+
+                    break;
+                default:
+                    return null;
+            }
+            return tree.BuildTree(values, labels);
         }
 
-        private void EvaluateDecisionTree(string filename)
+        private string? EvaluateDecisionTree(string filename)
         {
             // Get the decision tree
             IDecisionTree tree;
@@ -155,12 +188,33 @@ namespace Mediag.ViewModels
             }
             else
             {
-                MessageBox.Show("No decision tree for " + TargetIllness, "Error Decision tree", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                return null;
             }
 
             // Evaluate the decision tree
-            //tree.Evaluate([], out _, out _, out _); // TODO: Implement this
+            List<string[]> values;
+            switch (TargetIllness.Name)
+            {
+                case "Breast cancer":
+                    List<Models.BreastCancerData> bcRows =
+                        Models.DataManager<Models.BreastCancerData, Models.BreastCancerMap>.GetCSVData(filename);
+
+                    values = [];
+                    foreach (Models.BreastCancerData row in bcRows) values.Add(row.Values());
+
+                    break;
+                case "Heart disease":
+                    List<Models.HeartDiseaseData> hdRows =
+                        Models.DataManager<Models.HeartDiseaseData, Models.HeartDiseaseMap>.GetCSVData(filename);
+
+                    values = [];
+                    foreach (Models.HeartDiseaseData row in hdRows) values.Add(row.Values());
+
+                    break;
+                default:
+                    return null;
+            }
+            return tree.Evaluate(values, out _, out _, out _);
         }
     }
 }
