@@ -59,5 +59,17 @@ namespace Mediag.Models
         {
             return Name;
         }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is SimpleEnum simpleEnum &&
+                   Id == simpleEnum.Id &&
+                   Name == simpleEnum.Name;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Name);
+        }
     }
 }
