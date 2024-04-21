@@ -77,5 +77,66 @@ namespace Mediag.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public void CopyTo(Diagnosis target)
+        {
+            target.Id = Id;
+            target.Date = Date;
+            target.Result = Result;
+            target.MedicalFile = MedicalFile;
+        }
+
+        private static void CorrectInObjects(MediagDbContext mediagDbContext, Diagnosis diagnosis)
+        {
+            diagnosis.MedicalFile = mediagDbContext.MedicalFiles.Find(diagnosis.MedicalFileId);
+        }
+
+        public static Diagnosis? GetDiagnosis(long medicalFileId)
+        {
+            MediagDbContext mediagDbContext = new();
+            Diagnosis? diagnosis = mediagDbContext.Diagnosis.FirstOrDefault(diagnosis => diagnosis.MedicalFileId == medicalFileId);
+            if (diagnosis is not null) CorrectInObjects(mediagDbContext, diagnosis);
+            return diagnosis;
+        }
+
+        public static Diagnosis AddDiagnosis(Diagnosis diagnosis)
+        {
+            MediagDbContext mediagDbContext = new();
+            CorrectInObjects(mediagDbContext, diagnosis);
+            mediagDbContext.Diagnosis.Add(diagnosis);
+            mediagDbContext.SaveChanges();
+            return diagnosis;
+        }
+
+        public static Diagnosis UpdateDiagnosis(Diagnosis diagnosis)
+        {
+            MediagDbContext mediagDbContext = new();
+            Diagnosis oldDiagnosis = mediagDbContext.Diagnosis.Find(diagnosis.Id)!;
+            diagnosis.CopyTo(oldDiagnosis);
+            CorrectInObjects(mediagDbContext, oldDiagnosis);
+            mediagDbContext.SaveChanges();
+            return diagnosis;
+        }
+
+        public static void DeleteDiagnosis(Diagnosis diagnosis)
+        {
+            MediagDbContext mediagDbContext = new();
+            mediagDbContext.Diagnosis.Remove(diagnosis);
+            mediagDbContext.SaveChanges();
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return obj is Diagnosis diagnosis &&
+                   Id == diagnosis.Id &&
+                   Date == diagnosis.Date &&
+                   Result == diagnosis.Result &&
+                   MedicalFileId == diagnosis.MedicalFileId;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, Date, Result, MedicalFileId);
+        }
     }
 }
