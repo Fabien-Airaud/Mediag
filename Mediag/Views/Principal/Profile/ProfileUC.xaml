@@ -25,7 +25,7 @@
             <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
-        <Label Content="Profile" Grid.Column="0" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
+        <Label Content="Profile" FontWeight="Bold" FontSize="36" Grid.ColumnSpan="2"/>
 
         <Label Content="First name:" Grid.Row="1"/>
         <Label Content="{Binding Doctor.FirstName, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" Visibility="{Binding ViewVisibility, UpdateSourceTrigger=PropertyChanged}"/>
