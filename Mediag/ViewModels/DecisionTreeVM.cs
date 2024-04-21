@@ -10,7 +10,19 @@ namespace Mediag.ViewModels
 {
     public class DecisionTreeVM : INotifyPropertyChanged
     {
-        public Models.IllnessTypes TargetIllness { get; set; }
+        private Models.IllnessTypes _targetIllness;
+        public Models.IllnessTypes TargetIllness
+        {
+            get { return _targetIllness; }
+            set
+            {
+                if (_targetIllness != value)
+                {
+                    _targetIllness = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public ObservableCollection<Models.IllnessTypes> IllnessTypes { get; set; }
 
@@ -91,13 +103,25 @@ namespace Mediag.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName == nameof(TargetIllness))
+            {
+                if (Models.Hospital.DecisionTrees.ContainsKey(TargetIllness))
+                {
+                    EvaluateVisibility = "Visible";
+                }
+                else
+                {
+                    EvaluateVisibility = "Hidden";
+                }
+            }
         }
 
 
         public DecisionTreeVM()
         {
             IllnessTypes = new ObservableCollection<Models.IllnessTypes>(Models.IllnessTypes.GetIllnessTypes());
-            TargetIllness = IllnessTypes.First();
+            _targetIllness = IllnessTypes.First();
+            OnPropertyChanged(nameof(TargetIllness));
 
             TrainCommand = new RelayCommand(_ => true, _ => Train());
             EvaluateCommand = new RelayCommand(_ => true, _ => Evaluate());
