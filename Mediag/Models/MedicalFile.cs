@@ -135,6 +135,21 @@ namespace Mediag.Models
             }
         }
 
+        private Diagnosis? _diagnosis;
+        [NotMapped]
+        public Diagnosis? Diagnosis
+        {
+            get { return _diagnosis; }
+            set
+            {
+                if (_diagnosis != value)
+                {
+                    _diagnosis = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private bool _isValid;
         [NotMapped]
         public bool IsValid
@@ -178,6 +193,7 @@ namespace Mediag.Models
             target.Patient = Patient;
             target.Doctor = Doctor;
             target.Hospital = Hospital;
+            target.Diagnosis = Diagnosis;
             target.MedicalData = TargetIllness?.Name switch
             {
                 "Breast cancer" => new BreastCancerData()
@@ -201,6 +217,7 @@ namespace Mediag.Models
             medicalFile.Patient = mediagDbContext.Patients.Find(medicalFile.PatientId);
             medicalFile.Doctor = mediagDbContext.Doctors.Find(medicalFile.DoctorId);
             medicalFile.Hospital = mediagDbContext.Hospitals.Find(medicalFile.HospitalId);
+            medicalFile.Diagnosis = Diagnosis.GetDiagnosis(medicalFile.Id);
             if (medicalFile.Id != 0)
             {
                 medicalFile.MedicalData = medicalFile.TargetIllness?.Name switch
@@ -235,6 +252,13 @@ namespace Mediag.Models
                 HeartDiseaseData heartDiseaseData => HeartDiseaseData.AddMedicalData(heartDiseaseData),
                 _ => throw new ArgumentException("Invalid medical data type.")
             };
+
+            // Add diagnosis
+            if (medicalFile.Diagnosis is not null)
+            {
+                medicalFile.Diagnosis.MedicalFileId = medicalFile.Id;
+                medicalFile.Diagnosis = Diagnosis.AddDiagnosis(medicalFile.Diagnosis);
+            }
             return medicalFile;
         }
 
@@ -253,6 +277,19 @@ namespace Mediag.Models
                 HeartDiseaseData heartDiseaseData => HeartDiseaseData.UpdateMedicalData(heartDiseaseData),
                 _ => throw new ArgumentException("Invalid medical data type.")
             };
+
+            // Update diagnosis
+            if (medicalFile.Diagnosis is not null)
+            {
+                medicalFile.Diagnosis.MedicalFileId = medicalFile.Id;
+
+                if (oldMedicalFile.Diagnosis is not null) medicalFile.Diagnosis = Diagnosis.UpdateDiagnosis(medicalFile.Diagnosis);
+                else medicalFile.Diagnosis = Diagnosis.AddDiagnosis(medicalFile.Diagnosis);
+            }
+            else
+            {
+                if (oldMedicalFile.Diagnosis is not null) Diagnosis.DeleteDiagnosis(oldMedicalFile.Diagnosis);
+            }
             return medicalFile;
         }
 
@@ -270,6 +307,9 @@ namespace Mediag.Models
                 default:
                     throw new ArgumentException("Invalid medical data type.");
             }
+
+            // Delete diagnosis
+            if (medicalFile.Diagnosis is not null) Diagnosis.DeleteDiagnosis(medicalFile.Diagnosis);
 
             MediagDbContext mediagDbContext = new();
             mediagDbContext.MedicalFiles.Remove(medicalFile);
