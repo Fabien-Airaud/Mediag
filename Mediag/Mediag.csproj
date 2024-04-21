@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <Resource Include="Views\Icons\Add Icon.png" />
+    <Resource Include="Views\Icons\DecisionTree Icon.png" />
     <Resource Include="Views\Icons\Delete Icon.png" />
     <Resource Include="Views\Icons\Doctor Icon.png" />
     <Resource Include="Views\Icons\Edit Icon.png" />
@@ -30,6 +31,7 @@
     <Resource Include="Views\Icons\Home Icon.png" />
     <Resource Include="Views\Icons\MedicalFileList Icon.png" />
     <Resource Include="Views\Icons\Diagnostic Icon.png" />
+    <Resource Include="Views\Icons\Tools Icon.png" />
     <Resource Include="Views\Icons\UserList Icon.png" />
     <Resource Include="Views\Principal\Home\BackgroundHome.jpeg" />
   </ItemGroup>
