@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DiagnosticDecision;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
@@ -43,6 +44,8 @@ namespace Mediag.Models
         public ICollection<Patient> Patients { get; set; } = [];
 
         public ICollection<MedicalFile> MedicalFiles { get; set; } = [];
+
+        public static Dictionary<IllnessTypes, IDecisionTree> DecisionTrees { get; set; } = [];
 
         private bool _isValid;
         [NotMapped]
