@@ -228,31 +228,10 @@ namespace DiagnosticDecision
             return confusionMatrix;
         }
 
-        public string ConfusionMatrixString(string[,] confusionMatrix)
-        {
-            int[] maxLength = new int[confusionMatrix.GetLength(0)];
-            for (int i = 0; i < confusionMatrix.GetLength(0); i++)
-            {
-                int length = confusionMatrix[0, i].Length;
-                if (length > maxLength[i]) maxLength[i] = length;
-            }
-
-            string str = "";
-            for (int i = 0; i < confusionMatrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < confusionMatrix.GetLength(1); j++)
-                {
-                    str += confusionMatrix[i, j].PadLeft(maxLength[j] + 1);
-                }
-                str += "\n";
-            }
-            return str;
-        }
-
         public string ConfusionMatrixString(List<string[]> instances, string[] predictedResults)
         {
             string[,] confusionMatrix = ConfusionMatrix(instances, predictedResults);
-            return ConfusionMatrixString(confusionMatrix);
+            return IDecisionTree.ConfusionMatrixString(confusionMatrix);
         }
 
         public string Evaluate(List<string[]> instances, out string[] predictedResults, out double accuracy, out string[,] confusionMatrix)
@@ -264,8 +243,14 @@ namespace DiagnosticDecision
             str += "Nb null results: " + (predictedResults.Count(value => value == null)) + "\n";
             str += "Accuracy: " + accuracy + "\n";
             str += "Confusion Matrix:\n";
-            str += ConfusionMatrixString(confusionMatrix);
+            str += IDecisionTree.ConfusionMatrixString(confusionMatrix);
             return str;
+        }
+
+        public EvaluationResult Evaluate(List<string[]> instances)
+        {
+            Evaluate(instances, out string[] predictedResults, out double accuracy, out string[,] confusionMatrix);
+            return new EvaluationResult(predictedResults, accuracy, confusionMatrix);
         }
 
         public override string ToString()
