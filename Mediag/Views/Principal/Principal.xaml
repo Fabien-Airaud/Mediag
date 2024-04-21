@@ -40,7 +40,7 @@
                     <Image Source="/Views/Icons/DecisionTree Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="_Diagnostic">
+            <MenuItem Header="_Diagnostic" Command="{Binding DiagnosticCommand}">
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Diagnostic Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
