@@ -9,11 +9,13 @@ namespace Mediag
         public DbSet<ChestPainTypes> ChestPainTypes { get; set; }
         public DbSet<ThalassemiaTypes> ThalassemiaTypes { get; set; }
         public DbSet<MajorVesselsTypes> MajorVesselsTypes { get; set; }
+
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<MedicalFile> MedicalFiles { get; set; }
         public DbSet<BreastCancerData> BreastCancerDatas { get; set; }
+        public DbSet<HeartDiseaseData> HeartDiseaseDatas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
