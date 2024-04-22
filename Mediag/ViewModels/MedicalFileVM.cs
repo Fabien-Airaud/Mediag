@@ -102,8 +102,12 @@ namespace Mediag.ViewModels
             ViewVisibility = "Visible";
             if (!OldMedicalFile.Equals(MedicalFile))
             {
-                if (MedicalFile.MedicalData is not null
-                    && !MedicalFile.MedicalData.Equals(OldMedicalFile.MedicalData)) OldMedicalFile.CopyTo(MedicalFile);
+                OldMedicalFile.CopyTo(MedicalFile);
+            }
+            else if (MedicalFile.MedicalData is not null
+                    && !MedicalFile.MedicalData.Equals(OldMedicalFile.MedicalData))
+            {
+                OldMedicalFile.CopyTo(MedicalFile); // Medical data exists and is different from the old one
             }
         }
 
@@ -197,8 +201,9 @@ namespace Mediag.ViewModels
         {
             if (MedicalFile.TargetIllnessId == OldMedicalFile.TargetIllnessId && OldMedicalFile.MedicalData is not null)
             {
-                MedicalFile.MedicalData = OldMedicalFile.MedicalData;
-                OldMedicalFile.MedicalData.CopyTo(MedicalFile.MedicalData); // Force setters to be called
+                OldMedicalFile.CopyTo(MedicalFile); // Copy old medical file (with medical data if exists)
+                //MedicalFile.MedicalData = OldMedicalFile.MedicalData;
+                //OldMedicalFile.MedicalData.CopyTo(MedicalFile.MedicalData); // Force setters to be called
                 return;
             }
 
@@ -229,22 +234,8 @@ namespace Mediag.ViewModels
                     break;
             }
 
-            /*Models.IMedicalData? medicalData = MedicalFile.TargetIllness?.Name switch
-            {
-                "Breast cancer" => new Models.BreastCancerData()
-                {
-                    MedicalFileId = MedicalFile.Id,
-                    MedicalFile = MedicalFile
-                },
-                //"Heart disease" => new Models.HeartDiseaseData()
-                //{
-                //    MedicalFileId = MedicalFile.Id,
-                //    MedicalFile = MedicalFile
-                //},
-                _ => null
-            };
-            MedicalFile.MedicalData = medicalData;
-            //if (MedicalFile.MedicalData is not null) medicalData!.CopyTo(MedicalFile.MedicalData);*/
+            if (MedicalFile.TargetIllnessId != OldMedicalFile.TargetIllnessId) MedicalFile.Diagnosis = null;
+            else MedicalFile.Diagnosis = OldMedicalFile.Diagnosis;
         }
     }
 }
