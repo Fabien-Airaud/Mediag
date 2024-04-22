@@ -45,7 +45,11 @@ namespace Mediag.ViewModels
         public ICommand DiagnosticCommand { get; private set; }
         private void Diagnostic(object? medicalFile)
         {
-            MessageBox.Show("Diagnostic " + (medicalFile is null ? "none" : (Models.MedicalFile)medicalFile));
+            if (medicalFile == null) return;
+
+            Models.MedicalFile toDiagnose = (Models.MedicalFile)medicalFile;
+            if (Models.Hospital.Diagnose(toDiagnose)) MessageBox.Show("Diagnosis result: " + toDiagnose.Diagnosis!.ResultString);
+            else MessageBox.Show("Diagnosis for " + toDiagnose.Patient + " failed");
         }
 
         public ICommand DiagnosticAllCommand { get; private set; }
