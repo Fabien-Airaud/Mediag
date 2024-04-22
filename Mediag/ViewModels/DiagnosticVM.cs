@@ -55,7 +55,13 @@ namespace Mediag.ViewModels
         public ICommand DiagnosticAllCommand { get; private set; }
         private void DiagnosticAll()
         {
-            MessageBox.Show("Diagnostic all");
+            long nbFails = 0;
+            foreach (Models.MedicalFile medicalFile in MedicalFiles)
+            {
+                if (!Models.Hospital.Diagnose(medicalFile)) nbFails++;
+            }
+            if (nbFails > 0) MessageBox.Show("Diagnosis succeeded for " + (nbFails * 100 / MedicalFiles.Count) + "% of medical files");
+            else MessageBox.Show("Diagnosis succeeded for all medical files");
         }
 
 
