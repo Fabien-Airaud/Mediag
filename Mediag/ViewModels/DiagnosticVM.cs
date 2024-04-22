@@ -81,7 +81,7 @@ namespace Mediag.ViewModels
             ApplyFilters();
 
             DiagnosticCommand = new RelayCommand(_ => true, medicalFile => Diagnostic(medicalFile));
-            DiagnosticAllCommand = new RelayCommand(_ => true, _ => DiagnosticAll());
+            DiagnosticAllCommand = new RelayCommand(_ => MedicalFiles.Count > 0, _ => DiagnosticAll());
         }
 
         private void ApplyFilters()
