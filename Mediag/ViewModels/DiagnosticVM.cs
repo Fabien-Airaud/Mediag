@@ -60,6 +60,7 @@ namespace Mediag.ViewModels
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ApplyFilters(); // Apply filters when IllnessType or DiagnosisChoice changes
         }
 
 
@@ -69,13 +70,34 @@ namespace Mediag.ViewModels
             IllnessTypes.Insert(0, new Models.IllnessTypes { Name = "All" });
             DiagnosisChoices = new ObservableCollection<string>([ "Don't have diagnosis", "Already have diagnosis" ]);
             DiagnosisChoices.Insert(0, "All");
-            MedicalFiles = new ObservableCollection<Models.MedicalFile>(Models.MedicalFile.GetMedicalFiles());
+            MedicalFiles = [];
 
             _illnessType = IllnessTypes[0];
             _diagnosisChoice = DiagnosisChoices[0];
+            ApplyFilters();
 
             DiagnosticCommand = new RelayCommand(_ => true, medicalFile => Diagnostic(medicalFile));
             DiagnosticAllCommand = new RelayCommand(_ => true, _ => DiagnosticAll());
+        }
+
+        private void ApplyFilters()
+        {
+            MedicalFiles.Clear();
+            foreach (Models.MedicalFile medicalFile in Models.MedicalFile.GetMedicalFiles())
+            {
+                // If all or same illness type
+                if (IllnessType.Name.Equals("All") && IllnessTypes.Contains(medicalFile.TargetIllness!)
+                    || medicalFile.TargetIllness!.Name.Equals(IllnessType.Name))
+                {
+                    // If all or same diagnosis choice
+                    if (DiagnosisChoice.Equals("All")
+                        || DiagnosisChoice.Equals("Don't have diagnosis") && medicalFile.Diagnosis is null
+                        || DiagnosisChoice.Equals("Already have diagnosis") && medicalFile.Diagnosis is not null)
+                    {
+                        MedicalFiles.Add(medicalFile);
+                    }
+                }
+            }
         }
     }
 }
