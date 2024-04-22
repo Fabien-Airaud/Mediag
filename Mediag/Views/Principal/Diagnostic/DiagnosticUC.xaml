@@ -17,7 +17,7 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
             <Label Content="Filters:" FontSize="20" FontWeight="Bold" Margin="10" />
             <ComboBox SelectedItem="{Binding IllnessType, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IllnessTypes}" Margin="10"/>
-            <ComboBox SelectedItem="{Binding HasDiagnosis, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DiagnosisChoices}" Margin="10"/>
+            <ComboBox SelectedItem="{Binding DiagnosisChoice, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding DiagnosisChoices}" Margin="10"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -41,19 +41,17 @@
                 <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
                 <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:yyyy/MM/dd HH:mm:ss}}" Width="1.5*" MinWidth="150" MaxWidth="160"/>
                 <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
-                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="130" MaxWidth="150">
+                <DataGridTemplateColumn Header="Actions" Width="*" MinWidth="110" MaxWidth="150">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                <Button Command="{Binding DataContext.DiagnosticCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="5">
-                                    <Button.Content>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="/Views/Icons/Diagnostic Icon.png" Width="20" Height="20"/>
-                                            <Label Content="Diagnostic" />
-                                        </StackPanel>
-                                    </Button.Content>
-                                </Button>
-                            </StackPanel>
+                            <Button Command="{Binding DataContext.DiagnosticCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}" CommandParameter="{Binding}" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/Views/Icons/Diagnostic Icon.png" Width="16" Height="16"/>
+                                        <Label Content="Diagnostic" FontSize="12" Padding="0,0,1,0" />
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
