@@ -37,7 +37,7 @@
                 <DataGridTextColumn Header="Patient" Binding="{Binding Patient}" Width="1.5*" MinWidth="150"/>
                 <DataGridTextColumn Header="Doctor" Binding="{Binding Doctor}" Width="1.5*" MinWidth="150"/>
                 <DataGridTextColumn Header="Target illness" Binding="{Binding TargetIllness}" Width="*" MinWidth="120"/>
-                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis.Result}" Width="*" MinWidth="90"/>
+                <DataGridTextColumn Header="Diagnosis" Binding="{Binding Diagnosis.ResultString}" Width="*" MinWidth="90"/>
                 <DataGridTextColumn Header="Start date" Binding="{Binding StartDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
                 <DataGridTextColumn Header="Last update" Binding="{Binding LastUpdate, StringFormat={}{0:yyyy/MM/dd HH:mm:ss}}" Width="1.5*" MinWidth="150" MaxWidth="160"/>
                 <DataGridTextColumn Header="End date" Binding="{Binding EndDate, StringFormat={}{0:yyyy/MM/dd}}" Width="*" MinWidth="90" MaxWidth="100"/>
