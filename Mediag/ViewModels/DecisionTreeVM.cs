@@ -159,6 +159,7 @@ namespace Mediag.ViewModels
                 else
                 {
                     EvaluateVisibility = "Hidden";
+                    ResultVisibility = "Hidden";
                 }
             }
         }
