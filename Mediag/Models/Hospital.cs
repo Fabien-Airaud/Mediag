@@ -96,11 +96,8 @@ namespace Mediag.Models
                     if (result != null && result != "")
                     {
                         // Update the diagnosis of the medical file
-                        medicalFile.Diagnosis = new Diagnosis()
-                        {
-                            Result = bool.Parse(result),
-                            MedicalFile = medicalFile
-                        };
+                        medicalFile.Diagnosis ??= new Diagnosis() { MedicalFile = medicalFile }; // Create a new diagnosis if it doesn't exist
+                        medicalFile.Diagnosis.Result = bool.Parse(result);
                         MedicalFile.UpdateMedicalFile(medicalFile);
                         return true;
                     }
