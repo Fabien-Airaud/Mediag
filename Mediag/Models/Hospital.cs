@@ -78,10 +78,35 @@ namespace Mediag.Models
             }
         }
 
+
         public static ICollection<Hospital> GetHospitals()
         {
             MediagDbContext mediagDbContext = new();
             return [.. mediagDbContext.Hospitals]; // Copy the collection
+        }
+
+        public static bool Diagnose(MedicalFile medicalFile)
+        {
+            if (medicalFile != null && medicalFile.MedicalData != null)
+            {
+                IllnessTypes targetIllness = medicalFile.TargetIllness!;
+                if (DecisionTrees.TryGetValue(targetIllness, out IDecisionTree? decisionTree))
+                {
+                    string result = decisionTree.Classify(medicalFile.MedicalData.Values());
+                    if (result != null && result != "")
+                    {
+                        // Update the diagnosis of the medical file
+                        medicalFile.Diagnosis = new Diagnosis()
+                        {
+                            Result = bool.Parse(result),
+                            MedicalFile = medicalFile
+                        };
+                        MedicalFile.UpdateMedicalFile(medicalFile);
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         public override string? ToString()
