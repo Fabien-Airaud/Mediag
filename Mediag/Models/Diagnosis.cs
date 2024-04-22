@@ -89,6 +89,7 @@ namespace Mediag.Models
         private static void CorrectInObjects(MediagDbContext mediagDbContext, Diagnosis diagnosis)
         {
             diagnosis.MedicalFile = mediagDbContext.MedicalFiles.Find(diagnosis.MedicalFileId);
+            diagnosis.Result = diagnosis.Result;
         }
 
         public static Diagnosis? GetDiagnosis(long medicalFileId)
