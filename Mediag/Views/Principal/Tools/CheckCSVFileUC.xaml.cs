@@ -20,7 +20,6 @@ namespace Mediag.Views.Principal.Tools
         private void ChangeDatagridData(string[] headers, List<string[]> data)
         {
             DatagridCSV.Columns.Clear();
-            DatagridCSV.Items.Clear();
 
             for (int i = 0; i < headers.Length; i++)
             {
