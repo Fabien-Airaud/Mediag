@@ -69,7 +69,9 @@ namespace Mediag.ViewModels
         public ICommand AddPatientCommand { get; private set; }
         private void AddPatient()
         {
-            MessageBox.Show("Add patient");
+            Views.Principal.Patients.Patient patientWindow = new();
+            patientWindow.Show();
+            patientWindow.Closed += (_, _) => DisplayPatientList();
         }
 
         public ICommand AddMedicalFileCommand { get; private set; }
