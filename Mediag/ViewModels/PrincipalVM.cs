@@ -65,7 +65,7 @@ namespace Mediag.ViewModels
         public ICommand CheckCSVCommand { get; private set; }
         private void CheckCSVFile()
         {
-            MessageBox.Show("Check CSV file");
+            PrincipalContent = new Views.Principal.Tools.CheckCSVFileUC();
         }
 
         public ICommand AddPatientCommand { get; private set; }
