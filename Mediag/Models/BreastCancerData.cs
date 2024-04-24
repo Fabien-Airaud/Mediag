@@ -245,6 +245,13 @@ namespace Mediag.Models
             breastCancerData.Result = breastCancerData.Result; // To set IsMalignant and IsBenign
         }
 
+        public static List<BreastCancerData>? GetCSVData(string filename)
+        {
+            if (!DataManager<BreastCancerData, BreastCancerMap>.IsValidCSV(filename)) return null;
+            List<BreastCancerData> dataList = DataManager<BreastCancerData, BreastCancerMap>.GetCSVData(filename);
+            return dataList;
+        }
+
         public static IMedicalData? GetMedicalData(long medicalFileId)
         {
             MediagDbContext mediagDbContext = new();

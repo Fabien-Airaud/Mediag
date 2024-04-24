@@ -238,6 +238,13 @@ namespace Mediag.Models
             heartDiseaseData.Result = heartDiseaseData.Result; // To set IsMalignant and IsBenign
         }
 
+        public static List<HeartDiseaseData>? GetCSVData(string filename)
+        {
+            if (!DataManager<HeartDiseaseData, HeartDiseaseMap>.IsValidCSV(filename)) return null;
+            List<HeartDiseaseData> dataList = DataManager<HeartDiseaseData, HeartDiseaseMap>.GetCSVData(filename);
+            return dataList;
+        }
+
         public static IMedicalData? GetMedicalData(long medicalFileId)
         {
             MediagDbContext mediagDbContext = new();
