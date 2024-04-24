@@ -10,6 +10,8 @@ namespace Mediag.ViewModels
     {
         public Models.Doctor Doctor { get; set; }
 
+        public Action ClosePrincipal { get; set; } = () => { };
+
         private UserControl _principalContent = new Views.Principal.Home.HomeUC();
         public UserControl PrincipalContent
         {
@@ -77,13 +79,21 @@ namespace Mediag.ViewModels
         public ICommand AddMedicalFileCommand { get; private set; }
         private void AddMedicalFile()
         {
-            MessageBox.Show("Add Medical file");
+            Views.Principal.MedicalFiles.MedicalFile medicalFileWindow = new();
+            medicalFileWindow.Show();
+            medicalFileWindow.Closed += (_, _) => DisplayMedicalFileList();
         }
 
         public ICommand LogOutCommand { get; private set; }
         private void LogOut()
         {
-            MessageBox.Show("Log out");
+            MessageBoxResult result = MessageBox.Show("Are you sure you want to log out?", "Log out", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Views.LogIn.SignLogIn loginWindow = new();
+                loginWindow.Show();
+                ClosePrincipal();
+            }
         }
 
 

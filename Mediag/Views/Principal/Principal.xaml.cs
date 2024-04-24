@@ -10,7 +10,10 @@ namespace Mediag.Views.Principal
         public Principal(Models.Doctor doctor)
         {
             InitializeComponent();
-            DataContext = new ViewModels.PrincipalVM(doctor);
+            DataContext = new ViewModels.PrincipalVM(doctor)
+            {
+                ClosePrincipal = () => Close()
+            };
         }
     }
 }
