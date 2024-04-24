@@ -3,7 +3,6 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 
@@ -96,7 +95,8 @@ namespace Mediag.ViewModels
                 Node? resultTree = TrainDecisionTree(filename);
                 if (resultTree == null)
                 {
-                    MessageBox.Show("Error training decision tree", "Training", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error training decision tree\nCheck your CSV file if it contains correct data for " + TargetIllness,
+                        "Training", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 MessageBoxResult result = MessageBox.Show("Training successful", "Training", MessageBoxButton.OK);
@@ -129,7 +129,9 @@ namespace Mediag.ViewModels
                 CurrentResult = EvaluateDecisionTree(filename);
                 if (CurrentResult == null)
                 {
-                    MessageBox.Show("Error evaluating decision tree", "Evaluation", MessageBoxButton.OK, MessageBoxImage.Error);
+                    ResultVisibility = "Hidden";
+                    MessageBox.Show("Error evaluating decision tree\nCheck your CSV file if it contains correct data for " + TargetIllness,
+                        "Evaluation", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 ResultVisibility = "Visible";
@@ -175,6 +177,7 @@ namespace Mediag.ViewModels
             EvaluateCommand = new RelayCommand(_ => true, _ => Evaluate());
         }
 
+
         private Node? TrainDecisionTree(string filename)
         {
             // Get the decision tree
@@ -195,8 +198,8 @@ namespace Mediag.ViewModels
             switch (TargetIllness.Name)
             {
                 case "Breast cancer":
-                    List<Models.BreastCancerData> bcRows =
-                        Models.DataManager<Models.BreastCancerData, Models.BreastCancerMap>.GetCSVData(filename);
+                    List<Models.BreastCancerData>? bcRows = Models.BreastCancerData.GetCSVData(filename);
+                    if (bcRows == null) return null;
                     
                     labels = new List<string>(bcRows[0].Labels());
                     values = [];
@@ -204,9 +207,9 @@ namespace Mediag.ViewModels
 
                     break;
                 case "Heart disease":
-                    List<Models.HeartDiseaseData> hdRows =
-                        Models.DataManager<Models.HeartDiseaseData, Models.HeartDiseaseMap>.GetCSVData(filename);
-                    
+                    List<Models.HeartDiseaseData>? hdRows = Models.HeartDiseaseData.GetCSVData(filename);
+                    if (hdRows == null) return null;
+
                     labels = new(hdRows[0].Labels());
                     values = [];
                     foreach (Models.HeartDiseaseData row in hdRows) values.Add(row.Values());
@@ -236,16 +239,16 @@ namespace Mediag.ViewModels
             switch (TargetIllness.Name)
             {
                 case "Breast cancer":
-                    List<Models.BreastCancerData> bcRows =
-                        Models.DataManager<Models.BreastCancerData, Models.BreastCancerMap>.GetCSVData(filename);
+                    List<Models.BreastCancerData>? bcRows = Models.BreastCancerData.GetCSVData(filename);
+                    if (bcRows == null) return null;
 
                     values = [];
                     foreach (Models.BreastCancerData row in bcRows) values.Add(row.Values());
 
                     break;
                 case "Heart disease":
-                    List<Models.HeartDiseaseData> hdRows =
-                        Models.DataManager<Models.HeartDiseaseData, Models.HeartDiseaseMap>.GetCSVData(filename);
+                    List<Models.HeartDiseaseData>? hdRows = Models.HeartDiseaseData.GetCSVData(filename);
+                    if (hdRows == null) return null;
 
                     values = [];
                     foreach (Models.HeartDiseaseData row in hdRows) values.Add(row.Values());
