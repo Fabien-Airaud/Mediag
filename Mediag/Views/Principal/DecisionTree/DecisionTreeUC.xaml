@@ -27,6 +27,7 @@
 
         <Label Content="Evaluation result" Grid.Row="2" FontWeight="Bold" FontSize="24" Visibility="{Binding ResultVisibility}"/>
 
-        <TextBlock Text="{Binding CurrentResult}" Grid.Row="3" Grid.ColumnSpan="3" Visibility="{Binding ResultVisibility}" VerticalAlignment="Top"/>
+        <!--<TextBlock Text="{Binding CurrentResult}" Grid.Row="3" Grid.ColumnSpan="3" Visibility="{Binding ResultVisibility}" VerticalAlignment="Top"/>-->
+        <Label Content="{Binding CurrentResult}" Grid.Row="3" Grid.ColumnSpan="3" Visibility="{Binding ResultVisibility}" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
     </Grid>
 </UserControl>
