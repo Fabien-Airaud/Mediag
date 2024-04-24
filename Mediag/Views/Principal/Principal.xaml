@@ -31,7 +31,7 @@
                 </MenuItem>
                 <MenuItem Header="_Manage Medical Files" Command="{Binding MedicalFileListCommand}">
                     <MenuItem.Icon>
-                        <Image Source="/Views/Icons/MedicalFileList Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Image Source="/Views/Icons/MedicalFileFolder Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -54,6 +54,29 @@
                 <MenuItem.Icon>
                     <Image Source="/Views/Icons/Tools Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
+
+                <MenuItem Header="_Check CSV file" Command="{Binding OpenCSVCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/CSVFile Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Add patient" Command="{Binding AddPatientCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/AddPatient Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Add medical file" Command="{Binding AddMedicalFileCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/MedicalFile Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="_Log out" Command="{Binding LogOutCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/Views/Icons/LogOut Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         
