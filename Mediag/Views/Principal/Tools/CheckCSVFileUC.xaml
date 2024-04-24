@@ -29,6 +29,6 @@
         <Button Content="Check file" Grid.Column="1" Grid.Row="2" Margin="10" Style="{StaticResource PrimaryButton}" MinWidth="100" MaxWidth="200" MaxHeight="60" Command="{Binding CheckCSVCommand}"/>
         <Label Content="{Binding ResultCheckCSV, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" Grid.Row="2"/>
 
-        <DataGrid ItemsSource="{Binding CSVData}" Grid.Row="3" Grid.ColumnSpan="4" AutoGenerateColumns="True" CanUserReorderColumns="False" SelectionUnit="Cell"/>
+        <DataGrid Name="DatagridCSV" Grid.Row="3" Grid.ColumnSpan="4" AutoGenerateColumns="False" CanUserReorderColumns="False" SelectionUnit="Cell" Visibility="{Binding DatagridVisibility, UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>
