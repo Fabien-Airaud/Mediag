@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -59,6 +60,30 @@ namespace Mediag.ViewModels
             PrincipalContent = new Views.Principal.Profile.ProfileUC(Doctor);
         }
 
+        public ICommand CheckCSVCommand { get; private set; }
+        private void CheckCSVFile()
+        {
+            MessageBox.Show("Check CSV file");
+        }
+
+        public ICommand AddPatientCommand { get; private set; }
+        private void AddPatient()
+        {
+            MessageBox.Show("Add patient");
+        }
+
+        public ICommand AddMedicalFileCommand { get; private set; }
+        private void AddMedicalFile()
+        {
+            MessageBox.Show("Add Medical file");
+        }
+
+        public ICommand LogOutCommand { get; private set; }
+        private void LogOut()
+        {
+            MessageBox.Show("Log out");
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -77,6 +102,10 @@ namespace Mediag.ViewModels
             DecisionTreeCommand = new RelayCommand(_ => true, _ => DisplayDecisionTree());
             DiagnosticCommand = new RelayCommand(_ => true, _ => DisplayDiagnostic());
             ProfileCommand = new RelayCommand(_ => true, _ => DisplayProfile());
+            CheckCSVCommand = new RelayCommand(_ => true, _ => CheckCSVFile());
+            AddPatientCommand = new RelayCommand(_ => true, _ => AddPatient());
+            AddMedicalFileCommand = new RelayCommand(_ => true, _ => AddMedicalFile());
+            LogOutCommand = new RelayCommand(_ => true, _ => LogOut());
         }
     }
 }

@@ -55,7 +55,7 @@
                     <Image Source="/Views/Icons/Tools Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </MenuItem.Icon>
 
-                <MenuItem Header="_Check CSV file" Command="{Binding OpenCSVCommand}">
+                <MenuItem Header="_Check CSV file" Command="{Binding CheckCSVCommand}">
                     <MenuItem.Icon>
                         <Image Source="/Views/Icons/CSVFile Icon.png" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </MenuItem.Icon>
