@@ -245,6 +245,11 @@ namespace Mediag.Models
             return dataList;
         }
 
+        public static bool IsValidCSV(string filename)
+        {
+            return DataManager<HeartDiseaseData, HeartDiseaseMap>.IsValidCSV(filename);
+        }
+
         public static IMedicalData? GetMedicalData(long medicalFileId)
         {
             MediagDbContext mediagDbContext = new();
