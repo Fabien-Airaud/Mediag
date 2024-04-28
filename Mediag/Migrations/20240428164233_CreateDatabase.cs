@@ -14,6 +14,19 @@ namespace Mediag.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ChestPainTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ChestPainTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Hospitals",
                 columns: table => new
                 {
@@ -33,11 +46,37 @@ namespace Mediag.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_IllnessTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MajorVesselsTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MajorVesselsTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ThalassemiaTypes",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ThalassemiaTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -159,6 +198,81 @@ namespace Mediag.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Diagnosis",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Result = table.Column<bool>(type: "bit", nullable: false),
+                    MedicalFileId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Diagnosis", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Diagnosis_MedicalFiles_MedicalFileId",
+                        column: x => x.MedicalFileId,
+                        principalTable: "MedicalFiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HeartDiseaseDatas",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ChestPainId = table.Column<long>(type: "bigint", nullable: false),
+                    ThalassemiaId = table.Column<long>(type: "bigint", nullable: false),
+                    MajorVesselsId = table.Column<long>(type: "bigint", nullable: false),
+                    OldPeak = table.Column<double>(type: "float", nullable: false),
+                    MaximumHeartRateAchieved = table.Column<int>(type: "int", nullable: false),
+                    Result = table.Column<bool>(type: "bit", nullable: false),
+                    MedicalFileId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HeartDiseaseDatas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_HeartDiseaseDatas_ChestPainTypes_ChestPainId",
+                        column: x => x.ChestPainId,
+                        principalTable: "ChestPainTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HeartDiseaseDatas_MajorVesselsTypes_MajorVesselsId",
+                        column: x => x.MajorVesselsId,
+                        principalTable: "MajorVesselsTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HeartDiseaseDatas_MedicalFiles_MedicalFileId",
+                        column: x => x.MedicalFileId,
+                        principalTable: "MedicalFiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_HeartDiseaseDatas_ThalassemiaTypes_ThalassemiaId",
+                        column: x => x.ThalassemiaId,
+                        principalTable: "ThalassemiaTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "ChestPainTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "Typical angina" },
+                    { 2L, "Atypical angina" },
+                    { 3L, "Non anginal pain" },
+                    { 4L, "Asymptomatic" }
+                });
+
             migrationBuilder.InsertData(
                 table: "Hospitals",
                 columns: new[] { "Id", "City", "Name" },
@@ -178,9 +292,43 @@ namespace Mediag.Migrations
                     { 2L, "Heart disease" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "MajorVesselsTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "Zero" },
+                    { 2L, "One" },
+                    { 3L, "Two" },
+                    { 4L, "Three" },
+                    { 5L, "Four" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ThalassemiaTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "Strange" },
+                    { 2L, "Normal" },
+                    { 3L, "Fixed" },
+                    { 4L, "Reversable" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BreastCancerDatas_MedicalFileId",
                 table: "BreastCancerDatas",
+                column: "MedicalFileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChestPainTypes_Name",
+                table: "ChestPainTypes",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Diagnosis_MedicalFileId",
+                table: "Diagnosis",
                 column: "MedicalFileId");
 
             migrationBuilder.CreateIndex(
@@ -195,9 +343,41 @@ namespace Mediag.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_HeartDiseaseDatas_ChestPainId",
+                table: "HeartDiseaseDatas",
+                column: "ChestPainId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HeartDiseaseDatas_MajorVesselsId",
+                table: "HeartDiseaseDatas",
+                column: "MajorVesselsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HeartDiseaseDatas_MedicalFileId",
+                table: "HeartDiseaseDatas",
+                column: "MedicalFileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HeartDiseaseDatas_ThalassemiaId",
+                table: "HeartDiseaseDatas",
+                column: "ThalassemiaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Hospitals_Name_City",
                 table: "Hospitals",
                 columns: new[] { "Name", "City" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IllnessTypes_Name",
+                table: "IllnessTypes",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MajorVesselsTypes_Name",
+                table: "MajorVesselsTypes",
+                column: "Name",
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -224,6 +404,12 @@ namespace Mediag.Migrations
                 name: "IX_Patients_HospitalId",
                 table: "Patients",
                 column: "HospitalId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ThalassemiaTypes_Name",
+                table: "ThalassemiaTypes",
+                column: "Name",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -233,7 +419,22 @@ namespace Mediag.Migrations
                 name: "BreastCancerDatas");
 
             migrationBuilder.DropTable(
+                name: "Diagnosis");
+
+            migrationBuilder.DropTable(
+                name: "HeartDiseaseDatas");
+
+            migrationBuilder.DropTable(
+                name: "ChestPainTypes");
+
+            migrationBuilder.DropTable(
+                name: "MajorVesselsTypes");
+
+            migrationBuilder.DropTable(
                 name: "MedicalFiles");
+
+            migrationBuilder.DropTable(
+                name: "ThalassemiaTypes");
 
             migrationBuilder.DropTable(
                 name: "Doctors");

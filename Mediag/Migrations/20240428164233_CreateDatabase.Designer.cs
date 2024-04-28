@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mediag.Migrations
 {
     [DbContext(typeof(MediagDbContext))]
-    [Migration("20240421221923_CreateDiagnosis")]
-    partial class CreateDiagnosis
+    [Migration("20240428164233_CreateDatabase")]
+    partial class CreateDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
