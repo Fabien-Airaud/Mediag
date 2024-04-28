@@ -56,12 +56,12 @@ namespace Mediag.Models
     {
         public HeartDiseaseMap()
         {
-            Map(m => m.ChestPain).Index(0).Name("cp").TypeConverter(new ChestPainConverter());
-            Map(m => m.Thalassemia).Index(1).Name("thal").TypeConverter(new ThalassemiaConverter());
-            Map(m => m.MajorVessels).Index(2).Name("ca").TypeConverter(new MajorVesselsConverter());
-            Map(m => m.OldPeak).Index(3).Name("oldpeak");
-            Map(m => m.MaximumHeartRateAchieved).Index(4).Name("thalach");
-            Map(m => m.Result).Index(5).Name("target");
+            Map(m => m.ChestPain).Index(0).Name("ChestPain", "chestpain", "cp").TypeConverter(new ChestPainConverter());
+            Map(m => m.Thalassemia).Index(1).Name("Thalassemia", "thalassemia", "thal").TypeConverter(new ThalassemiaConverter());
+            Map(m => m.MajorVessels).Index(2).Name("MajorVessels", "majorvessels", "ca").TypeConverter(new MajorVesselsConverter());
+            Map(m => m.OldPeak).Index(3).Name("OldPeak", "oldpeak");
+            Map(m => m.MaximumHeartRateAchieved).Index(4).Name("MaximumHeartRateAchieved", "maximumheartrateachieved", "thalach");
+            Map(m => m.Result).Index(5).Name("Result", "result", "Target", "target");
         }
     }
 }
